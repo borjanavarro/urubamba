@@ -6,8 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction($option)
     {
-        return $this->render('SalleAdminBundle:Default:baseAdmin.html.twig');
+    	if ($option == "news"){
+    		return $this->render('SalleAdminBundle:Default:newsList.html.twig');
+    	} else {
+    		throw $this->createNotFoundException('The product does not exist'); 
+    	}
+        
     }
 }
