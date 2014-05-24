@@ -1,0 +1,4 @@
+salle_admin:
+    resource: "@SalleAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
