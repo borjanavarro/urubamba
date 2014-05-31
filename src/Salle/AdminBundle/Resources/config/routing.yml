@@ -1,3 +1,7 @@
-salle_admin_homepage:
+admin:
     pattern:  /admin/{option}
     defaults: { _controller: SalleAdminBundle:Default:index }
+
+home:
+    pattern: /
+    defaults: { _controller: SalleAdminBundle:Home:index }
