@@ -8,7 +8,7 @@ class SomosController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Default:somos.html.twig');
+    	return $this->render('SalleAdminBundle:Front:somos.html.twig');
     }
 
 }

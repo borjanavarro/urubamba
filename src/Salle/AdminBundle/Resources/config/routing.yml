@@ -1,6 +1,20 @@
-admin:
-    pattern:  /admin/{option}
-    defaults: { _controller: SalleAdminBundle:Default:index }
+## BACKOFFICE ##
+
+# News #
+
+list-news:
+    pattern:  /admin/list-news
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListNews:index }
+
+edit-news:
+    pattern: /admin/edit-news
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditNews:index }
+
+add-new:
+    pattern: /admin/add-new
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddNews:index }
+
+
 
 home:
     pattern: /
@@ -17,3 +31,7 @@ quienes-somos:
 radio:
     pattern: /radio
     defaults: { _controller: SalleAdminBundle:Radio:index }
+
+
+
+

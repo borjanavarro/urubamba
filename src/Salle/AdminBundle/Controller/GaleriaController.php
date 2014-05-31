@@ -8,7 +8,7 @@ class GaleriaController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Default:galeria.html.twig');
+    	return $this->render('SalleAdminBundle:Front:galeria.html.twig');
     }
 
 }

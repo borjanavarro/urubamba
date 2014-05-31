@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Default:home.html.twig');
+    	return $this->render('SalleAdminBundle:Front:home.html.twig');
     }
 
 }

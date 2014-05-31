@@ -3,16 +3,16 @@
 	<ul>
 		<li class="logo-wrapper"><a href="index.html"><img src="img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
 		<li {% if active == 'home' %}class="active"{% endif %}>
-			<a href="/">Inicio</a>
+			<a href="{{ url ('home') }}">Inicio</a>
 		</li>
-		<li {% if active == 'quienes' %}class="active"{% endif %}>
-			<a href="/quienes-somos">Quienes somos</a>
+		<li {% if active == 'somos' %}class="active"{% endif %}>
+			<a href="{{ url ('quienes-somos') }}">Quienes somos</a>
 		</li>
 		<li {% if active == 'radio' %}class="active"{% endif %}>
-			<a href="/radio">Radio en vivo</a>
+			<a href="{{ url ('radio') }}">Radio en vivo</a>
 		</li>
 		<li {% if active == 'galeria' %}class="active"{% endif %}>
-			<a href="/galeria">Galeria</a>
+			<a href="{{ url ('galeria') }}">Galeria</a>
 		</li>
 		<!--<li class="has-submenu">
 			<a href="#">Radio en vivo</a>

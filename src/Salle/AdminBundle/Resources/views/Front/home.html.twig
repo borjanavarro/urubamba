@@ -1,9 +1,11 @@
-{% extends 'SalleAdminBundle:Default:base.html.twig' %}
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
 
 <div class="mainmenu-wrapper">
-	{% include 'SalleAdminBundle:Default:header.html.twig' with {'active' : 'home'} %}
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'home'} %}
 </div>
 
 <!-- Homepage Slider -->
@@ -276,7 +278,7 @@
 
  <!-- Footer -->
 <div class="footer">
-	{% include 'SalleAdminBundle:Default:footer.html.twig' %}
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
 </div>
 
 {% endblock %}
