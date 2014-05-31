@@ -5,3 +5,15 @@ admin:
 home:
     pattern: /
     defaults: { _controller: SalleAdminBundle:Home:index }
+
+galeria:
+    pattern: /galeria
+    defaults: { _controller: SalleAdminBundle:Galeria:index }
+
+quienes-somos:
+    pattern: /quienes-somos
+    defaults: { _controller: SalleAdminBundle:Somos:index }
+
+radio:
+    pattern: /radio
+    defaults: { _controller: SalleAdminBundle:Radio:index }

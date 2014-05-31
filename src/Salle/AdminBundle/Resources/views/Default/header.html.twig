@@ -2,15 +2,21 @@
 <nav id="mainmenu" class="mainmenu">
 	<ul>
 		<li class="logo-wrapper"><a href="index.html"><img src="img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-		<li class="active">
-			<a href="index.html">Home</a>
+		<li {% if active == 'home' %}class="active"{% endif %}>
+			<a href="/">Inicio</a>
 		</li>
-		<li>
-			<a href="features.html">Features</a>
+		<li {% if active == 'quienes' %}class="active"{% endif %}>
+			<a href="/quienes-somos">Quienes somos</a>
 		</li>
-		<li class="has-submenu">
-			<a href="#">Pages +</a>
-			<div class="mainmenu-submenu">
+		<li {% if active == 'radio' %}class="active"{% endif %}>
+			<a href="/radio">Radio en vivo</a>
+		</li>
+		<li {% if active == 'galeria' %}class="active"{% endif %}>
+			<a href="/galeria">Galeria</a>
+		</li>
+		<!--<li class="has-submenu">
+			<a href="#">Radio en vivo</a>
+			<!--<div class="mainmenu-submenu">
 				<div class="mainmenu-submenu-inner"> 
 					<div>
 						<h4>Homepage</h4>
@@ -75,11 +81,8 @@
 						</ul>
 					</div>
 				</div><!-- /mainmenu-submenu-inner -->
-			</div><!-- /mainmenu-submenu -->
-		</li>
-		<li>
-			<a href="credits.html">Credits</a>
-		</li>
+			<!--</div><!-- /mainmenu-submenu -->
+		<!--</li>-->
 	</ul>
 </nav>
 
