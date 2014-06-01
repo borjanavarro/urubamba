@@ -21,6 +21,19 @@
 		<link rel="stylesheet" href="{{ asset('bundles/salleadmin/css/main.css') }}">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+        <style type="text/css" media="screen">
+
+            @font-face {
+                font-family: 'Glyphicons Halflings';
+
+                src: url('{{ asset ('bundles/salleadmin/fonts/glyphicons-halflings-regular.eot')}}');
+                src: url('{{ asset ('bundles/salleadmin/fonts/glyphicons-halflings-regular.eot?#iefix')}}') format('embedded-opentype'), url('{{ asset ('bundles/salleadmin/fonts/glyphicons-halflings-regular.woff')}}') format('woff'), url('{{ asset ('bundles/salleadmin/fonts/glyphicons-halflings-regular.ttf')}}') format('truetype'), url('{{ asset ('bundles/salleadmin/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular')}}') format('svg');
+            }
+            
+        </style>
+
+        {% block scriptsHeader %}{% endblock %}
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -39,6 +52,8 @@
         <script src="{{ asset('bundles/salleadmin/js/jquery.bxslider.js') }}"></script>
         <script src="{{ asset('bundles/salleadmin/js/main-menu.js') }}"></script>
         <script src="{{ asset('bundles/salleadmin/js/template.js') }}"></script>
+
+        {% block scriptsFooter %}{% endblock %}
 
     </body>
 </html>

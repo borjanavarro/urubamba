@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- Header -->
 <div class="mainmenu-wrapper">
 	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'home'} %}
 </div>
@@ -96,7 +97,7 @@
 					</div>
 					<!-- End Post Title & Summary -->
 					<div class="post-more">
-						<a href="page-blog-post-right-sidebar.html" class="btn btn-small">Read more</a>
+						<a href="{{ url ('noticia')}}" class="btn btn-small">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -119,7 +120,7 @@
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio. Duis elementum ligula eu ipsum condimentum accumsan.</p>
 					</div>
 					<div class="post-more">
-						<a href="page-blog-post-right-sidebar.html" class="btn btn-small">Read more</a>
+						<a href="{{ url ('noticia')}}" class="btn btn-small">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -142,7 +143,7 @@
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio. Duis elementum ligula eu ipsum condimentum accumsan.</p>
 					</div>
 					<div class="post-more">
-						<a href="page-blog-post-right-sidebar.html" class="btn btn-small">Read more</a>
+						<a href="{{ url ('noticia')}}" class="btn btn-small">Read more</a>
 					</div>
 				</div>
 			</div>

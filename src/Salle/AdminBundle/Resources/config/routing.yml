@@ -16,6 +16,8 @@ add-new:
 
 
 
+## FRONT ##
+
 home:
     pattern: /
     defaults: { _controller: SalleAdminBundle:Home:index }
@@ -32,6 +34,10 @@ radio:
     pattern: /radio
     defaults: { _controller: SalleAdminBundle:Radio:index }
 
+noticia:
+    pattern: /noticia
+    defaults: { _controller: SalleAdminBundle:SingleNew:index }
 
-
-
+buscar:
+    pattern: /buscar
+    defaults: { _controller: SalleAdminBundle:SearchResults:index }
