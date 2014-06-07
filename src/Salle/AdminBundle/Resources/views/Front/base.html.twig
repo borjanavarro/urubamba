@@ -18,7 +18,7 @@
 		<!--[if lte IE 8]>
 		    <link rel="stylesheet" href="css/leaflet.ie.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="{{ asset('bundles/salleadmin/css/main.css') }}">
+		
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         
@@ -33,7 +33,9 @@
             
         </style>
 
-        {% block scriptsHeader %}{% endblock %}
+        {% block scriptsHeader %}
+            <link rel="stylesheet" href="{{ asset('bundles/salleadmin/css/main.css') }}">
+        {% endblock %}
     </head>
     <body>
         <!--[if lt IE 7]>
