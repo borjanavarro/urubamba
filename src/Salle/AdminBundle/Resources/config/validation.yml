@@ -1,0 +1,16 @@
+Salle\AdminBundle\Entity\Noticia:
+    properties:
+        titulo:
+            - NotBlank: ~
+        subtitulo:
+            - NotBlank: ~
+        cuerpo:
+            - NotBlank: ~
+        foto:
+            - NotBlank: ~
+            - Image:
+        seccion:
+            - NotBlank: ~
+            # - Choice:
+            #     choices:  [pol, Internacional, Economía, Cultura, Sociedad, Deportes]
+            #     message:  Elige una sección

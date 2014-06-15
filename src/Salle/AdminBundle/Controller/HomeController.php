@@ -8,7 +8,12 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Front:home.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Noticia');
+
+    	$noticia = $repository->findAllNews();
+
+    	return $this->render('SalleAdminBundle:Front:home.html.twig', array ('noticias' => $noticia));
     }
 
 }

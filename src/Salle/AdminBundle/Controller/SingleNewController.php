@@ -6,9 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SingleNewController extends Controller
 {
-    public function indexAction()
+    public function indexAction($id)
     {
-    	return $this->render('SalleAdminBundle:Front:noticia.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Noticia');
+
+    	$noticia = $repository->findById($id);
+
+    	$ultimas = $repository->findUltimasNews();
+
+    	return $this->render('SalleAdminBundle:Front:noticia.html.twig', array ('noticia' => $noticia[0], 'ultimas' => $ultimas));
     }
 
 }

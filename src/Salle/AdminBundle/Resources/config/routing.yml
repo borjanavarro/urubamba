@@ -35,7 +35,7 @@ radio:
     defaults: { _controller: SalleAdminBundle:Radio:index }
 
 noticia:
-    pattern: /noticia
+    pattern: /noticia/{id}
     defaults: { _controller: SalleAdminBundle:SingleNew:index }
 
 buscar:

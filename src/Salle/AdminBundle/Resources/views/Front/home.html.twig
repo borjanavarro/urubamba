@@ -73,12 +73,13 @@
 		<h2>Ultimas noticias</h2>
 		<div class="row">
 			<!-- Post -->
+			{% for noticia in noticias %}
 			<div class="col-md-4 col-sm-6">
 				<div class="blog-post">
 					<!-- Post Info -->
 					<div class="post-info">
 						<div class="post-date">
-							<div class="date">30 JAN, 2013</div>
+							<div class="date">{{ noticia.fecha | date('Y-m-d') }}</div>
 						</div>
 						<div class="post-comments-count">
 							<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>11</a>
@@ -86,22 +87,23 @@
 					</div>
 					<!-- End Post Info -->
 					<!-- Post Image -->
-					<a href="page-blog-post-right-sidebar.html"><img src="{{ asset ('bundles/salleadmin/img/blog-posts/blog1.jpg')}}" class="post-image" alt="Post Title"></a>
+					<a href="page-blog-post-right-sidebar.html"><img src="{{ asset ('bundles/salleadmin/fotos/' ~ noticia.foto )}}" class="post-image" alt="Post Title"></a>
 					<!-- End Post Image -->
 					<!-- Post Title & Summary -->
 					<div class="post-title">
-						<h3><a href="page-blog-post-right-sidebar.html">Post Title</a></h3>
+						<h3><a href="page-blog-post-right-sidebar.html">{{ noticia.titulo }}</a></h3>
 					</div>
 					<div class="post-summary">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio. Duis elementum ligula eu ipsum condimentum accumsan.</p>
+						<p>{{ noticia.subtitulo }}</p>
 					</div>
 					<!-- End Post Title & Summary -->
 					<div class="post-more">
-						<a href="{{ url ('noticia')}}" class="btn btn-small">Read more</a>
+						<a href="{{ url ('noticia', { 'id' : noticia.id} )}}" class="btn btn-small">Leer más</a>
 					</div>
 				</div>
 			</div>
-			<!-- End Post -->
+			{% endfor %}
+			{# <!-- End Post -->
 			<div class="col-md-4 col-sm-6">
 				<div class="blog-post">
 					<div class="post-info">
@@ -147,7 +149,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Post -->
+			<!-- End Post --> #}
 		</div>
 	</div>
 </div>
