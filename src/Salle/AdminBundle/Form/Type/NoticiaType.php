@@ -19,12 +19,12 @@ class NoticiaType extends AbstractType
                 ))
             ->add('seccion', 'choice', array(
                 'choices' => array(
-                    'pol' => 'Política',
-                    'inter' => 'Internacional', 
-                    'eco' => 'Economía', 
-                    'cult' => 'Cultura', 
-                    'soc' => 'Sociedad', 
-                    'dep' => 'Deportes')
+                    'Política' => 'Política',
+                    'Internacional' => 'Internacional', 
+                    'Economía' => 'Economía', 
+                    'Cultura' => 'Cultura', 
+                    'Sociedad' => 'Sociedad', 
+                    'Deprtes' => 'Deportes')
                 ))
             ->add('send', 'submit', array(
                 'label' => 'Añadir')

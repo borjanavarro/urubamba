@@ -28,7 +28,6 @@ class AddNewsController extends Controller
             $noticia->setFile($form->get('file')->getData());
             $noticia->setFecha(new \Datetime("now"));
 
-            $noticia->upload();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($noticia);
@@ -37,8 +36,8 @@ class AddNewsController extends Controller
             //return 
         }
 
-    	return $this->render('SalleAdminBundle:BackOffice:addNews.html.twig', array(
-            'form' => $form->createView(),
+    	return $this->render('SalleAdminBundle:BackOffice:addNews.html.twig', 
+            array('form' => $form->createView(),
         ));
     }
 

@@ -8,7 +8,12 @@ class ListNewsController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Noticia');
+
+    	$noticia = $repository->findAllNews();
+
+    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticia));
         //throw $this->createNotFoundException('The product does not exist'); 
         
     }

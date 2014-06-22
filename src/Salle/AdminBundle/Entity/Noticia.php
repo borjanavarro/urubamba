@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Salle\AdminBundle\Repository\NoticiaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Noticia
 {
@@ -68,6 +69,7 @@ class Noticia
      */
     private $file;
 
+    private $temp;
 
     /**
      * Get id
@@ -213,7 +215,7 @@ class Noticia
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
     }
 
     public function getWebPath()
@@ -245,6 +247,13 @@ class Noticia
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        // check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+        } else {
+            $this->path = 'initial';
+        }
     }
 
     /**
@@ -257,28 +266,62 @@ class Noticia
         return $this->file;
     }
 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $this->path = $this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
     public function upload()
     {
-
-        // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
             return;
         }
 
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
 
-        // move takes the target directory and then the
-        // target filename to move to
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
         $this->getFile()->move(
             $this->getUploadRootDir(),
-            $this->getFile()->getClientOriginalName()
+            $this->id.'.'.$this->getFile()->guessExtension()
         );
 
-        // set the path property to the filename where you've saved the file
-        $this->path = $this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
+        $this->setFile(null);
     }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
+    {
+        $this->temp = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
+    }
+
 }

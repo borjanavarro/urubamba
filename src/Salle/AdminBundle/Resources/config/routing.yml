@@ -7,7 +7,7 @@ list-news:
     defaults: { _controller: SalleAdminBundle:BackOffice/ListNews:index }
 
 edit-news:
-    pattern: /admin/edit-news
+    pattern: /admin/edit-news/{id}
     defaults: { _controller: SalleAdminBundle:BackOffice/EditNews:index }
 
 add-new:
