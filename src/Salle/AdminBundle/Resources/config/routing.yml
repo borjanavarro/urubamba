@@ -26,6 +26,10 @@ galeria:
     pattern: /galeria
     defaults: { _controller: SalleAdminBundle:Galeria:index }
 
+imagen:
+    pattern: /imagen/{id}
+    defaults: { _controller: SalleAdminBundle:Imagen:index }
+
 quienes-somos:
     pattern: /quienes-somos
     defaults: { _controller: SalleAdminBundle:Somos:index }

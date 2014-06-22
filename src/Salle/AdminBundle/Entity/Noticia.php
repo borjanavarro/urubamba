@@ -234,7 +234,7 @@ class Noticia
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'bundles/salleadmin/fotos';
+        return 'bundles/salleadmin/img/articulos';
     }
 
     /**
