@@ -9,63 +9,64 @@
  
 /* COLOR CONF */
 
+/* Color antiguo: #74c9be;
 
 /* Links */
 a {
-    color: #74c9be;
+    color: #4f8db3;
 }
 
 .si i {
-	color: #74c9be;
+	color: #4f8db3;
 }
 
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 color: #ffffff;
-background-color: #74c9be;
+background-color: #4f8db3;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-color: #74c9be;
+color: #4f8db3;
 }
 
 .btn-theme {
-  background-color: #74c9be;
+  background-color: #4f8db3;
 }
 
 .tabbable .nav-stacked > li:active, li:focus, li.active h4 {
-	color: #74c9be;
+	color: #4f8db3;
 }
 
 #cta-bar:hover {
-	background: #74c9be;	
+	background: #4f8db3;	
 }
 
 p.capitalize:first-letter {
-	background: #74c9be; 
+	background: #4f8db3; 
 }
 
 .team-info {
-  background: #74c9be;
+  background: #4f8db3;
 }
 
 #black i {
-	color: #74c9be;
+	color: #4f8db3;
 }
 
 .progress-bar-theme {
-  background-color: #74c9be;
+  background-color: #4f8db3;
 }
 
 .team-stat i {
-	color: #74c9be;
+	color: #4f8db3;
 }
 
 .pricing-table-plan {
-	border-top: 4px solid #74c9be;
+	border-top: 4px solid #4f8db3;
 }
 
 .blog-post blockquote {
-  border-left: 4px solid #74c9be;
+  border-left: 4px solid #4f8db3;
 }
 

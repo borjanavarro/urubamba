@@ -14,7 +14,7 @@ class NoticiaType extends AbstractType
             ->add('titulo', 'text')
             ->add('subtitulo', 'text')
             ->add('cuerpo', 'textarea')
-            ->add('foto', 'file', array(
+            ->add('file', 'file', array(
                 'required'    => 'false'
                 ))
             ->add('seccion', 'choice', array(

@@ -33,7 +33,7 @@
 						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>11</a>
 					</div>
 					<div class="single-post-image">
-						<img src="{{ asset ('bundles/salleadmin/fotos/' ~ noticia.foto )}}" alt="Post Title">
+						<img src="{{ asset ('bundles/salleadmin/fotos/' ~ noticia.path )}}" alt="Post Title">
 					</div>
 					<div class="single-post-content">
 						<h4>{{ noticia.subtitulo }}</h4>

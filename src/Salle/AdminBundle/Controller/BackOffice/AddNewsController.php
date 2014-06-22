@@ -15,6 +15,7 @@ class AddNewsController extends Controller
     	$form = $this->createForm(new NoticiaType(), null);
         $form->handleRequest($request);
 
+
         if ($form->isValid()) {
             
             //$data = $form->getData();
@@ -24,9 +25,10 @@ class AddNewsController extends Controller
             $noticia->setSubtitulo($form->get('subtitulo')->getData());
             $noticia->setCuerpo($form->get('cuerpo')->getData());
             $noticia->setSeccion($form->get('seccion')->getData());
-            $form->get('foto')->getData()->move($dir, $file->getClientOriginalName());
-            $noticia->setFoto();
+            $noticia->setFile($form->get('file')->getData());
             $noticia->setFecha(new \Datetime("now"));
+
+            $noticia->upload();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($noticia);

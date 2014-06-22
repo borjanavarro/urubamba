@@ -15,7 +15,6 @@
 
 <!-- JavaScripts needed at the beginning
 ================================================== -->
-<script type="text/javascript" src="http://alvarez.is/demo/marco/assets/js/twitterFetcher_v10_min.js"></script>
 
 <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
@@ -28,16 +27,17 @@
         // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
         var mapOptions = {
             // How zoomed in you want the map to start at (always required)
-            zoom: 11,
+            zoom: 16,
             
             scrollwheel: false,
 
             // The latitude and longitude to center the map (always required)
-            center: new google.maps.LatLng(40.6700, -73.9400), // New York
+            //center: new google.maps.LatLng(40.6700, -73.9400), // New York
+            center: new google.maps.LatLng(-13.3043114, -72.1211136),
 
             // How you would like to style the map. 
             // This is where you would paste any style found on Snazzy Maps.
-            styles: [	{		featureType:'water',		stylers:[{color:'#74c9be'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]
+            /*styles: [	{		featureType:'water',		stylers:[{color:'#74c9be'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]*/
         };
 
         // Get the HTML DOM element that will contain your map 
@@ -46,6 +46,15 @@
 
         // Create the Google Map using out element and options defined above
         var map = new google.maps.Map(mapElement, mapOptions);
+
+    	var myLatlng = new google.maps.LatLng(-13.303358,-72.122172);
+
+		var marker = new google.maps.Marker({
+	      position: myLatlng,
+	      map: map,
+	      title:"Hello World!"
+	  });
+
     }
 </script>
 
@@ -76,67 +85,52 @@
 	<div class="container">
 		<div class="row centered">
 			<div class="col-lg-8 col-lg-offset-2 mt">
-				<h1 class="animation slideDown">We are a digital creative agency. We focus on design, consulting, and technology.</h1>
-				<p class="mt"><button type="button" class="btn btn-cta btn-lg">LEARN MORE</button></p>
+				<h1 class="animation slideDown">Somos una asociación para promover la educación a través de la tecnología</h1>
+				{# <p class="mt"><button type="button" class="btn btn-cta btn-lg">LEARN MORE</button></p>#}
 			</div>
 			
 		</div><!-- /row -->
 	</div><!-- /container -->
 </div> <!-- /headerwrap -->
 
-<! ========== BLOG POSTS ==================================================================================================== 
+<! ========== BLACK SECTION ================================================================================================= 
 =============================================================================================================================>    
-<div class="container">	
+<div id="text">
+	<div class="container">
+		<div class="row mt centered">
+			<div class="col-lg-4 col-lg-offset-4">
+				<h3>Un poco de historia</h3>
+				<hr>
+			</div><!-- /col-lg-4 -->
+		</div><!-- /row -->
+		
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>A iniciativa del Hermano Francisco Alvarez Penelas, Director y Comunidad de Hermanos del Instituto Superior Público La Salle de Urubamba, a finales de 1998 y principios de 1999 se funda la Asociación Educativa Radial y Televisiva Teleducación La Salle, principal promotora de Radio La Salle RIMARINAKUSUNCHIS.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
 
-	<div class="row mt centered ">
-		<div class="col-lg-4 col-lg-offset-4">
-			<h3>What Is Happening?</h3>
-			<hr>
-		</div>
-	</div><!-- /row -->
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>La Asociación prepara una serie de proyectos de cooperación para implementar la Emisora, la que contó con el apoyo invalorable del Señor Ignacio Fuentes Alcedo lográndose después de algunos meses y días de arduo trabajo de preparación, se inicia con las señales de prueba las cuales solo se emitían los días domingo y cuyo primer y principal programa radial fue el Programa de Niños denominado Pukllaspa Yachamusunchis, dirigido por la reconocida artista profesional Señora Débora Correa e integrada por niños y niñas de Urubamba el cual se mantiene con mucho éxito hasta el día de hoy.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
 
-	<div class="row mt">
-		<div class="col-lg-4 col-md-4 col-xs-12 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port04.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Post 1</h4>
-				  	<p class="b-from-right b-animate b-delay03">Read More.</p>
-				</div>
-			</a>
-			<p>The Sky Is The Limit</p>
-			<p class="lead">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-			<hr-d>
-			<p class="time"><i class="fa fa-comment-o"></i> 3 | <i class="fa fa-calendar"></i> 14 Nov.</p>
-		</div><!-- col-lg-4 -->
-		
-		<div class="col-lg-4 col-md-4 col-xs-12 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port05.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Post 2</h4>
-				  	<p class="b-from-right b-animate b-delay03">Read More.</p>
-				</div>
-			</a>
-			<p>Another Cool Stuff</p>
-			<p class="lead">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-			<hr-d>
-			<p class="time"><i class="fa fa-comment-o"></i> 1 | <i class="fa fa-calendar"></i> 13 Oct.</p>
-		</div><!-- col-lg-4 -->
-		
-		<div class="col-lg-4 col-md-4 col-xs-12 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port06.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Post 3</h4>
-				  	<p class="b-from-right b-animate b-delay03">Read More.</p>
-				</div>
-			</a>
-			<p>This Is Awesome</p>
-			<p class="lead">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-			<hr-d>
-			<p class="time"><i class="fa fa-comment-o"></i> 1 | <i class="fa fa-calendar"></i> 13 Oct.</p>
-		</div><!-- col-lg-4 -->
-		
-	</div><!-- /row -->
-</div><!-- /container -->
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>La inauguración de la emisión y transmisión oficial de la señal de Radio La Salle se realizó el día domingo 12 de Setiembre de 1999, con una misa celebrada por el Arzobispo del Cusco Monseñor Alcides Mendoza Castro la misma que contó con la presencia de autoridades civiles, religiosas, policiales y población Urubambina.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>Radio La Salle en la actualidad viene operando con una transmisora del servicio de Radiodifusión Sonora Educativa en Frecuencia Modulada FM, mediante Resolución Viceministerial Nº 140-99-MTC/15.03 publicada en el diario oficial El Peruano el 1º de Mayo de 1999, y en Amplitud Modulada AM, mediante Resolución Viceministerial Nº 926-2001-MTC/15.03 publicado en el diario oficial El Peruano el 17 de Octubre del 2001.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+	</div><!-- /container -->
+</div><!-- /black -->
+
 
 <! ========== CALL TO ACTION 1 ============================================================================================== 
 =============================================================================================================================>    
@@ -144,173 +138,54 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
-				<h2>The probability of success is difficult to estimate;<br/>but if we never search, the chance of success is zero.</h2>
-				<button type="button" class="btn btn-cta btn-lg">LEARN MORE</button>
+				<h2>Noticias y fotografias de actualidad para estar conectado</h2>
+				<h2>Entra y deja tu opinión</h2>
+				{# <button type="button" class="btn btn-cta btn-lg">LEARN MORE</button> #}
 			</div>
 		</div><!-- /row -->
 	</div><!-- /container -->
 </div><! --/cta01 -->
 
-<! ========== PORTFOLIO SECTION ============================================================================================= 
-=============================================================================================================================>    
-<div class="container">
-	<div class="row mt centered ">
-		<div class="col-lg-4 col-lg-offset-4">
-			<h3>Our Latest Work</h3>
-			<hr>
-		</div>
-	</div><!-- /row -->
-	<div class="row mt centered">	
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port01.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 1</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>APE - <i class="fa fa-heart-o"></i></p>
-		</div>
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port02.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 2</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>RAIDERS - <i class="fa fa-heart-o"></i></p>
-		</div>
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port03.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 3</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>VIKINGS - <i class="fa fa-heart-o"></i></p>
-		</div>
-	</div><!-- /row -->
-	<div class="row mt centered">	
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port03.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 4</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>APE - <i class="fa fa-heart-o"></i></p>
-		</div>
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port01.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 5</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>RAIDERS - <i class="fa fa-heart-o"></i></p>
-		</div>
-		<div class="col-lg-4 desc">
-			<a class="b-link-fade b-animate-go" href="#"><img width="350" src="assets/img/portfolio/port02.jpg" alt="" />
-				<div class="b-wrapper">
-				  	<h4 class="b-from-left b-animate b-delay03">Project 6</h4>
-				  	<p class="b-from-right b-animate b-delay03">View Details</p>
-				</div>
-			</a>
-			<p>VIKINGS - <i class="fa fa-heart-o"></i></p>
-		</div>
-	</div><!-- /row -->
-
-	<div class="row mt centered">
-		<div class="col-lg-4 col-lg-offset-4">
-			<button type="button" class="btn btn-theme btn-lg">VIEW OUR PORTFOLIO</button>
-		</div>
-	</div><!-- /row -->
-</div><!-- /container -->
-
-<! ========== BRANDS & CLIENTS =============================================================================================== 
-=============================================================================================================================>    
-<div id="grey">
-	<div class="container">
-		<div class="row mt centered ">
-			<div class="col-lg-4 col-lg-offset-4">
-				<h3>Brands & Clients</h3>
-				<hr>
-			</div><!-- /col-lg-4 -->
-		</div><!-- /row -->
-		
-		<div class="row centered">
-			<div class="col-lg-3 pt">
-				<img class="img-responsive" src="assets/img/clients/client01.png" alt="">
-			</div>
-			<div class="col-lg-3 pt">
-				<img class="img-responsive" src="assets/img/clients/client02.png" alt="">
-			</div>
-			<div class="col-lg-3 pt">
-				<img class="img-responsive" src="assets/img/clients/client03.png" alt="">
-			</div>
-			<div class="col-lg-3 pt">
-				<img class="img-responsive" src="assets/img/clients/client04.png" alt="">
-			</div>
-
-		</div><!-- /row -->
-	</div><!-- /container -->
-</div><!-- /grey -->
-
 
 <! ========== BLACK SECTION ================================================================================================= 
 =============================================================================================================================>    
-<div id="black">
+<div id="text">
 	<div class="container">
 		<div class="row mt centered">
 			<div class="col-lg-4 col-lg-offset-4">
-				<h3>Our Work Process</h3>
+				<h3>El proyecto</h3>
 				<hr>
 			</div><!-- /col-lg-4 -->
 		</div><!-- /row -->
 		
 		<div class="row mt">
 			<div class="col-lg-8 col-lg-offset-2">
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+				<p>Los estudios de Radio La Salle se encuentran ubicados en el Instituto Superior La Salle, contamos con cabina de transmisión, sala de locución, centro de información castellano y quechua, centro de producción del programa de niños, sala de grabación y producción; con tecnología digital al servicio de la población. Fue a partir del año 2001, en el que los equipos de transmisión son trasladados al cerro Sacro ubicado en la comunidad de Ccollana - Chequerec del distrito de Maras, ubicado por encima de los 45000 msnm, la que permite ganar y lograr una mejor cobertura de la provincia de Urubamba, el Valle Sagrado de los Incas y la Macro Región Sur del país, en sus frecuencias: AM, FM y ahora a todo el mundo a través del internet en www.radiolasalle.com.pe (Radio en Vivo).</p>
 			</div><! --/col-lg-8 -->
 		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>A lo largo de los años de transmisión de Radio La Salle a través de sus programas educativos ha realizado acciones educativas abiertas, flexibles, de extensión continua y de carácter permanente. Apoyando a las acciones Educativas en todos los centros educativos del campo y la ciudad, complementando y reforzándolas. Motivando a la reflexión, compartiendo la alegría de nuestra cultura, sus ritos y tradiciones. Desde la experiencia de los más de 48 años formando docentes para la región, interesa de sobremanera la actualización permanente de los docentes en servicio para contribuir a mejorar la educación de niños y jóvenes.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>Muchos programas radiales han pasado por Radio La Salle, habiendo dejado muy buena impresión y recuerdo en los oyentes; así mismo los colaboradores, voluntarios y el equipo humano de primer nivel, quienes con su experiencia y capacidad, dedicación y entrega han hecho que Radio La Salle ahora este en el corazón de la población Urubambina y en los lugares más recónditos y alejados de la región donde llega nuestra señal radial.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>En la actualidad la comunidad de hermanos que dirige el Instituto está integrada por el Hermano Manuel Marín Herrera, Director General de Radio La Salle, y los Hermanos Javier Mirando Sedano, Patricio Páramo López, Orlando Pacheco Gutiérrez y Charly Tupallima Padilla. En estos momentos, los que integramos la Familia Lasallista en Urubamba, nos encontramos comprometidos con nuevas tareas en beneficio de la región sur andina del Perú.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
 	</div><!-- /container -->
 </div><!-- /black -->
 
 
-<! ========== FEATURED ICONS ================================================================================================ 
-=============================================================================================================================>    
-<div id="white">
-    <div class="container">
-    	<div class="row mt">
-    		<div class="col-lg-4 col-lg-offset-4 centered">
-    			<h3>Different Stages</h3>
-    			<hr>
-    		</div>
-    	</div>
-    	<div class="row mt">
-    		<div class="col-lg-3">
-    			<p class="capitalize">1</p>
-    			<h4>Brief</h4>
-    			<p>Built for all levels of expertise, whether you need simple pages or complex ones, creating something incredible with Marco is an effortless and intuitive process.</p>
-    		</div>
-    		<div class="col-lg-3">
-    			<p class="capitalize">2</p>
-    			<h4>Analysis</h4>
-    			<p>We’ve taken great care to ensure that Marco is fully retina-ready. So it’ll look good on any retina display. We use retina.js to ensure the best view.</p>
-    		</div>
-    		<div class="col-lg-3">
-    			<p class="capitalize">3</p>
-    			<h4>Planning</h4>
-    			<p>Marco fits any device handsomely. We tested our theme in major devices and browsers. Check it out and test it before buy it on responsinator.com.</p>
-    		</div>    	
-
-    		<div class="col-lg-3">
-    			<p class="capitalize">4</p>
-    			<h4>Execution</h4>
-    			<p>Good looking animations are an essential part of the new theme design trend. We add animations.css, a cool script to help you enhance your site with style.</p>
-    		</div>
-    	</div><!-- /row -->
-    </div><!-- /container -->
-</div><!-- /white -->
 
 <! ========== CALL TO ACTION 2 ============================================================================================== 
 =============================================================================================================================>    
@@ -318,100 +193,89 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
-				<h2>Our products & services are crafted with the utmost care to fulfill your needs.</h2>
-				<button type="button" class="btn btn-cta btn-lg">LEARN MORE</button>
+				<h2>Retransmitimos en directo para toda la zona en FM</h2>
+				{# <button type="button" class="btn btn-cta btn-lg">LEARN MORE</button> #}
 			</div>
 		</div><!-- /row -->
 	</div><!-- /container -->
 </div><! --/cta02 -->
 
-<! ========== FEATURED ICONS ================================================================================================ 
-=============================================================================================================================>    
-<div class="container">
-	<div class="row mt">
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-flask"></i>
-			<h4>Built with Bootstrap 3</h4>
-			<p>Built for all levels of expertise, whether you need simple pages or complex ones, creating something incredible with Marco is an effortless and intuitive process.</p>
-		</div>
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-eye"></i>
-			<h4>Retina Display Theme</h4>
-			<p>We’ve taken great care to ensure that Marco is fully retina-ready. So it’ll look good on any retina display. We use retina.js to ensure the best view.</p>
-		</div>
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-mobile"></i>
-			<h4>Responsive Design Always</h4>
-			<p>Marco fits any device handsomely. We tested our theme in major devices and browsers. Check it out and test it before buy it on responsinator.com.</p>
-		</div>    	
-
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-cog"></i>
-			<h4>Really Nice Animations</h4>
-			<p>Good looking animations are an essential part of the new theme design trend. We add animations.css, a cool script to help you enhance your site with style.</p>
-		</div>
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-flag"></i>
-			<h4>Font Awesome Included</h4>
-			<p>Font Awesome is the most used icon font on Bootstrap. Gives you scalable vector icons that can instantly be customized with the power of CSS.</p>
-		</div>
-		<div class="col-lg-4 centered si">
-			<i class="fa fa-heart"></i>
-			<h4>Carefully Crafted</h4>
-			<p>We aim to design both, functional & beautiful themes. Details are an important part of our main concept. We work hard to keep our code and front-end flawless.</p>
-		</div>    	
-	</div><!-- /row -->
-</div><!-- /container -->
 
 <! ========== OUR TEAM ====================================================================================================== 
-=============================================================================================================================>    
-
-<div id="white">
-	<div class="container">
-    	<div class="row mt">
-    		<div class="col-lg-4 col-lg-offset-4 centered">
-    			<h3>Our Team</h3>
-    			<hr>
-    		</div>
-    	</div><! --/row -->
-		
-		<div class="row">
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="assets/img/team/gianni.png" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Developer</div>
-				    <h2 class="team-name">Gianni</h2>
-				    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
+	=============================================================================================================================>    
+	
+	<div id="white">
+		<div class="container">
+	    	<div class="row mt">
+	    		<div class="col-lg-4 col-lg-offset-4 centered">
+	    			<h3>El equipo</h3>
+	    			<hr>
+	    		</div>
+	    	</div><! --/row -->
 			
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="assets/img/team/rebecca.png" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Designer</div>
-				    <h2 class="team-name">Rebecca</h2>
-				    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
-			
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="assets/img/team/william.png" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Designer</div>
-				    <h2 class="team-name">William</h2>
-				    <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p>
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
+			<div class="row">
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Director General de Radio La Salle</div>
+					    <h2 class="team-name">Hermano Manuel Marín Herrera</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Hermano</div>
+					    <h2 class="team-name">Javier Mirando Sedano</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Hermano</div>
+					    <h2 class="team-name">Patricio Páramo López</h2>
+					   {#  <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
 
-		</div><! --/row -->	
-	</div><! --/container -->
-</div><! --/white -->
+			</div><! --/row -->	
+
+			<div class="row">
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Hermano</div>
+					    <h2 class="team-name">Orlando Pacheco Gutiérrez</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Hermano</div>
+					    <h2 class="team-name">Charly Tupallima Padilla</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+
+			</div><! --/row -->	
+		</div><! --/container -->
+	</div><! --/white -->
+
 
 <! ========== BLACK SECTION ================================================================================================= 
 =============================================================================================================================>    
@@ -508,7 +372,7 @@
 
 {% block scriptsFooter %}
 
-<script src="{{ asset('bundles/salleadmin/somos/js/retina.js') }}"></script>
+{# <script src="{{ asset('bundles/salleadmin/somos/js/retina.js') }}"></script> #}
 
 <script>
 	$(window).scroll(function() {

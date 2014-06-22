@@ -13,7 +13,7 @@ class NoticiaRepository extends EntityRepository
         
         $query = $this->createQueryBuilder('n')
 		    //->setParameter('price', '19.99')
-        	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.foto', 'n.fecha'))
+        	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
 		    ->orderBy('n.fecha', 'DESC')
 		    ->getQuery();
 		 

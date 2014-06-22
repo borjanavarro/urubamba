@@ -6,9 +6,9 @@ Salle\AdminBundle\Entity\Noticia:
             - NotBlank: ~
         cuerpo:
             - NotBlank: ~
-        foto:
+        file:
             - NotBlank: ~
-            - Image:
+            #- Image:
         seccion:
             - NotBlank: ~
             # - Choice:

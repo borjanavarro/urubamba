@@ -3,6 +3,8 @@
 namespace Salle\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Noticia
@@ -50,13 +52,6 @@ class Noticia
     private $seccion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="foto", type="string", length=255)
-     */
-    private $foto;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="datetime")
@@ -66,7 +61,12 @@ class Noticia
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    private $path;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
 
     /**
@@ -172,29 +172,6 @@ class Noticia
     }
 
     /**
-     * Set foto
-     *
-     * @param string $foto
-     * @return Noticia
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-
-        return $this;
-    }
-
-    /**
-     * Get foto
-     *
-     * @return string 
-     */
-    public function getFoto()
-    {
-        return $this->foto;
-    }
-
-    /**
      * Set fecha
      *
      * @param \DateTime $fecha
@@ -215,6 +192,20 @@ class Noticia
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+
+    public function getPath()
+    {
+        return $this->path;
     }
 
 
@@ -244,5 +235,50 @@ class Noticia
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'bundles/salleadmin/fotos';
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function upload()
+    {
+
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->getFile()->getClientOriginalName()
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->path = $this->getFile()->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
     }
 }
