@@ -33,7 +33,7 @@ class AddNewsController extends Controller
             $em->persist($noticia);
             $em->flush();
 
-            //return 
+            return $this->redirect($this->generateUrl('add-new'));
         }
 
     	return $this->render('SalleAdminBundle:BackOffice:addNews.html.twig', 
