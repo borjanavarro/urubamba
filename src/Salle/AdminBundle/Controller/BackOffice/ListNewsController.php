@@ -4,7 +4,9 @@ namespace Salle\AdminBundle\Controller\BackOffice;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Salle\AdminBundle\Form\Type\DeleteType;
+use Salle\AdminBundle\Form\Type\NoticiaPageType;
+use Salle\AdminBundle\Entity\Noticia;
+use Salle\AdminBundle\Entity\NoticiaPage;
 
 class ListNewsController extends Controller
 {
@@ -15,27 +17,13 @@ class ListNewsController extends Controller
 
     	$noticias = $repository->findAllNews();
 
-    	$i = 0;
-    	foreach ($noticias as $noticia){
-    		$forms[$i] = $this->container->get('form.factory')->create(new DeleteType(), null);
-        	$forms[$i]->handleRequest($request);
-        	$forms[$i]->createView();
-        	$i++;
-    	}
+        if ($request->request->has('delete2'))
+        {
+            $this->render("succes");
+            die();
+        }
 
-    	var_dump($forms);
-    	die();
-
-
-        if ($forms[0]->isValid()) {
-        	 if ($forms[0]->get('delete')->isClicked()) {
-        	 	
-
-        		return $this->redirect($this->generateUrl('list-news'));
-    		}
-    	}
-
-    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticias, 'forms' => $forms));
+    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticias));
         
     }
 }

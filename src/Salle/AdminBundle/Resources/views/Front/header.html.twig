@@ -1,27 +1,29 @@
 <!-- Navigation & Logo-->
-<nav id="mainmenu" class="mainmenu">
-	{# <div class="menuextras">
-		<div class="extras">
-			<ul>
-				<li class="shopping-cart-items"><a href="#"><b>{{ "now"|date("m/d/Y") }}</b></a></li>
-        	</ul>
-		</div>
-    </div> #}
+<div class="container">
+	<nav id="mainmenu" class="mainmenu">
+		<div class="menuextras">
+			<div class="extras">
+				<ul>
+					<li class="shopping-cart-items"><a href="#"><b>{{ "now"|date("m/d/Y") }}</b></a></li>
+	        	</ul>
+			</div>
+	    </div>
 
-	<ul>
-		<li class="logo-wrapper"><a href="index.html"><img src="img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-		<li {% if active == 'home' %}class="active"{% endif %}>
-			<a href="{{ url ('home') }}">Inicio</a>
-		</li>
-		<li {% if active == 'somos' %}class="active"{% endif %}>
-			<a href="{{ url ('quienes-somos') }}">Quienes somos</a>
-		</li>
-		<li {% if active == 'radio' %}class="active"{% endif %}>
-			<a href="{{ url ('radio') }}">Radio en vivo</a>
-		</li>
-		<li {% if active == 'galeria' %}class="active"{% endif %}>
-			<a href="{{ url ('galeria') }}">Galeria</a>
-		</li>		
-	</ul>
-</nav>
+		<ul>
+			<li class="logo-wrapper"><a href="{{ url ('home') }}"><img src="{{ asset('bundles/salleadmin/img/logo-urubamba.png') }}" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+			<li {% if active == 'home' %}class="active"{% endif %}>
+				<a href="{{ url ('home') }}">Inicio</a>
+			</li>
+			<li {% if active == 'somos' %}class="active"{% endif %}>
+				<a href="{{ url ('quienes-somos') }}">Quienes somos</a>
+			</li>
+			<li {% if active == 'radio' %}class="active"{% endif %}>
+				<a href="{{ url ('radio') }}">Radio en vivo</a>
+			</li>
+			<li {% if active == 'galeria' %}class="active"{% endif %}>
+				<a href="{{ url ('galeria') }}">Galeria</a>
+			</li>		
+		</ul>
+	</nav>
+</div>
 
