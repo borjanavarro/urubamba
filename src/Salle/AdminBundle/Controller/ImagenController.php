@@ -13,6 +13,12 @@ class ImagenController extends Controller
 
     	$imagen = $repository->find($id);
 
+    	if (!$imagen) {
+	        throw $this->createNotFoundException(
+	            'No image found for id '.$id
+	        );
+	    }
+
     	return $this->render('SalleAdminBundle:Front:imagen.html.twig', array('imagen' => $imagen));
     }
 }

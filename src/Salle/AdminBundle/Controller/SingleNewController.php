@@ -11,11 +11,17 @@ class SingleNewController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
-    	$noticia = $repository->findById($id);
+    	$noticia = $repository->find($id);
+
+    	if (!$noticia) {
+            throw $this->createNotFoundException(
+                'No noticia found for id '.$id
+            );
+        }
 
     	$ultimas = $repository->findUltimasNews();
 
-    	return $this->render('SalleAdminBundle:Front:noticia.html.twig', array ('noticia' => $noticia[0], 'ultimas' => $ultimas));
+    	return $this->render('SalleAdminBundle:Front:noticia.html.twig', array ('noticia' => $noticia, 'ultimas' => $ultimas));
     }
 
 }
