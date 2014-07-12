@@ -6,25 +6,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class NoticiaType extends AbstractType
+class ImagenType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('titulo', 'text')
-            ->add('subtitulo', 'text')
-            ->add('cuerpo', 'textarea')
+            ->add('descripcion', 'textarea')
             ->add('file', 'file', array(
-                'required'    => 'false'
+                'required'    => true
                 ))
-            ->add('seccion', 'choice', array(
-                'choices' => array(
-                    'Política' => 'Política',
-                    'Internacional' => 'Internacional', 
-                    'Economía' => 'Economía', 
-                    'Cultura' => 'Cultura', 
-                    'Sociedad' => 'Sociedad', 
-                    'Deportes' => 'Deportes')
+            ->add('fecha', 'date', array(
+                'mapped' => false,
+                'label' => false,
+                'attr'=>array('style'=>'display:none;')
                 ))
             ->add('send', 'submit', array(
                 'label' => 'Añadir')
@@ -33,13 +28,13 @@ class NoticiaType extends AbstractType
 
     public function getName()
     {
-        return 'noticia';
+        return 'imagen';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Salle\AdminBundle\Entity\Noticia',
+            'data_class' => 'Salle\AdminBundle\Entity\Imagen',
         ));
     }
 }

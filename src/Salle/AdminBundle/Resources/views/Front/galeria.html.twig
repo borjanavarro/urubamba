@@ -25,18 +25,17 @@
 	<div class="container">
 		<div class="row">
 
-		{% for i in 1..9 %}
+		{% for imagen in imagenes %}
 			<div class="col-md-4 col-sm-6">
 				<div class="portfolio-item">
 					<div class="portfolio-image">
-						<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio' ~ i ~ '.jpg' )}}" style="max-height:206px;" alt="Project Name"></a>
+						<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="max-height:206px;" alt="Project Name"></a>
 					</div>
 					<div class="portfolio-info-fade">
 						<ul>
-							<li class="portfolio-project-name">Project Name</li>
-							<li>Website design & Development</li>
-							<li>Client: Some Client LTD</li>
-							<li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+							<li class="portfolio-project-name">{{ imagen.titulo }}</li>
+							<li>{{ imagen.descripcion | truncate(100) }}</li>
+							<li class="read-more"><a href="{{ url('imagen', {'id' : imagen.id } )}}" class="btn">Detalle</a></li>
 						</ul>
 					</div>
 				</div>

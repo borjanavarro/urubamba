@@ -8,11 +8,8 @@ class NoticiaRepository extends EntityRepository
 {
     public function findAllNews()
     {
-        // $repository = $this->getDoctrine()
-        // 	->getRepository('SalleAdminBundle:Noticia');
         
         $query = $this->createQueryBuilder('n')
-		    //->setParameter('price', '19.99')
         	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
 		    ->orderBy('n.fecha', 'DESC')
 		    ->getQuery();
@@ -24,12 +21,11 @@ class NoticiaRepository extends EntityRepository
 
     public function findUltimasNews()
     {
-        // $repository = $this->getDoctrine()
-        //  ->getRepository('SalleAdminBundle:Noticia');
         
         $query = $this->createQueryBuilder('n')
             ->select(array('n.id','n.titulo'))
             ->orderBy('n.fecha', 'DESC')
+            ->setMaxResults(3)
             ->getQuery();
          
         $noticias = $query->getResult();

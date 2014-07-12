@@ -8,6 +8,11 @@ class ImagenController extends Controller
 {
 	public function indexAction($id)
     {
-    	return $this->render('SalleAdminBundle:Front:imagen.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Imagen');
+
+    	$imagen = $repository->find($id);
+
+    	return $this->render('SalleAdminBundle:Front:imagen.html.twig', array('imagen' => $imagen));
     }
 }

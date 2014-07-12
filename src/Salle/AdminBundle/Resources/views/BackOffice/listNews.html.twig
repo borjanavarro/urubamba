@@ -32,9 +32,7 @@
 								<th class="col-sm-1"></th>
 							</tr>
 						</thead>
-						<tbody>
-						{% set i = 0 %} 
-						
+						<tbody>						
 						{% for noticia in noticias %}
 							<tr>
 								<td>{{ noticia.id }}</td>
@@ -42,19 +40,16 @@
 								<td>{{ noticia.seccion }}</td>
 								<td>{{ noticia.fecha | date('Y-m-d') }}</td>
 								<td>
-								<form name="edit{{ noticia.id }}"  method="post">
-									{# {{ form_widget(form.noticias[i].edit, { id : noticia.id , 'label': 'Editar', 'full_name': 'edit' }) }} #}
-									<button class="btn btn-primary btn-sm" type="submit">Edit</button>
+								<form name="form_edit"  method="post">
+									<button class="btn btn-primary btn-sm" type="submit" name="edit" value="{{ noticia.id }}">Edit</button>
 								</form>
 								</td>
 								<td>
-								<form name="delete{{noticia.id}}"  method="post">
-									{# {{ form_widget(form.noticias[i].delete, { 'label': 'Eliminar' , 'full_name': 'delete' ~ noticia.id}) }} #}
-									<button class="btn btn-danger btn-sm" type="submit" name="delete{{ noticia.id}}">Eliminar</button>
+								<form name="form_delete"  method="post">
+									<button class="btn btn-danger btn-sm" type="submit" name="delete" value="{{ noticia.id }}">Eliminar</button>
 								</form>
 								</td>
 							</tr>
-							{% set i = i + 1 %} 
 						{% endfor %}
 						</tbody>
 					</table>

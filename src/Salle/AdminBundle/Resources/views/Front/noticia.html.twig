@@ -33,7 +33,7 @@
 						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>11</a>
 					</div>
 					<div class="single-post-image">
-						<img src="{{ asset ('bundles/salleadmin/fotos/' ~ noticia.path )}}" alt="Post Title">
+						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" alt="Post Title">
 					</div>
 					<div class="single-post-content">
 						<h4>{{ noticia.subtitulo }}</h4>
@@ -149,9 +149,11 @@
 				</form>
 				<h4>Ultimas noticias</h4>
 				<ul class="recent-posts">
+				{% if ultimas | length == 3 %}
 					<li><a href="{{ url ('noticia', { 'id' : ultimas[0].id} )}}">{{ ultimas[0].titulo }}</a></li>
 					<li><a href="{{ url ('noticia', { 'id' : ultimas[1].id} )}}">{{ ultimas[1].titulo }}</a></li>
 					<li><a href="{{ url ('noticia', { 'id' : ultimas[2].id} )}}">{{ ultimas[2].titulo }}</a>
+				{% endif %}
 				</ul>
 				<h4>Categories</h4>
 				<ul class="blog-categories">

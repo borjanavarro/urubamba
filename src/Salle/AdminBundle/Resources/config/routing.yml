@@ -14,6 +14,15 @@ add-new:
     pattern: /admin/add-new
     defaults: { _controller: SalleAdminBundle:BackOffice/AddNews:index }
 
+# Images #
+
+list-images:
+    pattern:  /admin/list-images
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListImages:index }
+
+add-image:
+    pattern: /admin/add-image
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddImage:index }
 
 
 ## FRONT ##

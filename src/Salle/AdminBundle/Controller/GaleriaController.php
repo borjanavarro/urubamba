@@ -8,7 +8,12 @@ class GaleriaController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Front:galeria.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Imagen');
+
+    	$imagenes = $repository->findAllImages();
+
+    	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array('imagenes' => $imagenes));
     }
 
 }
