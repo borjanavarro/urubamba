@@ -3,16 +3,12 @@
 namespace Salle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Salle\AdminBundle\Services\Comentarios;
+use Symfony\Component\HttpFoundation\Request;
 
 class SingleNewController extends Controller
 {
-    public function indexAction($id)
+    public function indexAction(Request $request, $id)
     {
-        $hola = $this->get('comentarios');
-        var_dump($hola->hola());
-        die();
-
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
@@ -24,9 +20,20 @@ class SingleNewController extends Controller
             );
         }
 
+        $service = $this->get('comentarios');
+        $form = $service->getForm($noticia);
+
+        if ($form == null) {
+            return $this->redirect($this->generateUrl('noticia', array ('id' => $id )));
+        }
+
     	$ultimas = $repository->findUltimasNews();
 
-    	return $this->render('SalleAdminBundle:Front:noticia.html.twig', array ('noticia' => $noticia, 'ultimas' => $ultimas));
+    	return $this->render('SalleAdminBundle:Front:noticia.html.twig', array (
+            'noticia' => $noticia, 
+            'ultimas' => $ultimas, 
+            'form' => $form->createView()
+            ));
     }
 
 }

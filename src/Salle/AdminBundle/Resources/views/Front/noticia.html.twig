@@ -30,7 +30,7 @@
 						<h3>{{ noticia.titulo }}</h3>
 					</div>
 					<div class="single-post-info">
-						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>11</a>
+						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>{{ noticia.comentarios | length }}</a>
 					</div>
 					<div class="single-post-image">
 						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" alt="Post Title">
@@ -39,27 +39,37 @@
 						<h4>{{ noticia.subtitulo }}</h4>
 						<p>{{ noticia.cuerpo }}</p>
 					</div>
+					
 					<!-- Comments -->
 					<div class="post-coments"  id="comments">
-						<h4>Comments (53)</h4>
+						<h4>Comentarios ({{ noticia.comentarios | length }})</h4>
 						<ul class="post-comments">
-							<li>
-								<div class="comment-wrapper">
-									<div class="comment-author"><img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> User Name</div>
-									<p>
-										Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-									</p>
-									<!-- Comment Controls -->
-									<div class="comment-actions">
-										<span class="comment-date">June 10th, 2013 3:16 pm</span>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
-										<span class="label label-success">+8</span>
-										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+							{% for comentario in noticia.comentarios %}
+								<li>
+									<div class="comment-wrapper">
+										<div class="comment-author"><img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> {{ comentario.nombre }}</div>
+										<p>
+											{{ comentario.comentario }}
+										</p>
+										<!-- Comment Controls -->
+										<div class="comment-actions">
+											<span class="comment-date">{{ comentario.fecha | date("m/d/Y")}}</span>
+											<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+											{% set votes = comentario.likes - comentario.dislikes %}
+											{% if votes > 0 %} 
+												<span class="label label-success">{{ votes }}</span>
+											{% elseif votes < 0 %}
+												<span class="label label-danger">{{ votes }}</span>
+											{% else %}
+												<span class="label">{{ votes }}</span>
+											{% endif %}
+											<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+										</div>
 									</div>
-								</div>
-							</li>
-							<li>
+								</li>
+							{% endfor %}
+							{# <li>
 								<ul>
 									<li>
 										<div class="comment-wrapper">
@@ -94,8 +104,9 @@
 										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
 									</div>
 								</div>
-							</li>
+							</li> #}
 						</ul>
+
 						<!-- Pagination -->
 						<div class="pagination-wrapper ">
 							<ul class="pagination pagination-sm">
@@ -108,27 +119,40 @@
 								<li><a href="#">Next</a></li>
 							</ul>
 						</div>
+
 						<!-- Comments Form -->
-						<h4>Leave a Comment</h4>
+						<h4>Deja un comentario</h4>
 						<div class="comment-form-wrapper">
-							<form class="">
+							{{ form_start(form) }}
 		        				<div class="form-group">
-		        				 	<label for="comment-name"><i class="glyphicon glyphicon-user"></i> <b>Your name</b></label>
-									<input class="form-control" id="comment-name" type="text" placeholder="">
+		        					<label for="{{ form.nombre.vars.id }}"
+									    class="{{ form.nombre.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-user"></i> <b>{{ form.nombre.vars.label}} </b>
+									</label>
+						        	{{ form_errors(form.nombre) }}
+						        	{{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
 								</div>
 								<div class="form-group">
-									<label for="comment-email"><i class="glyphicon glyphicon-envelope"></i> <b>Your Email</b></label>
-									<input class="form-control" id="comment-email" type="text" placeholder="">
+									<label for="{{ form.email.vars.id }}"
+									    class="{{ form.email.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-envelope"></i> <b>{{ form.email.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.email) }}
+						        	{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
 								</div>
 								<div class="form-group">
-									<label for="comment-message"><i class="glyphicon glyphicon-comment"></i> <b>Your Message</b></label>
-									<textarea class="form-control" rows="5" id="comment-message"></textarea>
+									<label for="{{ form.comentario.vars.id }}"
+									    class="{{ form.comentario.vars.required ? 'required' : '' }}">
+									   <i class="glyphicon glyphicon-comment"></i> <b>{{ form.comentario.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.comentario) }}
+						        	{{ form_widget(form.comentario, { 'attr': {'class': 'form-control', 'rows': '6'} }) }}
 								</div>
 								<div class="form-group">
-									<button type="submit" class="btn btn-large pull-right">Send</button>
+								{{ form_widget(form.send, { 'attr': {'class': 'btn btn-large pull-right'} }) }}
 								</div>
 								<div class="clearfix"></div>
-		        			</form>
+		        			{{ form_end(form) }}
 						</div>
 						<!-- End Comment Form -->
 					</div>

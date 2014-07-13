@@ -7,13 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Noticia
+ * Imagen
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Salle\AdminBundle\Repository\NoticiaRepository")
+ * @ORM\Entity(repositoryClass="Salle\AdminBundle\Repository\ImagenRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Noticia
+class Imagen
 {
     /**
      * @var integer
@@ -34,23 +34,9 @@ class Noticia
     /**
      * @var string
      *
-     * @ORM\Column(name="subtitulo", type="string", length=255)
+     * @ORM\Column(name="descripcion", type="string", length=1023)
      */
-    private $subtitulo;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="cuerpo", type="text")
-     */
-    private $cuerpo;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="seccion", type="string", length=255)
-     */
-    private $seccion;
+    private $descripcion;
 
     /**
      * @var \DateTime
@@ -71,6 +57,7 @@ class Noticia
 
     private $temp;
 
+
     /**
      * Get id
      *
@@ -85,7 +72,7 @@ class Noticia
      * Set titulo
      *
      * @param string $titulo
-     * @return Noticia
+     * @return Imagen
      */
     public function setTitulo($titulo)
     {
@@ -105,72 +92,26 @@ class Noticia
     }
 
     /**
-     * Set subtitulo
+     * Set descripcion
      *
-     * @param string $subtitulo
-     * @return Noticia
+     * @param string $descripcion
+     * @return Imagen
      */
-    public function setSubtitulo($subtitulo)
+    public function setDescripcion($descripcion)
     {
-        $this->subtitulo = $subtitulo;
+        $this->descripcion = $descripcion;
 
         return $this;
     }
 
     /**
-     * Get subtitulo
+     * Get descripcion
      *
      * @return string 
      */
-    public function getSubtitulo()
+    public function getDescripcion()
     {
-        return $this->subtitulo;
-    }
-
-    /**
-     * Set cuerpo
-     *
-     * @param string $cuerpo
-     * @return Noticia
-     */
-    public function setCuerpo($cuerpo)
-    {
-        $this->cuerpo = $cuerpo;
-
-        return $this;
-    }
-
-    /**
-     * Get cuerpo
-     *
-     * @return string 
-     */
-    public function getCuerpo()
-    {
-        return $this->cuerpo;
-    }
-
-    /**
-     * Set seccion
-     *
-     * @param string $seccion
-     * @return Noticia
-     */
-    public function setSeccion($seccion)
-    {
-        $this->seccion = $seccion;
-
-        return $this;
-    }
-
-    /**
-     * Get seccion
-     *
-     * @return string 
-     */
-    public function getSeccion()
-    {
-        return $this->seccion;
+        return $this->descripcion;
     }
 
     /**
@@ -195,7 +136,6 @@ class Noticia
     {
         return $this->fecha;
     }
-
 
     public function setPath($path)
     {
@@ -236,7 +176,7 @@ class Noticia
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'bundles/salleadmin/img/articulos';
+        return 'bundles/salleadmin/img/galeria';
     }
 
     /**
@@ -323,5 +263,4 @@ class Noticia
             unlink($this->temp);
         }
     }
-
 }

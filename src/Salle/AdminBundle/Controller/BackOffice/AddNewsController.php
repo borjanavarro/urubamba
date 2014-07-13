@@ -17,8 +17,6 @@ class AddNewsController extends Controller
 
 
         if ($form->isValid()) {
-            
-            //$data = $form->getData();
 
             $noticia = new Noticia();
             $noticia->setTitulo($form->get('titulo')->getData());

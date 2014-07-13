@@ -76,3 +76,5 @@ services:
 
     comentarios:
         class: Salle\AdminBundle\Services\Comentarios
+        arguments: ["@request_stack", "@form.factory", "@doctrine.orm.entity_manager", "@router"]
+        scope: prototype

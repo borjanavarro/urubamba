@@ -6,15 +6,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ImagenType extends AbstractType
+class ComentarioType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo', 'text')
-            ->add('descripcion', 'textarea')
-            ->add('file', 'file', array(
-                'required'    => true
+            ->add('nombre', 'text', array (
+                'label' => 'Nombre'
+                ))
+            ->add('email', 'email', array (
+                'label' => 'Email'
+                ))
+            ->add('comentario', 'textarea', array (
+                'label' => 'Comentario'
                 ))
             ->add('send', 'submit', array(
                 'label' => 'Añadir')
@@ -23,13 +27,13 @@ class ImagenType extends AbstractType
 
     public function getName()
     {
-        return 'imagen';
+        return 'comentario';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Salle\AdminBundle\Entity\Imagen',
+            'data_class' => 'Salle\AdminBundle\Entity\Comentario',
         ));
     }
 }

@@ -5,6 +5,7 @@ namespace Salle\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Noticia
@@ -70,6 +71,18 @@ class Noticia
     private $file;
 
     private $temp;
+
+    /**
+     * @ORM\OneToMany(targetEntity="comentario", mappedBy="noticia")
+     * @ORM\OrderBy({"fecha" = "DESC"})
+     */
+    protected $comentarios;
+
+
+    public function __construct()
+    {
+        $this->comentarios = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -322,6 +335,16 @@ class Noticia
         if (isset($this->temp)) {
             unlink($this->temp);
         }
+    }
+
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    public function setComentarios($comentarios = array ())
+    {
+        $this->comentarios = $comentarios;
     }
 
 }
