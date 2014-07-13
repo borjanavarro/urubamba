@@ -3,11 +3,16 @@
 namespace Salle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+//use Salle\AdminBundle\Services\Comentarios;
 
 class SingleNewController extends Controller
 {
     public function indexAction($id)
     {
+        $hola = $this->get('comentarios');
+        var_dump($hola->hola());
+        die();
+
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
