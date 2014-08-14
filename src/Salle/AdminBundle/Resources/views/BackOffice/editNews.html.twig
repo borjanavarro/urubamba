@@ -1,0 +1,73 @@
+{% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
+
+{% block title %}Añadir nueva noticia{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'news'} %}
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Editar noticia <small>Urubamba</small></h1>
+			</div>
+		</div><!-- /.row -->
+
+		<div class="row">
+
+	          <div class="col-lg-10">
+
+		          	{{ form_start(form,  { 'attr': {'role': 'form'} }) }}
+
+		          	<div class="form-group">
+			          	{{ form_label(form.titulo) }}
+			        	{{ form_errors(form.titulo) }}
+			        	{{ form_widget(form.titulo, { 'attr': {'class': 'form-control'} }) }}
+		            </div>
+
+		            <div class="form-group">
+		                {{ form_label(form.subtitulo) }}
+			        	{{ form_errors(form.subtitulo) }}
+			        	{{ form_widget(form.subtitulo, { 'attr': {'class': 'form-control'} }) }}
+		            </div>
+
+		            <div class="form-group">
+		                {{ form_label(form.cuerpo) }}
+			        	{{ form_errors(form.cuerpo) }}
+			        	{{ form_widget(form.cuerpo, { 'attr': {'class': 'form-control', 'rows' : '10'} }) }}
+		            </div>
+
+		            <div class="form-group">
+		                {{ form_label(form.file) }}
+			        	{{ form_errors(form.file) }}
+			        	{{ form_widget(form.file) }}
+		            </div>
+		        </div>
+		        	
+		        <div class="col-lg-4">
+		            <div class="form-group">
+		                {{ form_label(form.seccion, 'Sección') }}
+			        	{{ form_errors(form.seccion) }}
+			        	{{ form_widget(form.seccion, { 'attr': {'class': 'form-control'} }) }}
+		            </div>
+		        </div>
+
+		        <div class="col-lg-10">
+		    		{{ form_widget(form.send, { 'attr': {'class': 'btn btn-primary btn-lg pull-right'} }) }}
+					{{ form_end(form) }}
+				</div>
+		</div><!-- /.row -->
+
+	</div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
+{% endblock %}
+
+{% block scripts %} 
+
+
+{% endblock %}

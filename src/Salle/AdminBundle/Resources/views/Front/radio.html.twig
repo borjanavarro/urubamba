@@ -1,0 +1,180 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Radio en vivo{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'radio'} %}
+</div>
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Radio La Salle en vivo</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<!-- Blog Post -->
+			<div class="col-sm-8">
+				<div class="blog-post blog-single-post">
+					<div class="single-post-title">
+						<h3>Transmitiendo desde Urubamba</h3>
+					</div>
+					<div class="single-post-content text-center">
+						<!-- Radio -->
+						<div id="container">
+							<embed type="application/x-shockwave-flash" src="http://www.shoutcheap.com/flashplayer/skins/player.swf" width="340" height="50" style="undefined" id="player" name="player" bgcolor="#FFFFFF" quality="high" allowfullscreen="true" allowscriptaccess="always" flashvars="skin=http://www.shoutcheap.com/flashplayer/skins/stijl.swf&amp;title=Live Stream&amp;type=sound&amp;file=http://173.236.19.90:8196/;stream.mp3 &amp;13202692901&amp;duration=99999&amp;id=scplayer&amp;autostart=true">
+						</div>
+
+						<script type="text/javascript">
+							var s1 = new SWFObject('http://www.shoutcheap.com/flashplayer/skins/player.swf',
+							'player',"340","50","9","#FFFFFF");
+							s1.addParam('allowfullscreen','true');
+							s1.addParam('allowscriptaccess','always')
+							s1.addParam("flashvars","skin=http://www.shoutcheap.com/flashplayer/skins/bekle.swf&title=Live Stream&type=sound&file=http://173.236.19.90:8196/;stream.mp3 &13202692901&duration=99999&id=scplayer&autostart=true");
+							s1.write("container");
+						</script>
+
+						<div id="cc_tunein">
+							<a href="http://cp11.shoutcheap.com:2199/tunein/jpimente.pls"><img align="absmiddle" alt="Winamp, iTunes" border="0" src="http://cp8.shoutcheap.com:2199/system/images/tunein-pls.png" title="Winamp, iTunes"></a>
+							&nbsp;&nbsp;
+							<a href="http://cp11.shoutcheap.com:2199/tunein/jpimente.asx"><img align="absmiddle" alt="Windows Media Player" border="0" src="http://cp8.shoutcheap.com:2199/system/images/tunein-asx.png" title="Windows Media Player"></a>
+							&nbsp;&nbsp;
+							<a href="http://cp11.shoutcheap.com:2199/tunein/jpimente.ram"><img align="absmiddle" alt="Real Player" border="0" src="http://cp8.shoutcheap.com:2199/system/images/tunein-ram.png" title="Real Player"></a>
+							&nbsp;&nbsp;
+							<a href="http://cp11.shoutcheap.com:2199/tunein/jpimente.qtl"><img align="absmiddle" alt="QuickTime" border="0" src="http://cp8.shoutcheap.com:2199/system/images/tunein-qtl.png" title="QuickTime"></a>
+						</div>
+						<!-- End Radio -->
+					</div>
+					<!-- Comments -->
+					<div class="post-coments">
+						<h4>Comentarios</h4>
+						<ul class="post-comments">
+							<li>
+								<div class="comment-wrapper">
+									<div class="comment-author"><img src="img/user1.jpg" alt="User Name"> User Name</div>
+									<p>
+										Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+									</p>
+									<!-- Comment Controls -->
+									<div class="comment-actions">
+										<span class="comment-date">June 10th, 2013 3:16 pm</span>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+										<span class="label label-success">+8</span>
+										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<ul>
+									<li>
+										<div class="comment-wrapper">
+											<div class="comment-author"><img src="img/user2.jpg" alt="User Name"> User Name</div>
+											<p>
+												Vivamus euismod elit ac libero facilisis tristique. Duis mollis non ligula vel tincidunt. Nulla consectetur libero id nunc ornare, vel vulputate tellus mollis. Sed quis nulla magna.
+											</p>
+											<!-- Comment Controls -->
+											<div class="comment-actions">
+												<span class="comment-date">June 10th, 2013 3:16 pm</span>
+												<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+												<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+												<span class="label label-danger">-2</span>
+												<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="comment-wrapper">
+									<div class="comment-author"><img src="img/user5.jpg" alt="User Name"> User Name</div>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel magna lectus.
+									</p>
+									<!-- Comment Controls -->
+									<div class="comment-actions">
+										<span class="comment-date">June 10th, 2013 3:16 pm</span>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+										<span class="label label-success">+8</span>
+										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!-- Pagination -->
+						<div class="pagination-wrapper ">
+							<ul class="pagination pagination-sm">
+								<li class="disabled"><a href="#">Previous</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">Next</a></li>
+							</ul>
+						</div>
+						<!-- Comments Form -->
+						<h4>Leave a Comment</h4>
+						<div class="comment-form-wrapper">
+							<form class="">
+		        				<div class="form-group">
+		        				 	<label for="comment-name"><i class="glyphicon glyphicon-user"></i> <b>Your name</b></label>
+									<input class="form-control" id="comment-name" type="text" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="comment-email"><i class="glyphicon glyphicon-envelope"></i> <b>Your Email</b></label>
+									<input class="form-control" id="comment-email" type="text" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="comment-message"><i class="glyphicon glyphicon-comment"></i> <b>Your Message</b></label>
+									<textarea class="form-control" rows="5" id="comment-message"></textarea>
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-large pull-right">Send</button>
+								</div>
+								<div class="clearfix"></div>
+		        			</form>
+						</div>
+						<!-- End Comment Form -->
+					</div>
+					<!-- End Comments -->
+				</div>
+				</div>
+				<!-- End Blog Post -->
+
+				<!-- Sidebar -->
+				<div class="col-sm-4 blog-sidebar">
+					&nbsp;&nbsp;
+					<h4>Flash de titulares</h4>
+					&nbsp;&nbsp;
+					{% for i in 1..3 %}
+						<div class="in-press">
+							<a href="#">Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat vitae</a>
+						</div>
+					{% endfor %}
+				</div>
+				<!-- End Sidebar -->
+			</div>
+		</div>
+    </div>
+</div>
+
+
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}

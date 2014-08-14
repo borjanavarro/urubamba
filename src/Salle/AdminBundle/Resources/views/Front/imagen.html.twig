@@ -1,0 +1,107 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Imagen{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'galeria'} %}
+</div>
+
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Imagen en detalle</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<!-- Image Column -->
+			<div class="col-sm-10 col-lg-offset-1">
+				<div class="portfolio-item ">
+					<div class="portfolio-image">
+						<img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path)}}" alt="Project Name">
+					</div>
+				</div>
+			</div>
+			<!-- End Image Column -->
+			<!-- Project Info Column -->
+			<div class="portfolio-item-description col-sm-10 col-lg-offset-1">
+				<h3>{{ imagen.titulo }}</h3>
+				<p>{{ imagen.descripcion }}</p>
+				{# <ul class="no-list-style">
+					<li><b>Client:</b> Some Client LTD</li>
+					<li><b>Date:</b> 01, September 2012 - 23, February 2013</li>
+					<li><b>Technologies:</b> HTML5, CSS3, jQuery, PHP, MySQL</li>
+					<li class="portfolio-visit-btn"><a href="#" class="btn">Visit Website</a></li>
+				</ul> #}
+			</div>
+			<!-- End Project Info Column -->
+		</div>
+		{# <!-- Related Projects -->
+		<h3>Related Projects</h3>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="portfolio-item">
+					<div class="portfolio-image">
+						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio3.jpg' )}}" alt="Project Name"></a>
+					</div>
+					<div class="portfolio-info-fade">
+						<ul>
+							<li class="portfolio-project-name">Project Name</li>
+							<li>Website design & Development</li>
+							<li>Client: Some Client LTD</li>
+							<li class="read-more"><a href="#" class="btn">Read more</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="portfolio-item">
+					<div class="portfolio-image">
+						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio4.jpg' )}}" alt="Project Name"></a>
+					</div>
+					<div class="portfolio-info-fade">
+						<ul>
+							<li class="portfolio-project-name">Project Name</li>
+							<li>Website design & Development</li>
+							<li>Client: Some Client LTD</li>
+							<li class="read-more"><a href="#" class="btn">Read more</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="portfolio-item">
+					<div class="portfolio-image">
+						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio5.jpg' )}}" alt="Project Name"></a>
+					</div>
+					<div class="portfolio-info-fade">
+						<ul>
+							<li class="portfolio-project-name">Project Name</li>
+							<li>Website design & Development</li>
+							<li>Client: Some Client LTD</li>
+							<li class="read-more"><a href="#" class="btn">Read more</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Related Projects -->#}
+	</div>
+</div> 
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}

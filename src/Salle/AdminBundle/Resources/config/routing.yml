@@ -1,0 +1,60 @@
+## BACKOFFICE ##
+
+# News #
+
+list-news:
+    pattern:  /admin/list-news
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListNews:index }
+
+edit-news:
+    pattern: /admin/edit-news/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditNews:index }
+
+add-new:
+    pattern: /admin/add-new
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddNews:index }
+
+# Images #
+
+list-images:
+    pattern:  /admin/list-images
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListImages:index }
+
+add-image:
+    pattern: /admin/add-image
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddImage:index }
+
+
+## FRONT ##
+
+home:
+    pattern: /
+    defaults: { _controller: SalleAdminBundle:Home:index }
+
+galeria:
+    pattern: /galeria
+    defaults: { _controller: SalleAdminBundle:Galeria:index }
+
+imagen:
+    pattern: /imagen/{id}
+    defaults: { _controller: SalleAdminBundle:Imagen:index }
+
+quienes-somos:
+    pattern: /quienes-somos
+    defaults: { _controller: SalleAdminBundle:Somos:index }
+
+radio:
+    pattern: /radio
+    defaults: { _controller: SalleAdminBundle:Radio:index }
+
+noticia:
+    pattern: /noticia/{id}
+    defaults: { _controller: SalleAdminBundle:SingleNew:index }
+
+buscar:
+    pattern: /buscar
+    defaults: { _controller: SalleAdminBundle:SearchResults:index }
+
+patro:
+    pattern: /patrocinadores
+    defaults: { _controller: SalleAdminBundle:Patro:index }

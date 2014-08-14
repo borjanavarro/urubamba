@@ -1,0 +1,390 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Quienes somos{% endblock %}
+
+{% block scriptsHeader %}
+
+<link href="{{ asset('bundles/salleadmin/somos/css/hover_pack.css') }}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="{{ asset('bundles/salleadmin/somos/css/main.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/colors/color-74c9be.css') }}" rel="stylesheet">    
+<link href="{{ asset('bundles/salleadmin/somos/css/animations.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/font-awesome.min.css') }}" rel="stylesheet">
+
+
+<!-- JavaScripts needed at the beginning
+================================================== -->
+
+<!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+<script type="text/javascript">
+    // When the window has finished loading create our google map below
+    google.maps.event.addDomListener(window, 'load', init);
+
+    function init() {
+        // Basic options for a simple Google Map
+        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+        var mapOptions = {
+            // How zoomed in you want the map to start at (always required)
+            zoom: 16,
+            
+            scrollwheel: false,
+
+            // The latitude and longitude to center the map (always required)
+            //center: new google.maps.LatLng(40.6700, -73.9400), // New York
+            center: new google.maps.LatLng(-13.3043114, -72.1211136),
+
+            // How you would like to style the map. 
+            // This is where you would paste any style found on Snazzy Maps.
+            /*styles: [	{		featureType:'water',		stylers:[{color:'#74c9be'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]*/
+        };
+
+        // Get the HTML DOM element that will contain your map 
+        // We are using a div with id="map" seen below in the <body>
+        var mapElement = document.getElementById('map');
+
+        // Create the Google Map using out element and options defined above
+        var map = new google.maps.Map(mapElement, mapOptions);
+
+    	var myLatlng = new google.maps.LatLng(-13.303358,-72.122172);
+
+		var marker = new google.maps.Marker({
+	      position: myLatlng,
+	      map: map,
+	      title:"Radio La Salle Rimarinakusunchis"
+	  });
+
+    }
+</script>
+
+
+<!-- Main Jquery & Hover Effects. Should load first -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('bundles/salleadmin/somos/js/hover_pack.js') }}"></script>
+
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'somos'} %}
+</div>
+
+<! ========== HEADERWRAP ====================================================================================================
+=============================================================================================================================>
+<div id="headerwrap">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2 mt">
+				<h1 class="animation slideDown">Somos una asociación para promover la educación a través de la tecnología</h1>
+				{# <p class="mt"><button type="button" class="btn btn-cta btn-lg">LEARN MORE</button></p>#}
+			</div>
+			
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div> <!-- /headerwrap -->
+
+<! ========== BLACK SECTION ================================================================================================= 
+=============================================================================================================================>    
+<div id="text">
+	<div class="container">
+		<div class="row mt centered">
+			<div class="col-lg-4 col-lg-offset-4">
+				<h3>Un poco de historia</h3>
+				<hr>
+			</div><!-- /col-lg-4 -->
+		</div><!-- /row -->
+		
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>A iniciativa del Hermano Francisco Alvarez Penelas, Director y Comunidad de Hermanos del Instituto Superior Público La Salle de Urubamba, a finales de 1998 y principios de 1999 se funda la Asociación Educativa Radial y Televisiva Teleducación La Salle, principal promotora de Radio La Salle RIMARINAKUSUNCHIS.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>La Asociación prepara una serie de proyectos de cooperación para implementar la Emisora, la que contó con el apoyo invalorable del Señor Ignacio Fuentes Alcedo lográndose después de algunos meses y días de arduo trabajo de preparación, se inicia con las señales de prueba las cuales solo se emitían los días domingo y cuyo primer y principal programa radial fue el Programa de Niños denominado Pukllaspa Yachamusunchis, dirigido por la reconocida artista profesional Señora Débora Correa e integrada por niños y niñas de Urubamba el cual se mantiene con mucho éxito hasta el día de hoy.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>La inauguración de la emisión y transmisión oficial de la señal de Radio La Salle se realizó el día domingo 12 de Setiembre de 1999, con una misa celebrada por el Arzobispo del Cusco Monseñor Alcides Mendoza Castro la misma que contó con la presencia de autoridades civiles, religiosas, policiales y población Urubambina.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>Radio La Salle en la actualidad viene operando con una transmisora del servicio de Radiodifusión Sonora Educativa en Frecuencia Modulada FM, mediante Resolución Viceministerial Nº 140-99-MTC/15.03 publicada en el diario oficial El Peruano el 1º de Mayo de 1999, y en Amplitud Modulada AM, mediante Resolución Viceministerial Nº 926-2001-MTC/15.03 publicado en el diario oficial El Peruano el 17 de Octubre del 2001.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+	</div><!-- /container -->
+</div><!-- /black -->
+
+
+<! ========== CALL TO ACTION 1 ============================================================================================== 
+=============================================================================================================================>    
+<div id="cta01">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				{#<h2>Noticias y fotografias de actualidad para estar conectado</h2>
+				<h2>Entra y deja tu opinión</h2>
+				<button type="button" class="btn btn-cta btn-lg">LEARN MORE</button> #}
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><! --/cta01 -->
+
+
+<! ========== BLACK SECTION ================================================================================================= 
+=============================================================================================================================>    
+<div id="text">
+	<div class="container">
+		<div class="row mt centered">
+			<div class="col-lg-4 col-lg-offset-4">
+				<h3>El proyecto</h3>
+				<hr>
+			</div><!-- /col-lg-4 -->
+		</div><!-- /row -->
+		
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>Los estudios de Radio La Salle se encuentran ubicados en el Instituto Superior La Salle, contamos con cabina de transmisión, sala de locución, centro de información castellano y quechua, centro de producción del programa de niños, sala de grabación y producción; con tecnología digital al servicio de la población. Fue a partir del año 2001, en el que los equipos de transmisión son trasladados al cerro Sacro ubicado en la comunidad de Ccollana - Chequerec del distrito de Maras, ubicado por encima de los 45000 msnm, la que permite ganar y lograr una mejor cobertura de la provincia de Urubamba, el Valle Sagrado de los Incas y la Macro Región Sur del país, en sus frecuencias: AM, FM y ahora a todo el mundo a través del internet en www.radiolasalle.com.pe (Radio en Vivo).</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>A lo largo de los años de transmisión de Radio La Salle a través de sus programas educativos ha realizado acciones educativas abiertas, flexibles, de extensión continua y de carácter permanente. Apoyando a las acciones Educativas en todos los centros educativos del campo y la ciudad, complementando y reforzándolas. Motivando a la reflexión, compartiendo la alegría de nuestra cultura, sus ritos y tradiciones. Desde la experiencia de los más de 48 años formando docentes para la región, interesa de sobremanera la actualización permanente de los docentes en servicio para contribuir a mejorar la educación de niños y jóvenes.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>Muchos programas radiales han pasado por Radio La Salle, habiendo dejado muy buena impresión y recuerdo en los oyentes; así mismo los colaboradores, voluntarios y el equipo humano de primer nivel, quienes con su experiencia y capacidad, dedicación y entrega han hecho que Radio La Salle ahora este en el corazón de la población Urubambina y en los lugares más recónditos y alejados de la región donde llega nuestra señal radial.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p>En la actualidad la comunidad de hermanos que dirige el Instituto está integrada por el Hermano Manuel Marín Herrera, Director General de Radio La Salle, y los Hermanos Javier Mirando Sedano, Patricio Páramo López, Orlando Pacheco Gutiérrez y Charly Tupallima Padilla. En estos momentos, los que integramos la Familia Lasallista en Urubamba, nos encontramos comprometidos con nuevas tareas en beneficio de la región sur andina del Perú.</p>
+			</div><! --/col-lg-8 -->
+		</div><!-- /row -->
+
+	</div><!-- /container -->
+</div><!-- /black -->
+
+
+
+<! ========== CALL TO ACTION 2 ============================================================================================== 
+=============================================================================================================================>    
+<div id="cta02">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				{#<h2>Retransmitimos en directo para toda la zona en FM</h2>
+				<button type="button" class="btn btn-cta btn-lg">LEARN MORE</button> #}
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><! --/cta02 -->
+
+
+<! ========== OUR TEAM ====================================================================================================== 
+	=============================================================================================================================>    
+	
+	<div id="white">
+		<div class="container">
+	    	<div class="row mt">
+	    		<div class="col-lg-4 col-lg-offset-4 centered">
+	    			<h3>El equipo</h3>
+	    			<hr>
+	    		</div>
+	    	</div><! --/row -->
+			
+			<div class="row">
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Cargo</div>
+					    <h2 class="team-name">Persona 1</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Cargo</div>
+					    <h2 class="team-name">Persona 2</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Cargo</div>
+					    <h2 class="team-name">Persona 3</h2>
+					   {#  <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+
+{# 			</div><! --/row -->	
+
+			<div class="row"> #}
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Cargo</div>
+					    <h2 class="team-name">Persona 4</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+					  <div class="team-info">
+					    <div class="subhead">Cargo</div>
+					    <h2 class="team-name">Persona 5</h2>
+					    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+
+			</div><! --/row -->	
+		</div><! --/container -->
+	</div><! --/white -->
+
+
+<! ========== BLACK SECTION ================================================================================================= 
+=============================================================================================================================>    
+<div id="black">
+	<div class="container pt">
+		<div class="row mt centered">
+			<div class="col-lg-3">
+				<p><i class="fa fa-laptop"></i></p>
+				<h1>1746</h1>
+				<hr>
+				<h4>Noticias</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-instagram"></i></p>
+				<h1>578</h1>
+				<hr>
+				<h4>Imagenes</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-comment-o"></i></p>
+				<h1>1693</h1>
+				<hr>
+				<h4>Comentarios</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-ticket"></i></p>
+				<h1>209</h1>
+				<hr>
+				<h4>Eventos</h4>
+			</div>
+
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><!-- /black -->
+
+<! ========== TESTIMONIAL CAROUSEL ========================================================================================== 
+=============================================================================================================================>    
+
+<div class="container">
+	<div class="row mt">
+		<div class="col-lg-4 col-lg-offset-4 centered">
+			<h3>Testimonios</h3>
+			<hr>
+		</div>
+	</div><! --/row -->
+
+	<div class="row mt">
+		<div class="col-lg-8 col-lg-offset-2 centered">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">				
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+					  <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</h2>
+					  <h5>Paul Morrison - BlackTie.co</h5>
+					</div>
+					
+					<div class="item">
+					  <h2>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h2>
+					  <h5>Mike Wellington - BlackTie.co</h5>
+					</div>
+				</div><!-- /carousel-inner -->
+			
+			</div><! --/carousel-example -->		
+		</div><!-- /col-lg-8 -->
+	</div><! --/row -->
+</div><!-- /container -->
+
+
+<! ========== CONTACT SECTION =============================================================================================== 
+=============================================================================================================================>    
+
+<div id="white">
+	<div class="container">
+    	<div class="row mt">
+    		<div class="col-lg-4 col-lg-offset-4 centered">
+    			<h3>Contáctanos</h3>
+    			<hr>
+    		</div>
+    	</div><! --/row -->
+	</div><!-- /container -->
+<div id="map"></div>	
+</div><!-- /white -->
+
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}
+
+{% block scriptsFooter %}
+
+{# <script src="{{ asset('bundles/salleadmin/somos/js/retina.js') }}"></script> #}
+
+<script>
+	$(window).scroll(function() {
+		$('.si').each(function(){
+		var imagePos = $(this).offset().top;
+
+		var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+400) {
+				$(this).addClass("slideUp");
+			}
+		});
+	});
+</script>    
+
+{% endblock %}

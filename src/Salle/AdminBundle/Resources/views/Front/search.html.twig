@@ -1,0 +1,78 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Resultados de búsqueda{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'buscar'} %}
+</div>
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Búsqueda</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-sm-6">
+				<h3>Busca en la web</h3>
+				<form>
+					<div class="input-group">
+						<input class="form-control input-md" id="appendedInputButtons" type="text">
+						<span class="input-group-btn">
+							<button class="btn btn-md" type="button">Buscar</button>
+						</span>
+					</div>
+				</form>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			</div>
+
+			<div class="col-md-12">
+				<h3>Resultados de la búsqueda</h3>
+				<h5><i>5 resultados</i></h5>
+				<table class="shopping-cart">
+					<!-- Shopping Cart Item -->
+					{% for i in 1..5 %}
+					<tr>
+						<td>
+							<div class="cart-item-title"><a href="page-product-details.html"><h4><b>At vero eos et accusamus et iusto</a></b></h4></div>
+							<div class="cart-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla...</div>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+				<!-- End Shopping Cart Items -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="pagination-wrapper ">
+	<ul class="pagination pagination-lg">
+		<li class="disabled"><a href="#">Previous</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">Next</a></li>
+	</ul>
+</div>
+
+ <!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}

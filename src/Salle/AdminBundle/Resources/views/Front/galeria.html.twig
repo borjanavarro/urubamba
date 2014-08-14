@@ -1,0 +1,66 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Galeria{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'galeria'} %}
+</div>
+
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Galería de imagenes</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+
+		{% for imagen in imagenes %}
+			<div class="col-md-4 col-sm-6">
+				<div class="portfolio-item">
+					<div class="portfolio-image">
+						<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="max-height:206px;" alt="Project Name"></a>
+					</div>
+					<div class="portfolio-info-fade">
+						<ul>
+							<li class="portfolio-project-name">{{ imagen.titulo }}</li>
+							<li>{{ imagen.descripcion | truncate(100) }}</li>
+							<li class="read-more"><a href="{{ url('imagen', {'id' : imagen.id } )}}" class="btn">Detalle</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+			
+		</div>
+	</div>
+</div> 
+
+<div class="pagination-wrapper ">
+	<ul class="pagination pagination-lg">
+		<li class="disabled"><a href="#">Previous</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">Next</a></li>
+	</ul>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}

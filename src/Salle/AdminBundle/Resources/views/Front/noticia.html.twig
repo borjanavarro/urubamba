@@ -1,0 +1,162 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Noticia{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'none'} %}
+</div>
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Noticias</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<!-- Blog Post -->
+			<div class="col-sm-8">
+				<div class="blog-post blog-single-post">
+					<div class="single-post-title">
+						<h3>{{ noticia.titulo }}</h3>
+					</div>
+					<div class="single-post-info">
+						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>{{ noticia.comentarios | length }}</a>
+					</div>
+					<div class="single-post-image">
+						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" alt="Post Title">
+					</div>
+					<div class="single-post-content">
+						<h4>{{ noticia.subtitulo }}</h4>
+						<p>{{ noticia.cuerpo }}</p>
+					</div>
+					
+					<!-- Comments -->
+					<div class="post-coments"  id="comments">
+						<h4>Comentarios ({{ noticia.comentarios | length }})</h4>
+						<ul class="post-comments">
+							{% for comentario in noticia.comentarios %}
+								<li>
+									<div class="comment-wrapper">
+										<div class="comment-author"><img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> {{ comentario.nombre }}</div>
+										<p>
+											{{ comentario.comentario }}
+										</p>
+										<!-- Comment Controls -->
+										<div class="comment-actions">
+											<span class="comment-date">{{ comentario.fecha | date("m/d/Y")}}</span>
+											<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+											{% set votes = comentario.likes - comentario.dislikes %}
+											{% if votes > 0 %} 
+												<span class="label label-success">{{ votes }}</span>
+											{% elseif votes < 0 %}
+												<span class="label label-danger">{{ votes }}</span>
+											{% else %}
+												<span class="label label-default">{{ votes }}</span>
+											{% endif %}
+										</div>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+
+						<!-- Pagination -->
+						<div class="pagination-wrapper ">
+							<ul class="pagination pagination-sm">
+								<li class="disabled"><a href="#">Previous</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">Next</a></li>
+							</ul>
+						</div>
+
+						<!-- Comments Form -->
+						<h4>Deja un comentario</h4>
+						<div class="comment-form-wrapper">
+							{{ form_start(form) }}
+		        				<div class="form-group">
+		        					<label for="{{ form.nombre.vars.id }}"
+									    class="{{ form.nombre.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-user"></i> <b>{{ form.nombre.vars.label}} </b>
+									</label>
+						        	{{ form_errors(form.nombre) }}
+						        	{{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+								</div>
+								<div class="form-group">
+									<label for="{{ form.email.vars.id }}"
+									    class="{{ form.email.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-envelope"></i> <b>{{ form.email.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.email) }}
+						        	{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+								</div>
+								<div class="form-group">
+									<label for="{{ form.comentario.vars.id }}"
+									    class="{{ form.comentario.vars.required ? 'required' : '' }}">
+									   <i class="glyphicon glyphicon-comment"></i> <b>{{ form.comentario.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.comentario) }}
+						        	{{ form_widget(form.comentario, { 'attr': {'class': 'form-control', 'rows': '6'} }) }}
+								</div>
+								<div class="form-group">
+								{{ form_widget(form.send, { 'attr': {'class': 'btn btn-large pull-right'} }) }}
+								</div>
+								<div class="clearfix"></div>
+		        			{{ form_end(form) }}
+						</div>
+						<!-- End Comment Form -->
+					</div>
+					<!-- End Comments -->
+				</div>
+			</div>
+			<!-- End Blog Post -->
+			<!-- Sidebar -->
+			<div class="col-sm-4 blog-sidebar">
+				<h4>Últimas noticias</h4>
+				<ul class="recent-posts">
+				{% if ultimas | length == 3 %}
+					<li><a href="{{ url ('noticia', { 'id' : ultimas[0].id} )}}">{{ ultimas[0].titulo }}</a></li>
+					<li><a href="{{ url ('noticia', { 'id' : ultimas[1].id} )}}">{{ ultimas[1].titulo }}</a></li>
+					<li><a href="{{ url ('noticia', { 'id' : ultimas[2].id} )}}">{{ ultimas[2].titulo }}</a>
+				{% endif %}
+				</ul>
+				<h4>Secciones</h4>
+				<ul class="blog-categories">
+					<li><a href="#">Sociedad</a></li>
+					<li><a href="#">Deportes</a></li>
+					<li><a href="#">Tecnología</a></li>
+				</ul>
+				<h4>Archivo</h4>
+				<ul>
+					<li><a href="#">Enero 2013</a></li>
+					<li><a href="#">Febrero 2013</a></li>
+					<li><a href="#">Marzo 2013</a></li>
+					<li><a href="#">Abril 2013</a></li>
+					<li><a href="#">Mayo 2013</a></li>
+				</ul>
+			</div>
+			<!-- End Sidebar -->
+		</div>
+	</div>
+</div>
+
+
+ <!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}
