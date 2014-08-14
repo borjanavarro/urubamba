@@ -54,3 +54,7 @@ noticia:
 buscar:
     pattern: /buscar
     defaults: { _controller: SalleAdminBundle:SearchResults:index }
+
+patro:
+    pattern: /patrocinadores
+    defaults: { _controller: SalleAdminBundle:Patro:index }

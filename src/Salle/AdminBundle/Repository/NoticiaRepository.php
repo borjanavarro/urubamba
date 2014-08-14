@@ -12,6 +12,7 @@ class NoticiaRepository extends EntityRepository
         $query = $this->createQueryBuilder('n')
         	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
 		    ->orderBy('n.fecha', 'DESC')
+            ->setMaxResults(3)
 		    ->getQuery();
 		 
 		$noticias = $query->getResult();

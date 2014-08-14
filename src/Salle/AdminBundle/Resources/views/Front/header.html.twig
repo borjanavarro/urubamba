@@ -21,8 +21,14 @@
 				<a href="{{ url ('radio') }}">Radio en vivo</a>
 			</li>
 			<li {% if active == 'galeria' %}class="active"{% endif %}>
-				<a href="{{ url ('galeria') }}">Galeria</a>
-			</li>		
+				<a href="{{ url ('galeria') }}">Galería</a>
+			</li>
+			<li {% if active == 'buscar' %}class="active"{% endif %}>
+				<a href="{{ url ('buscar') }}">Buscar</a>
+			</li>
+			<li {% if active == 'patrocinadores' %}class="active"{% endif %}>
+				<a href="{{ url ('patro') }}">Patrocinadores</a>
+			</li>	
 		</ul>
 	</nav>
 </div>
