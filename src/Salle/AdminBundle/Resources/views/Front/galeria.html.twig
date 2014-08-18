@@ -33,7 +33,7 @@
 					</div>
 					<div class="portfolio-info-fade">
 						<ul>
-							<li class="portfolio-project-name">{{ imagen.titulo }}</li>
+							<li class="portfolio-project-name">{{ imagen.titulo | truncate(20) }}</li>
 							<li>{{ imagen.descripcion | truncate(100) }}</li>
 							<li class="read-more"><a href="{{ url('imagen', {'id' : imagen.id } )}}" class="btn">Detalle</a></li>
 						</ul>

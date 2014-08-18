@@ -514,13 +514,13 @@ p.capitalize:first-letter {
 
 
 #cta03 {
-	background: url(../img/cta/cta01.jpg) no-repeat center top;
+	background: url(../img/cta/cta03.jpg) no-repeat center top;
 	margin-top: 0px;
-	padding-top:50px;
+	padding-top:100px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 450px;
+	min-height: 350px;
 	width: 100%;
 	
     -webkit-background-size: 100%;
@@ -754,7 +754,8 @@ p.capitalize:first-letter {
   display: none;
   position: absolute;
   background: #4f8db3;
-  width: 100%;
+  width: 20%;
+  margin-left: 481px;
   left: 0;
   z-index: 999;
   -webkit-transform: translateZ(0);
@@ -768,7 +769,7 @@ p.capitalize:first-letter {
   color: 0 5px 5px rgba(0,0,0,0.4);
 }
 .mainmenu .mainmenu-submenu-inner > div {
-  width: 33%;
+  width: 100%;
   float: left;
 }
 .mainmenu .mainmenu-submenu-inner:before,

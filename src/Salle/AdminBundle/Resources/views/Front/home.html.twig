@@ -19,8 +19,6 @@
 				<h2 class="title">En el corazón del Valle Sagrado de los Incas</h2>
 				<!-- Slide Text -->
 				<h3 class="subtitle">Emitiendo desde Urubamba para todo el valle</h3>
-				<!-- Slide Image -->
-				{# <img class="slide-img" src="{{ asset('bundles/salleadmin/img/homepage-slider/slider-bg3.jpg') }}" alt="Slide 3" /> #}
 			</li>
 			<!-- End Slide 1 -->
 			<!-- Slide 2 -->
@@ -29,8 +27,6 @@
 				<h2 class="title">Pensando para todos</h2>
 				<!-- Slide Text -->
 				<h3 class="subtitle">Programación con música e información tanto en Quechua como en español</h3>
-				<!-- Slide Image -->
-				{# <img class="slide-img" src="{{ asset('bundles/salleadmin/img/homepage-slider/slider-bg2.jpg') }}" alt="Slide 2" /> #}
 			</li>
 			<!-- End Slide 2 -->
 			<!-- Slide 3 -->
@@ -39,8 +35,6 @@
 				<h2 class="title">Una radio educativa</h2>
 				<!-- Slide Text -->
 				<h3 class="subtitle">Nos interesamos por la cultura y la gente de la zona</h3>
-				<!-- Slide Image -->
-				{# <img class="slide-img" src="{{ asset('bundles/salleadmin/img/homepage-slider/slider-bg4.jpg') }}" alt="Slide 3" /> #}
 			</li>
 			<!-- End Slide 3 -->
 			<!-- Slide 4 -->
@@ -49,8 +43,6 @@
 				<h2 class="title">Machu Picchu</h2>
 				<!-- Slide Text -->
 				<h3 class="subtitle">Cerca del tesoro arqueológico de los Incas</h3>
-				<!-- Slide Image -->
-				{# <img class="slide-img" src="{{ asset('bundles/salleadmin/img/homepage-slider/slider-bg1.jpg') }}" alt="Slide 1" /> #}
 			</li>
 			<!-- End Slide 4 -->
 			
@@ -134,46 +126,6 @@
 </div>
 <!-- End Call to Action Bar -->
 
-{# <!-- Posts List -->
-<div class="section blog-posts-wrapper">
-	<div class="container">
-		<h2>Deportes</h2>
-		<div class="row">
-			<!-- Post -->
-			{% for noticia in noticias %}
-			<div class="col-md-4 col-sm-6">
-				<div class="blog-post">
-					<!-- Post Info -->
-					<div class="post-info">
-						<div class="post-date">
-							<div class="date">{{ noticia.fecha | date('Y-m-d') }}</div>
-						</div>
-						<div class="post-comments-count">
-							<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>11</a>
-						</div>
-					</div>
-					<!-- End Post Info -->
-					<!-- Post Image -->
-					<a href="page-blog-post-right-sidebar.html"><img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="post-image" alt="Post Title"></a>
-					<!-- End Post Image -->
-					<!-- Post Title & Summary -->
-					<div class="post-title">
-						<h3><a href="page-blog-post-right-sidebar.html">{{ noticia.titulo }}</a></h3>
-					</div>
-					<div class="post-summary">
-						<p>{{ noticia.subtitulo }}</p>
-					</div>
-					<!-- End Post Title & Summary -->
-					<div class="post-more">
-						<a href="{{ url ('noticia', { 'id' : noticia.id} )}}" class="btn btn-small">Leer más</a>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-	</div>
-</div>
-<!-- End Posts List --> #}
 
 <div class="section">
     <div class="container">
@@ -251,66 +203,20 @@
 		<div class="row">
 			<div class="col-md-12">
 				<table class="events-list">
-					<tr>
-						<td>
-							<div class="event-date">
-								<div class="event-day">16</div>
-								<div class="event-month">MAR</div>
-							</div>
-						</td>
-						<td>
-							Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus.
-						</td>
-						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Siemens Arena</b></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="event-date">
-								<div class="event-day">5</div>
-								<div class="event-month">APR</div>
-							</div>
-						</td>
-						<td>
-							Phasellus et est quis diam iaculis fringilla id nec sapien.
-						</td>
-						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Nike Arena</b></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="event-date">
-								<div class="event-day">31</div>
-								<div class="event-month">MAY</div>
-							</div>
-						</td>
-						<td>
-							Ut consectetur commodo justo, sed sollicitudin massa venenatis ut 2013.
-						</td>
-						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Samsung Arena</b></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="event-date">
-								<div class="event-day">17</div>
-								<div class="event-month">SEP</div>
-							</div>
-						</td>
-						<td>
-							Pellentesque justo turpis, fringilla sit amet pulvinar ut, tincidunt nec leo.
-						</td>
-						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Samsung Arena</b></td>
-					</tr>
-					<tr>
-						<td>
-							<div class="event-date">
-								<div class="event-day">16</div>
-								<div class="event-month">MAR</div>
-							</div>
-						</td>
-						<td>
-							Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus.
-						</td>
-						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Siemens Arena</b></td>
-					</tr>
+					{% for i in 1..5 %}
+						<tr>
+							<td>
+								<div class="event-date">
+									<div class="event-day">16</div>
+									<div class="event-month">MAR</div>
+								</div>
+							</td>
+							<td>
+								Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus.
+							</td>
+							<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Siemens Arena</b></td>
+						</tr>
+					{% endfor %}
 				</table>
 			</div>
 		</div>

@@ -37,65 +37,109 @@
 			<div class="portfolio-item-description col-sm-10 col-lg-offset-1">
 				<h3>{{ imagen.titulo }}</h3>
 				<p>{{ imagen.descripcion }}</p>
-				{# <ul class="no-list-style">
-					<li><b>Client:</b> Some Client LTD</li>
-					<li><b>Date:</b> 01, September 2012 - 23, February 2013</li>
-					<li><b>Technologies:</b> HTML5, CSS3, jQuery, PHP, MySQL</li>
-					<li class="portfolio-visit-btn"><a href="#" class="btn">Visit Website</a></li>
-				</ul> #}
 			</div>
 			<!-- End Project Info Column -->
 		</div>
-		{# <!-- Related Projects -->
-		<h3>Related Projects</h3>
 		<div class="row">
-			<div class="col-md-4 col-sm-6">
-				<div class="portfolio-item">
-					<div class="portfolio-image">
-						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio3.jpg' )}}" alt="Project Name"></a>
-					</div>
-					<div class="portfolio-info-fade">
-						<ul>
-							<li class="portfolio-project-name">Project Name</li>
-							<li>Website design & Development</li>
-							<li>Client: Some Client LTD</li>
-							<li class="read-more"><a href="#" class="btn">Read more</a></li>
+			<div class="col-sm-8 col-lg-offset-2">
+				<div class="blog-post blog-single-post">
+					<!-- Comments -->
+					<div class="post-coments">
+						<h4>Comments (53)</h4>
+						<ul class="post-comments">
+							<li>
+								<div class="comment-wrapper">
+									<div class="comment-author"><img src="img/user1.jpg" alt="User Name"> User Name</div>
+									<p>
+										Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+									</p>
+									<!-- Comment Controls -->
+									<div class="comment-actions">
+										<span class="comment-date">June 10th, 2013 3:16 pm</span>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+										<span class="label label-success">+8</span>
+										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<ul>
+									<li>
+										<div class="comment-wrapper">
+											<div class="comment-author"><img src="img/user2.jpg" alt="User Name"> User Name</div>
+											<p>
+												Vivamus euismod elit ac libero facilisis tristique. Duis mollis non ligula vel tincidunt. Nulla consectetur libero id nunc ornare, vel vulputate tellus mollis. Sed quis nulla magna.
+											</p>
+											<!-- Comment Controls -->
+											<div class="comment-actions">
+												<span class="comment-date">June 10th, 2013 3:16 pm</span>
+												<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+												<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+												<span class="label label-danger">-2</span>
+												<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="comment-wrapper">
+									<div class="comment-author"><img src="img/user5.jpg" alt="User Name"> User Name</div>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel magna lectus.
+									</p>
+									<!-- Comment Controls -->
+									<div class="comment-actions">
+										<span class="comment-date">June 10th, 2013 3:16 pm</span>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+										<span class="label label-success">+8</span>
+										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
+									</div>
+								</div>
+							</li>
 						</ul>
+						<!-- Pagination -->
+						<div class="pagination-wrapper ">
+							<ul class="pagination pagination-sm">
+								<li class="disabled"><a href="#">Previous</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">Next</a></li>
+							</ul>
+						</div>
+						<!-- Comments Form -->
+						<h4>Leave a Comment</h4>
+						<div class="comment-form-wrapper">
+							<form class="">
+		        				<div class="form-group">
+		        				 	<label for="comment-name"><i class="glyphicon glyphicon-user"></i> <b>Your name</b></label>
+									<input class="form-control" id="comment-name" type="text" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="comment-email"><i class="glyphicon glyphicon-envelope"></i> <b>Your Email</b></label>
+									<input class="form-control" id="comment-email" type="text" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="comment-message"><i class="glyphicon glyphicon-comment"></i> <b>Your Message</b></label>
+									<textarea class="form-control" rows="5" id="comment-message"></textarea>
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-large pull-right">Send</button>
+								</div>
+								<div class="clearfix"></div>
+		        			</form>
+						</div>
+						<!-- End Comment Form -->
 					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<div class="portfolio-item">
-					<div class="portfolio-image">
-						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio4.jpg' )}}" alt="Project Name"></a>
-					</div>
-					<div class="portfolio-info-fade">
-						<ul>
-							<li class="portfolio-project-name">Project Name</li>
-							<li>Website design & Development</li>
-							<li>Client: Some Client LTD</li>
-							<li class="read-more"><a href="#" class="btn">Read more</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<div class="portfolio-item">
-					<div class="portfolio-image">
-						<a href="#"><img src="{{ asset ('bundles/salleadmin/img/galeria/portfolio5.jpg' )}}" alt="Project Name"></a>
-					</div>
-					<div class="portfolio-info-fade">
-						<ul>
-							<li class="portfolio-project-name">Project Name</li>
-							<li>Website design & Development</li>
-							<li>Client: Some Client LTD</li>
-							<li class="read-more"><a href="#" class="btn">Read more</a></li>
-						</ul>
-					</div>
+					<!-- End Comments -->
 				</div>
 			</div>
 		</div>
-		<!-- End Related Projects -->#}
 	</div>
 </div> 
 

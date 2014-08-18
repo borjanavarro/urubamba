@@ -2428,7 +2428,8 @@ span.color-red {
   display: none;
   position: absolute;
   background: #4f8db3;
-  width: 100%;
+  width: 20%;
+  margin-left: 476px;
   left: 0;
   z-index: 999;
   -webkit-transform: translateZ(0);
@@ -2442,7 +2443,7 @@ span.color-red {
   color: 0 5px 5px rgba(0,0,0,0.4);
 }
 .mainmenu .mainmenu-submenu-inner > div {
-  width: 33%;
+  width: 100%;
   float: left;
 }
 .mainmenu .mainmenu-submenu-inner:before,

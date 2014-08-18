@@ -11,7 +11,7 @@ class HomeController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
-    	$noticia = $repository->findAllNews();
+    	$noticia = $repository->findUltimasNews();
 
     	return $this->render('SalleAdminBundle:Front:home.html.twig', array ('noticias' => $noticia));
     }

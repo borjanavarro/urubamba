@@ -1,0 +1,202 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}El equipo{% endblock %}
+
+{% block scriptsHeader %}
+
+<link href="{{ asset('bundles/salleadmin/somos/css/hover_pack.css') }}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="{{ asset('bundles/salleadmin/somos/css/main.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/colors/color-74c9be.css') }}" rel="stylesheet">    
+<link href="{{ asset('bundles/salleadmin/somos/css/animations.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/font-awesome.min.css') }}" rel="stylesheet">
+
+
+<!-- JavaScripts needed at the beginning
+================================================== -->
+
+
+<!-- Main Jquery & Hover Effects. Should load first -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('bundles/salleadmin/somos/js/hover_pack.js') }}"></script>
+
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'somos'} %}
+</div>
+
+
+<! ========== CALL TO ACTION 1 ============================================================================================== 
+=============================================================================================================================>    
+<div id="cta03">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>Hay un equipo de profesionales trabajando para traerte la información más actualizada</h2>
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><!--/cta01 -->
+
+
+<! ========== OUR TEAM ====================================================================================================== 
+	=============================================================================================================================>    
+	
+<div id="white">
+	<div class="container">
+    	<div class="row mt">
+    		<div class="col-lg-4 col-lg-offset-4 centered">
+    			<h3>El equipo</h3>
+    			<hr>
+    		</div>
+    	</div><!--/row -->
+		
+		<div class="row">
+			<div class="col-lg-4 centered">
+				<div class="members">
+				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+				  <div class="team-info">
+				    <div class="subhead">Cargo</div>
+				    <h2 class="team-name">Persona 1</h2>
+				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+				  </div>
+				</div>
+			</div><!-- /col-lg-4 -->
+			<div class="mt">
+				<div class="col-lg-8">
+					<p>A iniciativa del Hermano Francisco Alvarez Penelas, Director y Comunidad de Hermanos del Instituto Superior Público La Salle de Urubamba, a finales de 1998 y principios de 1999 se funda la Asociación Educativa Radial y Televisiva Teleducación La Salle, principal promotora de Radio La Salle RIMARINAKUSUNCHIS.</p>
+				</div><! --/col-lg-8 -->
+			</div><!-- /row -->
+		</div><!--/row -->
+		
+		<div class="row">	
+			<div class="col-lg-4 centered">
+				<div class="members">
+				  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+				  <div class="team-info">
+				    <div class="subhead">Cargo</div>
+				    <h2 class="team-name">Persona 2</h2>
+				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+				  </div>
+				</div>
+			</div><!-- /col-lg-4 -->
+		</div><!--/row -->
+
+		<div class="row">	
+			<div class="col-lg-4 centered">
+				<div class="members">
+				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+				  <div class="team-info">
+				    <div class="subhead">Cargo</div>
+				    <h2 class="team-name">Persona 3</h2>
+				   {#  <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+				  </div>
+				</div>
+			</div><!-- /col-lg-4 -->
+		</div><!--/row -->	
+
+		<div class="row">
+			<div class="col-lg-4 centered">
+				<div class="members">
+				  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
+				  <div class="team-info">
+				    <div class="subhead">Cargo</div>
+				    <h2 class="team-name">Persona 4</h2>
+				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+				  </div>
+				</div>
+			</div><!-- /col-lg-4 -->
+		</div><!--/row -->
+
+		<div class="row">	
+			<div class="col-lg-4 centered">
+				<div class="members">
+				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
+				  <div class="team-info">
+				    <div class="subhead">Cargo</div>
+				    <h2 class="team-name">Persona 5</h2>
+				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
+				  </div>
+				</div>
+			</div><!-- /col-lg-4 -->
+		</div><!--/row -->	
+	</div><!--/container -->
+</div><!--/white -->
+
+
+<! ========== BLACK SECTION ================================================================================================= 
+=============================================================================================================================> 
+   
+<div id="black">
+	<div class="container pt">
+		<div class="row mt centered">
+			<div class="col-lg-3">
+				<p><i class="fa fa-laptop"></i></p>
+				<h1>1746</h1>
+				<hr>
+				<h4>Noticias</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-instagram"></i></p>
+				<h1>578</h1>
+				<hr>
+				<h4>Imagenes</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-comment-o"></i></p>
+				<h1>1693</h1>
+				<hr>
+				<h4>Comentarios</h4>
+			</div>
+
+			<div class="col-lg-3">
+				<p><i class="fa fa-ticket"></i></p>
+				<h1>209</h1>
+				<hr>
+				<h4>Eventos</h4>
+			</div>
+
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><!-- /black -->
+
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}
+
+{% block scriptsFooter %}
+
+{# <script src="{{ asset('bundles/salleadmin/somos/js/retina.js') }}"></script> #}
+
+<script>
+	$(window).scroll(function() {
+		$('.si').each(function(){
+		var imagePos = $(this).offset().top;
+
+		var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+400) {
+				$(this).addClass("slideUp");
+			}
+		});
+	});
+</script>    
+
+{% endblock %}

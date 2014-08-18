@@ -58,3 +58,7 @@ buscar:
 patro:
     pattern: /patrocinadores
     defaults: { _controller: SalleAdminBundle:Patro:index }
+
+equipo:
+    pattern: /equipo
+    defaults: { _controller: SalleAdminBundle:Equipo:index }

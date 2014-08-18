@@ -4,28 +4,45 @@
 		<div class="menuextras">
 			<div class="extras">
 				<ul>
-					<li class="shopping-cart-items"><a href="#"><b>{{ "now"|date("m/d/Y") }}</b></a></li>
+					<li class="shopping-cart-items"><b>{{ "now"|date("d/m/Y") }}</b></li>
 	        	</ul>
 			</div>
 	    </div>
 
 		<ul>
-			<li class="logo-wrapper"><a href="{{ url ('home') }}"><img src="{{ asset('bundles/salleadmin/img/logo-urubamba.png') }}" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-			<li {% if active == 'home' %}class="active"{% endif %}>
+			<li class="logo-wrapper"><a href="{{ url ('home') }}"><img src="{{ asset('bundles/salleadmin/img/logo-urubamba.png') }}" alt="La Salle Urubamba Rimarinakusunchis"></a></li>
+
+			<li {% if active == 'home' %}class="active"{% endif %} style="width: 84px;">
 				<a href="{{ url ('home') }}">Inicio</a>
 			</li>
-			<li {% if active == 'somos' %}class="active"{% endif %}>
-				<a href="{{ url ('quienes-somos') }}">Quienes somos</a>
+
+			<li class="has-submenu {% if active == 'somos' %}active{% endif %}">
+				<a href="#">Quienes somos</a>
+				<div class="mainmenu-submenu">
+					<div class="mainmenu-submenu-inner"> 
+						<div>
+							<ul>
+								<li><a href="{{ url ('quienes-somos') }}">El proyecto</a></li>
+								<li><a href="{{ url ('equipo') }}">Equipo</a></li>
+								<li><a href="#">Programación</a></li>
+							</ul>
+						</div>
+					</div><!-- /mainmenu-submenu-inner -->
+				</div><!-- /mainmenu-submenu -->
 			</li>
+
 			<li {% if active == 'radio' %}class="active"{% endif %}>
 				<a href="{{ url ('radio') }}">Radio en vivo</a>
 			</li>
+
 			<li {% if active == 'galeria' %}class="active"{% endif %}>
 				<a href="{{ url ('galeria') }}">Galería</a>
 			</li>
+
 			<li {% if active == 'buscar' %}class="active"{% endif %}>
 				<a href="{{ url ('buscar') }}">Buscar</a>
 			</li>
+
 			<li {% if active == 'patrocinadores' %}class="active"{% endif %}>
 				<a href="{{ url ('patro') }}">Patrocinadores</a>
 			</li>	
