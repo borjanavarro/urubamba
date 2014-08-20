@@ -8,8 +8,12 @@ class PatroController extends Controller
 {
     public function indexAction()
     {
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Patro');
 
-    	return $this->render('SalleAdminBundle:Front:patro.html.twig');
+    	$patros = $repository->findAllPatros(0, 100);
+
+    	return $this->render('SalleAdminBundle:Front:patro.html.twig', array ('patros' => $patros));
 
     }
 
