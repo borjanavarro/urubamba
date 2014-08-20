@@ -1,18 +1,18 @@
 {% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
 
-{% block title %}Añadir nueva noticia{% endblock %}
+{% block title %}Añadir nuevo evento{% endblock %}
 
 {% block content %}
 
 <div id="wrapper">
 
-	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'galeria'} %}
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'evento'} %}
 
 	<div id="page-wrapper">
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>Añadir nueva imagen <small>Urubamba</small></h1>
+				<h1>Añadir nuevo evento <small>Urubamba</small></h1>
 			</div>
 		</div><!-- /.row -->
 
@@ -23,21 +23,21 @@
 	          	{{ form_start(form,  { 'attr': {'role': 'form'} }) }}
 
 	          	<div class="form-group">
-		          	{{ form_label(form.titulo) }}
-		        	{{ form_errors(form.titulo) }}
-		        	{{ form_widget(form.titulo, { 'attr': {'class': 'form-control'} }) }}
-	            </div>
-
-	            <div class="form-group">
-	                {{ form_label(form.descripcion) }}
+		          	{{ form_label(form.descripcion) }}
 		        	{{ form_errors(form.descripcion) }}
-		        	{{ form_widget(form.descripcion, { 'attr': {'class': 'form-control', 'rows' : '7'} }) }}
+		        	{{ form_widget(form.descripcion, { 'attr': {'class': 'form-control'} }) }}
 	            </div>
 
 	            <div class="form-group">
-	                {{ form_label(form.file) }}
-		        	{{ form_errors(form.file) }}
-		        	{{ form_widget(form.file) }}
+	                {{ form_label(form.lugar) }}
+		        	{{ form_errors(form.lugar) }}
+		        	{{ form_widget(form.lugar, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	             <div class="form-group">
+	                {{ form_label(form.fecha) }}
+		        	{{ form_errors(form.fecha) }}
+		        	{{ form_widget(form.fecha) }}
 	            </div>
 	        </div>
 		        	

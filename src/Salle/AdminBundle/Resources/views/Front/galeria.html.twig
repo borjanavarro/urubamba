@@ -23,38 +23,42 @@
 
 <div class="section">
 	<div class="container">
-		<div class="row">
-
-		{% for imagen in imagenes %}
-			<div class="col-md-4 col-sm-6">
-				<div class="portfolio-item">
-					<div class="portfolio-image">
-						<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="max-height:206px;" alt="Project Name"></a>
-					</div>
-					<div class="portfolio-info-fade">
-						<ul>
-							<li class="portfolio-project-name">{{ imagen.titulo | truncate(20) }}</li>
-							<li>{{ imagen.descripcion | truncate(100) }}</li>
-							<li class="read-more"><a href="{{ url('imagen', {'id' : imagen.id } )}}" class="btn">Detalle</a></li>
-						</ul>
+			{% set num = 1 %}
+			{% for imagen in imagenes %}
+				{% if loop.index == 1 or loop.index == 4 or loop.index == 7 %}
+					<div class="row" id="imagenes-{{ num }}">
+					{% set num = num + 1 %}
+				{% endif %}
+				<div class="col-md-4 col-sm-6">
+					<div class="portfolio-item">
+						<div class="portfolio-image">
+							<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="height:206px; width: auto;" alt="Project Name"></a>
+						</div>
+						<div class="portfolio-info-fade">
+							<ul>
+								<li class="portfolio-project-name">{{ imagen.titulo | truncate(20) }}</li>
+								<li>{{ imagen.descripcion | truncate(100) }}</li>
+								<li class="read-more"><a href="{{ url('imagen', {'id' : imagen.id } )}}" class="btn">Detalle</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
-		{% endfor %}
-			
-		</div>
+				{% if loop.index == 3 or loop.index == 6 or loop.index == 9 %}
+					</div>
+				{% endif %}
+			{% endfor %}	
 	</div>
 </div> 
 
 <div class="pagination-wrapper ">
 	<ul class="pagination pagination-lg">
-		<li class="disabled"><a href="#">Previous</a></li>
+		<li class="disabled"><a href="#">«</a></li>
 		<li class="active"><a href="#">1</a></li>
 		<li><a href="#">2</a></li>
 		<li><a href="#">3</a></li>
 		<li><a href="#">4</a></li>
 		<li><a href="#">5</a></li>
-		<li><a href="#">Next</a></li>
+		<li><a href="#">»</a></li>
 	</ul>
 </div>
 
@@ -62,5 +66,193 @@
 <div class="footer">
 	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+pathAux = "{{ asset ('bundles/salleadmin/img/galeria/hola.jpg')}}";
+
+$(document).ready( function (){
+
+	if ({{ numPags }} <= 5 )
+	{
+		$(".pagination").find("li").each(function(i)
+		{
+			if ( i > {{ numPags }} || i == 0 )
+			{
+				$(this).addClass('disabled');
+			}
+		});
+	}
+});
+
+$('.pagination > li > a').on("click", function (){
+
+	if (!$(this).parent().hasClass('disabled'))
+	{
+
+		tecla = $(this).text();
+
+		//Nos vamos al principio
+		if ( tecla == "«" )
+		{
+			tecla = 1;
+		} //Nos vamos al final
+		else if ( tecla == "»" ) 
+		{
+			tecla = {{ numPags }};
+		}
+
+		numeros(tecla);
+
+		$.ajax({
+			dataType: "json",
+			url:"{{ url ('galeria') }}", 
+			data: { offset: tecla-1 },
+			type: "POST"})
+			.done (function(refresh){
+				$("#imagenes-1 > div").fadeOut('slow/400/fast', function (){
+					$(this).remove();
+				});
+				$("#imagenes-2 > div").fadeOut('slow/400/fast', function (){
+					$(this).remove();
+				});
+				$("#imagenes-3 > div").fadeOut('slow/400/fast', function (){
+					$(this).remove();
+				});
+				$.each(refresh.refresh, function(i, item){
+					path = pathAux.replace ("hola.jpg", item.id + '.' + item.path );
+					if ( i == 0 || i == 3 || i == 6)
+					{
+						num = i + 1;
+						pre = '<div class="row" id="imagenes-' + num + '">';
+					} else 
+					{
+						pre = '';
+					}
+					cad = '<div class="col-lg-4" style="margin-top:15px;"><img src="' + path + '" style="max-height:206px;" alt="Project Name" class="img-rounded center-block"><div class="row"><h3 class="text-center">' + truncateString(item.titulo, 30) + '</h3><p class="text-center">' + truncateString(item.descripcion, 100) + '</p><form name="form_delete"  method="post" class="text-center"><button class="btn btn-danger btn-sm" type="submit" name="delete" value="' + item.id + '">Eliminar</button></form></div></div>';
+				 	if ( i < 3)
+				 	{
+				 		$("#imagenes-1").append(cad);
+				 	}
+				 	else if ( i < 6 && i >= 3)
+				 	{
+				 		$("#imagenes-2").append(cad);
+				 	}
+				 	else if ( i < 9 && i >= 7)
+				 	{
+				 		$("#imagenes-3").append(cad);
+				 	}
+				 });
+		})
+	}
+});
+
+
+function numeros(seguent){
+
+	num = parseInt(seguent);
+
+	$(".pagination").find("li").each(function(i)
+	{
+		$(this).removeClass('active');
+	});
+
+	//Estamos al principio de todo
+	if ({{ numPags }} <= 5)
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 || i > {{ numPags }} )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+		});
+	}
+
+	//Estamos al principio de todo
+	else if ( num <= 3 )
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			else if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+			if ( i >= 1 && i <= 5)
+			{
+				$(this).text(i);
+			}
+			else if ( i == 6)
+			{
+				$(this).parent().removeClass('disabled');
+			}
+		});
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags - 1 }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-3);
+		$(kids[2]).text(num-2);
+		$(kids[3]).text(num-1);
+		$(kids[4]).text(num);
+		$(kids[4]).parent().addClass('active');
+		$(kids[5]).text(num+1);
+		$(kids[6]).parent().addClass('disabled');
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-4);
+		$(kids[2]).text(num-3);
+		$(kids[3]).text(num-2);
+		$(kids[4]).text(num-1);
+		$(kids[5]).text(num);
+		$(kids[5]).parent().addClass('active');
+		$(kids[6]).parent().addClass('disabled');
+
+	}
+
+	//Estamos en el medio
+	else if (num < {{ numPags }}-1 && num >= 3)
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-2);
+		$(kids[2]).text(num-1);
+		$(kids[3]).text(num);
+		$(kids[3]).parent().addClass('active');
+		$(kids[4]).text(num+1);
+		$(kids[5]).text(num+2);
+		$(kids[6]).parent().removeClass('disabled');
+
+	}
+}
+
+function truncateString(str, length) {
+    return str.length > length ? str.substring(0, length - 3) + '...' : str
+}
+
+</script>
 
 {% endblock %}

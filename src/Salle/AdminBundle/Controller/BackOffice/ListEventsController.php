@@ -6,52 +6,51 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ListNewsController extends Controller
+class ListEventsController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction( Request $request )
     {
     	$repository = $this->getDoctrine()
-    		->getRepository('SalleAdminBundle:Noticia');
+    		->getRepository('SalleAdminBundle:Evento');
 
-        $results = 10;
+        $results = 1;
 
-    	$noticias = $repository->findAllNews(0, $results);
+    	$eventos = $repository->findAllEvents(0, $results);
 
-        $numPags = ceil($repository->countNoticias()/$results);
+        $numPags = ceil($repository->countEvents()/$results);
 
         if ($request->request->has('delete'))
         {
             $id = $request->request->get('delete');
             $em = $this->getDoctrine()->getManager();
-            $noticia = $em->getRepository('SalleAdminBundle:Noticia')->find($id);
+            $evento = $em->getRepository('SalleAdminBundle:Evento')->find($id);
 
-            if (!$noticia) {
+            if (!$evento) {
                 throw $this->createNotFoundException(
-                    'No noticia found for id '.$id
+                    'No evento found for id '.$id
                 );
             }
 
-            $em->remove($noticia);
+            $em->remove($evento);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('list-news'));
+            return $this->redirect($this->generateUrl('list-events'));
         }
 
         if ($request->request->has('edit'))
         {
             $id = $request->request->get('edit');
-            return $this->redirect($this->generateUrl('edit-news', array('id' => $id)));
+            return $this->redirect($this->generateUrl('edit-event', array('id' => $id)));
         }
 
         if ($request->isXmlHttpRequest())
         {
             $offset = $request->get('offset');
-            $refresh = $repository->findAllNews($offset, $results);
+            $refresh = $repository->findAllEvents($offset, $results);
             return new Response(json_encode(array('refresh' => $refresh)));
         }
 
-    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticias, 'numPags' => $numPags));
-        
+    	return $this->render('SalleAdminBundle:BackOffice:listEvents.html.twig', array ('eventos' => $eventos, 'numPags' => $numPags));
     }
 
 }

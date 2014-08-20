@@ -158,9 +158,9 @@
 					&nbsp;&nbsp;
 					<h4>Titulares flash</h4>
 					&nbsp;&nbsp;
-					{% for i in 1..3 %}
+					{% for flash in flashes %}
 						<div class="in-press">
-							<a href="#">Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat vitae</a>
+							<a href="{% if flash.titular %}{{ flash.enlace }}{% else %}#{% endif %}" target="_blank">{{ flash.titular }}</a>
 						</div>
 					{% endfor %}
 				</div>

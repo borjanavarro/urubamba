@@ -1,18 +1,18 @@
 {% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
 
-{% block title %}Lista de noticias{% endblock %}
+{% block title %}Lista de comentarios{% endblock %}
 
 {% block content %}
 
 <div id="wrapper">
 
-	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'news'} %}
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'comments'} %}
 
 	<div id="page-wrapper">
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>Lista de noticias <small>Urubamaba</small></h1>
+				<h1>Lista de comentarios <small>Urubamaba</small></h1>
 			</div>
 		</div><!-- /.row -->
 
@@ -25,28 +25,28 @@
 						<thead>
 							<tr>
 								<th class="col-sm-1">id <i class="fa fa-sort"></i></th>
-								<th class="col-sm-6">Nombre <i class="fa fa-sort"></i></th>
-								<th class="col-sm-2">Sección <i class="fa fa-sort"></i></th>
+								<th class="col-sm-6">Comentario <i class="fa fa-sort"></i></th>
+								<th class="col-sm-2">Nombre <i class="fa fa-sort"></i></th>
 								<th class="col-sm-2">Fecha <i class="fa fa-sort"></i></th>
 								<th class="col-sm-1"></th>
 								<th class="col-sm-1"></th>
 							</tr>
 						</thead>
 						<tbody>						
-						{% for noticia in noticias %}
+						{% for comment in comentarios %}
 							<tr>
-								<td>{{ noticia.id }}</td>
-								<td>{{ noticia.titulo | truncate (60) }}</td>
-								<td>{{ noticia.seccion }}</td>
-								<td>{{ noticia.fecha | date('Y-m-d') }}</td>
+								<td>{{ comment.id }}</td>
+								<td>{{ comment.comentario | truncate (60) }}</td>
+								<td>{{ comment.nombre }}</td>
+								<td>{{ comment.fecha | date('Y-m-d') }}</td>
 								<td>
 								<form name="form_edit"  method="post">
-									<button class="btn btn-primary btn-sm" type="submit" name="edit" value="{{ noticia.id }}">Edit</button>
+									<button class="btn btn-primary btn-sm" type="submit" name="edit" value="{{ comment.id }}">Edit</button>
 								</form>
 								</td>
 								<td>
 								<form name="form_delete"  method="post">
-									<button class="btn btn-danger btn-sm" type="submit" name="delete" value="{{ noticia.id }}">Eliminar</button>
+									<button class="btn btn-danger btn-sm" type="submit" name="delete" value="{{ comment.id }}">Eliminar</button>
 								</form>
 								</td>
 							</tr>
@@ -118,7 +118,7 @@ $('.pagination > li > a').on("click", function (){
 
 		$.ajax({
 			dataType: "json",
-			url:"{{ url ('list-news') }}", 
+			url:"{{ url ('list-comments') }}", 
 			data: { offset: tecla-1 },
 			type: "POST"})
 			.done (function(refresh){
@@ -127,7 +127,7 @@ $('.pagination > li > a').on("click", function (){
 				});
 				$.each(refresh.refresh, function(i, item){
 					fecha = item.fecha.date.split(' ');
-					$("tbody").append('<tr><td>' + item.id + '</td><td>' + truncateString(item.titulo, 60) + '</td><td>' + item.seccion + '</td><td>' + fecha[0] + '</td><td><form name="form_edit"  method="post"><button class="btn btn-primary btn-sm" type="submit" name="edit" value=' + item.id + '>Edit</button></form></td><td><form name="form_delete"  method="post"><button class="btn btn-danger btn-sm" type="submit" name="delete" value=' + item.id + '>Eliminar</button></form></td></tr>');
+					$("tbody").append('<tr><td>' + item.id + '</td><td>' + truncateString(item.comentario, 60) + '</td><td>' + item.nombre + '</td><td>' + fecha[0] + '</td><td><form name="form_edit"  method="post"><button class="btn btn-primary btn-sm" type="submit" name="edit" value=' + item.id + '>Edit</button></form></td><td><form name="form_delete"  method="post"><button class="btn btn-danger btn-sm" type="submit" name="delete" value=' + item.id + '>Eliminar</button></form></td></tr>');
 				});
 		})
 	}

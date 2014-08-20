@@ -13,9 +13,11 @@ class ListImagesController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Imagen');
 
-    	$imagenes = $repository->findAllImages(0);
+        $results = 9;
 
-        $numPags = ceil($repository->countImagenes()/1);
+    	$imagenes = $repository->findAllImages(0, $results);
+
+        $numPags = ceil($repository->countImagenes()/$results);
 
     	if ($request->request->has('delete'))
         {
@@ -38,7 +40,7 @@ class ListImagesController extends Controller
         if ($request->isXmlHttpRequest())
         {
             $offset = $request->get('offset');
-            $refresh = $repository->findAllImages($offset);
+            $refresh = $repository->findAllImages($offset, $results);
             return new Response(json_encode(array('refresh' => $refresh)));
         }
 

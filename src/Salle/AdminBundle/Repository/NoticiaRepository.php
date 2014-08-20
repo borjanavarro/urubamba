@@ -6,14 +6,14 @@ use Doctrine\ORM\EntityRepository;
 
 class NoticiaRepository extends EntityRepository
 {
-    public function findAllNews($offset)
+    public function findAllNews($offset, $results)
     {
         
         $query = $this->createQueryBuilder('n')
         	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
 		    ->orderBy('n.fecha', 'DESC')
-            ->setFirstResult(1 * $offset)
-            ->setMaxResults(1)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
 		    ->getQuery();
 		 
 		$noticias = $query->getArrayResult();
@@ -21,22 +21,9 @@ class NoticiaRepository extends EntityRepository
 		return $noticias;
     }
 
-    public function findUltimasNews()
-    {
-        
-        $query = $this->createQueryBuilder('n')
-            ->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
-            ->orderBy('n.fecha', 'DESC')
-            ->setMaxResults(3)
-            ->getQuery();
-         
-        $noticias = $query->getResult();
-
-        return $noticias;
-    }
-
     public function countNoticias ()
     {
+
         $query = $this->createQueryBuilder('n')
             ->select('count(n.id)')
             ->getQuery();
@@ -44,6 +31,22 @@ class NoticiaRepository extends EntityRepository
         $count = $query->getSingleScalarResult();
 
         return $count;
+    }
+
+    public function findBySeccion($seccion, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
+            ->where('n.seccion LIKE \'' . $seccion . '\'')
+            ->orderBy('n.fecha', 'DESC')
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $noticias = $query->getArrayResult();
+
+        return $noticias;
     }
 
 }

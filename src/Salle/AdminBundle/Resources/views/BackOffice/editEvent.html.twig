@@ -1,0 +1,56 @@
+{% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
+
+{% block title %}Añadir nueva noticia{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'news'} %}
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Editar noticia <small>Urubamba</small></h1>
+			</div>
+		</div><!-- /.row -->
+
+		<div class="row">
+
+	           <div class="col-lg-10">
+
+	          	{{ form_start(form,  { 'attr': {'role': 'form'} }) }}
+
+	          	<div class="form-group">
+		          	{{ form_label(form.descripcion) }}
+		        	{{ form_errors(form.descripcion) }}
+		        	{{ form_widget(form.descripcion, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+	                {{ form_label(form.lugar) }}
+		        	{{ form_errors(form.lugar) }}
+		        	{{ form_widget(form.lugar, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	             <div class="form-group">
+	                {{ form_label(form.fecha) }}
+		        	{{ form_errors(form.fecha) }}
+		        	{{ form_widget(form.fecha) }}
+	            </div>
+	        </div>
+		        	
+
+	        <div class="col-lg-10">
+	    		{{ form_widget(form.send, { 'label': 'Actualizar', 'attr': {'class': 'btn btn-primary btn-lg pull-right'} }) }}
+				{{ form_end(form) }}
+			</div>
+
+		</div><!-- /.row -->
+
+	</div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
+{% endblock %}

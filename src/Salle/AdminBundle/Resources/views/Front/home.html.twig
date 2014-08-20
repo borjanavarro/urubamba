@@ -78,34 +78,34 @@
 		<div class="row">
 			<!-- Post -->
 			{% for noticia in noticias %}
-			<div class="col-md-4 col-sm-6">
-				<div class="blog-post">
-					<!-- Post Info -->
-					<div class="post-info">
-						<div class="post-date">
-							<div class="date">{{ noticia.fecha | date('Y-m-d') }}</div>
+				<div class="col-md-4 col-sm-6">
+					<div class="blog-post">
+						<!-- Post Info -->
+						<div class="post-info">
+							<div class="post-date">
+								<div class="date">{{ noticia.fecha | date('Y-m-d') }}</div>
+							</div>
+							<div class="post-comments-count">
+								<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>11</a>
+							</div>
 						</div>
-						<div class="post-comments-count">
-							<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>11</a>
+						<!-- End Post Info -->
+						<!-- Post Image -->
+						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="post-image center-block" alt="Radio La Salle - Ultimas noticias" style="height:206px;width:auto;">
+						<!-- End Post Image -->
+						<!-- Post Title & Summary -->
+						<div class="post-title">
+							<h3>{{ noticia.titulo | truncate(50) }}</h3>
 						</div>
-					</div>
-					<!-- End Post Info -->
-					<!-- Post Image -->
-					<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="post-image" alt="Post Title">
-					<!-- End Post Image -->
-					<!-- Post Title & Summary -->
-					<div class="post-title">
-						<h3>{{ noticia.titulo }}</h3>
-					</div>
-					<div class="post-summary">
-						<p>{{ noticia.subtitulo }}</p>
-					</div>
-					<!-- End Post Title & Summary -->
-					<div class="post-more">
-						<a href="{{ url ('noticia', { 'id' : noticia.id } )}}" class="btn btn-small">Leer más</a>
+						<div class="post-summary">
+							<p>{{ noticia.subtitulo | truncate(80) }}</p>
+						</div>
+						<!-- End Post Title & Summary -->
+						<div class="post-more">
+							<a href="{{ url ('noticia', { 'id' : noticia.id } )}}" class="btn btn-small">Leer más</a>
+						</div>
 					</div>
 				</div>
-			</div>
 			{% endfor %}
 		</div>
 	</div>
@@ -131,66 +131,30 @@
     <div class="container">
 	    <h2>Deportes</h2>
     	<div class="row">
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba1.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;">
-        			<h3>Lorem ipsum dolor sit amet</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-    			</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba2.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>Sed ut perspiciatis unde omnis</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-        		</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba3.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>But I must explain to you how</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-        		</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba4.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>At vero eos et accusamus</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-    			</div>
-    		</div>
+    		{% for noticia in deportes %}
+	    		<div class="col-md-3 col-sm-6">
+	    			<div class="service-wrapper">
+	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="width:195px;height:135px;">
+	        			<h3>{{ noticia.titulo | truncate(40) }}</h3>
+	        			<p>{{ noticia.subtitulo | truncate(80) }}</p>
+	        			<a href="{{ url ('noticia', { 'id' : noticia.id } )}}"> Leer más...</a>
+	    			</div>
+	    		</div>
+    		{% endfor %}
     	</div>
 
     	<h2>Tecnología</h2>
     	<div class="row">
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba1.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;">
-        			<h3>Lorem ipsum dolor sit amet</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-    			</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba2.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>Sed ut perspiciatis unde omnis</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-        		</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba3.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>But I must explain to you how</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-        		</div>
-    		</div>
-    		<div class="col-md-3 col-sm-6">
-    			<div class="service-wrapper">
-        			<img src="{{ asset ('bundles/salleadmin/img/articulos/prueba4.jpg' )}}" alt="Service Name" style="max-width:200px;max-height:150px;" alt="Service Name">
-        			<h3>At vero eos et accusamus</h3>
-        			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames. <a href="#">Read more...</a></p>
-    			</div>
-    		</div>
+    		{% for noticia in tecnologia %}
+	    		<div class="col-md-3 col-sm-6">
+	    			<div class="service-wrapper">
+	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="width:195px;height:135px;">
+	        			<h3>{{ noticia.titulo | truncate(40) }}</h3>
+	        			<p>{{ noticia.subtitulo | truncate(80) }}</p>
+	        			<a href="{{ url ('noticia', { 'id' : noticia.id } )}}"> Leer más...</a>
+	    			</div>
+	    		</div>
+    		{% endfor %}
     	</div>
 
     </div>
@@ -203,18 +167,18 @@
 		<div class="row">
 			<div class="col-md-12">
 				<table class="events-list">
-					{% for i in 1..5 %}
+					{% for evento in eventos %}
 						<tr>
-							<td>
+							<td class="col-md-2">
 								<div class="event-date">
-									<div class="event-day">16</div>
-									<div class="event-month">MAR</div>
+									<div class="event-day">{{ evento.fecha | date('d') }}</div>
+									<div class="event-month" id="mes-{{ loop.index }}">{{ evento.fecha | date('m') }}</div>
 								</div>
 							</td>
-							<td>
-								Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper augue lacus.
+							<td class="col-md-8">
+								{{ evento.descripcion | truncate(200) }}
 							</td>
-							<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> <b>Siemens Arena</b></td>
+							<td class="event-venue hidden-xs col-md-2"><i class="icon-map-marker"></i> <b>{{ evento.lugar | truncate(60) }}</b></td>
 						</tr>
 					{% endfor %}
 				</table>
@@ -228,5 +192,60 @@
 <div class="footer">
 	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+$(document).ready( function (){
+
+	$(".event-month").each(function(){
+
+		switch (parseInt($(this).text()))
+	{
+		case 1:
+				$(this).text('enero');
+				break;
+		case 2:
+				$(this).text('febrero');
+				break;
+		case 3:
+				$(this).text('marzo');
+				break;
+		case 4:
+				$(this).text('abril');
+				break;
+		case 5:
+				$(this).text('mayo');
+				break;
+		case 6:
+				$(this).text('junio');
+				break;
+		case 7:
+				$(this).text('julio');
+				break;
+		case 8:
+				$(this).text('agosto');
+				break;
+		case 9:
+				$(this).text('septiembre');
+				break;
+		case 10:
+				$(this).text('octubre');
+				break;
+		case 11:
+				$(this).text('noviembre');
+				break;
+		case 12:
+				$(this).text('diciembre');
+				break;
+	}
+
+	});	
+});
+
+</script>
 
 {% endblock %}

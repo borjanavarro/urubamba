@@ -36,7 +36,7 @@ class EditNewsController extends Controller
             $noticia->setCuerpo($form->get('cuerpo')->getData());
             $noticia->setSeccion($form->get('seccion')->getData());
             $noticia->setFile($form->get('file')->getData());
-            $noticia->setFecha(new \Datetime("now"));
+            $noticia->setFecha($noticia->getFecha());
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();

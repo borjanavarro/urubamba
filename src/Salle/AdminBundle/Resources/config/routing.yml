@@ -24,6 +24,41 @@ add-image:
     pattern: /admin/add-image
     defaults: { _controller: SalleAdminBundle:BackOffice/AddImage:index }
 
+# Comments #
+
+list-comments:
+    pattern: /admin/list-comments
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListComments:index }
+
+# Flash #
+
+list-flash:
+    pattern: /admin/list-flash
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListFlash:index }
+
+add-flash:
+    pattern: /admin/add-flash
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddFlash:index }
+
+edit-flash:
+    pattern: /admin/edit-flash/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditFlash:index }
+
+# Events #
+
+list-events:
+    pattern: /admin/list-events
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListEvents:index }
+
+add-event:
+    pattern: /admin/add-event
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddEvent:index }
+
+edit-event:
+    pattern: /admin/edit-event/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditEvent:index }
+
+
 
 ## FRONT ##
 

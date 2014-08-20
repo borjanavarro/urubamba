@@ -8,7 +8,12 @@ class RadioController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Front:radio.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Flash');
+
+    	$flashes = $repository->findAllFlash(0, 5);
+
+    	return $this->render('SalleAdminBundle:Front:radio.html.twig', array ('flashes' => $flashes));
     }
 
 }

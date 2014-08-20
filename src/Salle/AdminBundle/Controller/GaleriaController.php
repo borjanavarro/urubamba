@@ -3,17 +3,30 @@
 namespace Salle\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GaleriaController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Imagen');
 
-    	$imagenes = $repository->findAllImages();
+    	$results = 9;
 
-    	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array('imagenes' => $imagenes));
+    	$imagenes = $repository->findAllImages(0, $results);
+
+    	$numPags = ceil($repository->countImagenes()/$results);
+
+    	if ($request->isXmlHttpRequest())
+        {
+            $offset = $request->get('offset');
+            $refresh = $repository->findAllImages($offset, $results);
+            return new Response(json_encode(array('refresh' => $refresh)));
+        }
+
+    	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array('imagenes' => $imagenes, 'numPags' => $numPags));
     }
 
 }
