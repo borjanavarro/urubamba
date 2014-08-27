@@ -44,18 +44,18 @@
 					<div class="post-coments"  id="comments">
 						<h4>Comentarios ({{ noticia.comentarios | length }})</h4>
 						<ul class="post-comments">
-							{% for comentario in noticia.comentarios %}
+							{% for comentario in comentarios %}
 								<li>
-									<div class="comment-wrapper">
+									<div class="comment-wrapper" id="{{ comentario.id }}">
 										<div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>  {{ comentario.nombre }}</div>
 										<p>
 											{{ comentario.comentario }}
 										</p>
 										<!-- Comment Controls -->
 										<div class="comment-actions">
-											<span class="comment-date">{{ comentario.fecha | date("m/d/Y")}}</span>
-											<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-											<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+											<span class="comment-date">{{ comentario.fecha | date('Y-m-d H:i:s') }}</span>
+											<a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											<a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
 											{% set votes = comentario.likes - comentario.dislikes %}
 											{% if votes > 0 %} 
 												<span class="label label-success">{{ votes }}</span>
@@ -73,13 +73,13 @@
 						<!-- Pagination -->
 						<div class="pagination-wrapper ">
 							<ul class="pagination pagination-sm">
-								<li class="disabled"><a href="#">Previous</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">Next</a></li>
+								<li class="disabled"><a href="javascript:void(0);">«</a></li>
+								<li class="active"><a href="javascript:void(0);">1</a></li>
+								<li><a href="javascript:void(0);">2</a></li>
+								<li><a href="javascript:void(0);">3</a></li>
+								<li><a href="javascript:void(0);">4</a></li>
+								<li><a href="javascript:void(0);">5</a></li>
+								<li><a href="javascript:void(0);">»</a></li>
 							</ul>
 						</div>
 
@@ -138,17 +138,45 @@
 				</ul>
 				<h4>Secciones</h4>
 				<ul class="blog-categories">
-					<li><a href="#">Sociedad</a></li>
-					<li><a href="#">Deportes</a></li>
-					<li><a href="#">Tecnología</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'local' })}}">Local</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Regional' })}}">Regional</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Nacional' })}}">Nacional</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Internacional' })}}">Internacional</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Educación' })}}">Educación</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Sociedad' })}}">Sociedad</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Tecnología' })}}">Tecnología</a></li>
+					<li><a href="{{ url ('buscar', { 'mode' : 'seccion', 'query' : 'Deportes' })}}">Deportes</a></li> 
 				</ul>
 				<h4>Archivo</h4>
+				{% set fechaAct = date("now") %}
 				<ul>
-					<li><a href="#">Enero 2013</a></li>
-					<li><a href="#">Febrero 2013</a></li>
-					<li><a href="#">Marzo 2013</a></li>
-					<li><a href="#">Abril 2013</a></li>
-					<li><a href="#">Mayo 2013</a></li>
+					{% set fecha = fechaAct| date('Y-m-d') ~ " " ~ fechaAct| date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha }) }}">{{ fechaAct| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-1 month last day of")|date("Y-m-d") ~ " " ~ fechaAct|date_modify("-1 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-1 month")| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-2 month last day of")|date('Y-m-d') ~ " " ~ fechaAct|date_modify("-2 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-2 month")| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-3 month last day of")|date('Y-m-d') ~ " " ~ fechaAct|date_modify("-3 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-3 month")| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-4 month last day of")|date('Y-m-d') ~ " " ~ fechaAct|date_modify("-4 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-4 month")| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-5 month last day of")|date('Y-m-d') ~ " " ~ fechaAct|date_modify("-5 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-5 month")| date('M Y') }}</a></li>
+
+					{% set fecha = fechaAct|date_modify("-6 month last day of")|date('Y-m-d') ~ " " ~ fechaAct|date_modify("-6 month")|date('Y-m-01') %}
+
+					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha })}}">{{ fechaAct|date_modify("-6 month")| date('M Y') }}</a></li>
 				</ul>
 			</div>
 			<!-- End Sidebar -->
@@ -161,5 +189,225 @@
 <div class="footer">
 	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+$(document).ready( function (){
+
+	if ({{ numPags }} <= 5 )
+	{
+		$(".pagination").find("li").each(function(i)
+		{
+			if ( i > {{ numPags }} || i == 0 )
+			{
+				$(this).addClass('disabled');
+			}
+		});
+	}
+});
+
+$('.pagination > li > a').on("click", function (){
+
+	if (!$(this).parent().hasClass('disabled'))
+	{
+
+		tecla = $(this).text();
+
+		//Nos vamos al principio
+		if ( tecla == "«" )
+		{
+			tecla = 1;
+		} //Nos vamos al final
+		else if ( tecla == "»" ) 
+		{
+			tecla = {{ numPags }};
+		}
+
+		numeros(tecla);
+
+		$.ajax({
+			dataType: "json",
+			url:"{{ url ('noticia', { 'id' : noticia.id}) }}", 
+			data: { offset: tecla-1 },
+			type: "POST"})
+			.done (function(refresh){
+				$(".post-comments > li").fadeOut('slow/400/fast', function (){
+					$(this).remove();
+				});
+				$.each(refresh.refresh, function(i, item){
+					fecha = item.fecha.date;
+					votes = item.likes - item.dislikes;
+					if (votes > 0)
+					{
+						votesCad = '<span class="label label-success">' + votes + '</span>';
+					}
+					else if (votes < 0)
+					{
+						votesCad = '<span class="label label-danger">' + votes + '</span>';
+					}
+					else
+					{
+						votesCad = '<span class="label label-default">' + votes + '</span>';
+					}
+					$(".post-comments").append('<li><div class="comment-wrapper" id="' + item.id + '"><div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>' + item.nombre + '</div><p>' + item.comentario + '</p><!-- Comment Controls --><div class="comment-actions"><span class="comment-date">' + fecha + '</span><a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a> ' + votesCad + '</div></div></li>');			
+				});
+		})
+	}
+});
+
+
+function numeros(seguent){
+
+	num = parseInt(seguent);
+
+	$(".pagination").find("li").each(function(i)
+	{
+		$(this).removeClass('active');
+	});
+
+	//Estamos al principio de todo
+	if ({{ numPags }} <= 5)
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 || i > {{ numPags }} )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+		});
+	}
+
+	//Estamos al principio de todo
+	else if ( num <= 3 )
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			else if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+			if ( i >= 1 && i <= 5)
+			{
+				$(this).text(i);
+			}
+			else if ( i == 6)
+			{
+				$(this).parent().removeClass('disabled');
+			}
+		});
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags - 1 }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-3);
+		$(kids[2]).text(num-2);
+		$(kids[3]).text(num-1);
+		$(kids[4]).text(num);
+		$(kids[4]).parent().addClass('active');
+		$(kids[5]).text(num+1);
+		$(kids[6]).parent().addClass('disabled');
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-4);
+		$(kids[2]).text(num-3);
+		$(kids[3]).text(num-2);
+		$(kids[4]).text(num-1);
+		$(kids[5]).text(num);
+		$(kids[5]).parent().addClass('active');
+		$(kids[6]).parent().addClass('disabled');
+
+	}
+
+	//Estamos en el medio
+	else if (num < {{ numPags }}-1 && num >= 3)
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-2);
+		$(kids[2]).text(num-1);
+		$(kids[3]).text(num);
+		$(kids[3]).parent().addClass('active');
+		$(kids[4]).text(num+1);
+		$(kids[5]).text(num+2);
+		$(kids[6]).parent().removeClass('disabled');
+
+	}
+}
+
+function truncateString(str, length) {
+    return str.length > length ? str.substring(0, length - 3) + '...' : str
+};
+
+$(document.body).on('click', ".comment-actions a", function() {
+
+	id = $(this).parent().parent().attr('id');
+
+	if ($(this).hasClass('voteUp'))
+	{
+		votes = parseInt($(".comment-actions .label").text())+1;
+		mode = 'up';
+	}
+	else
+	{
+		votes = parseInt($(".comment-actions .label").text())-1;
+		mode = 'down';
+	}
+
+	$.ajax({
+		dataType: "json",
+		url:"{{ url ('noticia', { 'id' : noticia.id}) }}", 
+		data: { mode: mode, idCom : id },
+		type: "POST"})
+		.done (function(result){
+
+			$(".comment-actions .label").text(votes);
+
+			obj = $(".comment-actions .label")
+
+			if (votes > 0)
+			{
+				obj.removeClass('label-danger');
+				obj.removeClass('label-default');
+				obj.addClass('label-success');
+			}
+			else if (votes < 0)
+			{
+				obj.removeClass('label-success');
+				obj.removeClass('label-default');
+				obj.addClass('label-danger');
+			}
+			else
+			{
+				obj.removeClass('label-success');
+				obj.removeClass('label-danger');
+				obj.addClass('label-default');
+			}
+		})
+});
+
+</script>
 
 {% endblock %}

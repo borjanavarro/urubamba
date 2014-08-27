@@ -13,7 +13,7 @@ class ListImagesController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Imagen');
 
-        $results = 9;
+        $results = 1;
 
     	$imagenes = $repository->findAllImages(0, $results);
 

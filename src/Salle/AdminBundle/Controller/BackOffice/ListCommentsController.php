@@ -13,9 +13,11 @@ class ListCommentsController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Comentario');
 
-    	$comentarios = $repository->findAllComments(0);
+        $results = 10;
 
-        $numPags = ceil($repository->getNumberComments()/1);
+    	$comentarios = $repository->findAllComments(0, $results);
+
+        $numPags = ceil($repository->getNumberComments()/$results);
 
     	if ($request->request->has('delete'))
         {
@@ -38,7 +40,7 @@ class ListCommentsController extends Controller
         if ($request->isXmlHttpRequest())
         {
             $offset = $request->get('offset');
-            $refresh = $repository->findAllComments($offset);
+            $refresh = $repository->findAllComments($offset, $results);
             return new Response(json_encode(array('refresh' => $refresh)));
         }
 

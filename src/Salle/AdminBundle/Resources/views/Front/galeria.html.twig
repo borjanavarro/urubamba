@@ -26,7 +26,7 @@
 			{% set num = 1 %}
 			{% for imagen in imagenes %}
 				{% if loop.index == 1 or loop.index == 4 or loop.index == 7 %}
-					<div class="row" id="imagenes-{{ num }}">
+					<div class="row imgs" id="imagenes-{{ num }}">
 					{% set num = num + 1 %}
 				{% endif %}
 				<div class="col-md-4 col-sm-6">
@@ -52,13 +52,13 @@
 
 <div class="pagination-wrapper ">
 	<ul class="pagination pagination-lg">
-		<li class="disabled"><a href="#">«</a></li>
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">»</a></li>
+		<li class="disabled"><a href="javascript:void(0);">«</a></li>
+		<li class="active"><a href="javascript:void(0);">1</a></li>
+		<li><a href="javascript:void(0);">2</a></li>
+		<li><a href="javascript:void(0);">3</a></li>
+		<li><a href="javascript:void(0);">4</a></li>
+		<li><a href="javascript:void(0);">5</a></li>
+		<li><a href="javascript:void(0);">»</a></li>
 	</ul>
 </div>
 
@@ -74,6 +74,7 @@
 <script type="text/javascript" charset="utf-8" async defer>
 
 pathAux = "{{ asset ('bundles/salleadmin/img/galeria/hola.jpg')}}";
+urlAux = "{{ url('imagen', {'id' : 'hola' } )}}";
 
 $(document).ready( function (){
 
@@ -114,40 +115,40 @@ $('.pagination > li > a').on("click", function (){
 			data: { offset: tecla-1 },
 			type: "POST"})
 			.done (function(refresh){
-				$("#imagenes-1 > div").fadeOut('slow/400/fast', function (){
+				$(".imgs > div").fadeOut('slow').promise().done(function (){
 					$(this).remove();
+
+					$.each(refresh.refresh, function(i, item){
+						
+						path = pathAux.replace ("hola.jpg", item.id + '.' + item.path );
+						url = urlAux.replace('hola', item.id);
+
+						if ( i == 0 || i == 3 || i == 6)
+						{
+							num = i + 1;
+							pre = '<div class="row" id="imagenes-' + num + '">';
+						} else 
+						{
+							pre = '';
+						}
+						cad = '<div class="col-md-4 col-sm-6"><div class="portfolio-item"><div class="portfolio-image"><a href="page-portfolio-item.html"><img src="' + path + '" style="height:206px; width: auto;" alt="Project Name"></a></div><div class="portfolio-info-fade"><ul><li class="portfolio-project-name">' + truncateString(item.titulo, 30) + '</li><li>' + truncateString(item.descripcion, 100) + '</li><li class="read-more"><a href="' + url + '" class="btn">Detalle</a></li></ul></div></div></div>';
+
+					 	if ( i < 3)
+					 	{
+					 		$("#imagenes-1").append(cad);
+					 	}
+					 	else if ( i < 6 && i >= 3)
+					 	{
+					 		$("#imagenes-2").append(cad);
+					 	}
+					 	else if ( i < 9 && i >= 7)
+					 	{
+					 		$("#imagenes-3").append(cad);
+					 	}	
+					});
 				});
-				$("#imagenes-2 > div").fadeOut('slow/400/fast', function (){
-					$(this).remove();
-				});
-				$("#imagenes-3 > div").fadeOut('slow/400/fast', function (){
-					$(this).remove();
-				});
-				$.each(refresh.refresh, function(i, item){
-					path = pathAux.replace ("hola.jpg", item.id + '.' + item.path );
-					if ( i == 0 || i == 3 || i == 6)
-					{
-						num = i + 1;
-						pre = '<div class="row" id="imagenes-' + num + '">';
-					} else 
-					{
-						pre = '';
-					}
-					cad = '<div class="col-lg-4" style="margin-top:15px;"><img src="' + path + '" style="max-height:206px;" alt="Project Name" class="img-rounded center-block"><div class="row"><h3 class="text-center">' + truncateString(item.titulo, 30) + '</h3><p class="text-center">' + truncateString(item.descripcion, 100) + '</p><form name="form_delete"  method="post" class="text-center"><button class="btn btn-danger btn-sm" type="submit" name="delete" value="' + item.id + '">Eliminar</button></form></div></div>';
-				 	if ( i < 3)
-				 	{
-				 		$("#imagenes-1").append(cad);
-				 	}
-				 	else if ( i < 6 && i >= 3)
-				 	{
-				 		$("#imagenes-2").append(cad);
-				 	}
-				 	else if ( i < 9 && i >= 7)
-				 	{
-				 		$("#imagenes-3").append(cad);
-				 	}
-				 });
-		})
+	
+			});
 	}
 });
 

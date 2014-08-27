@@ -13,7 +13,7 @@ class ListNewsController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
-        $results = 10;
+        $results = 1;
 
     	$noticias = $repository->findAllNews(0, $results);
 

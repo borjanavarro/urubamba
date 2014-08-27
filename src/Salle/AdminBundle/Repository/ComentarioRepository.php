@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ComentarioRepository extends EntityRepository
 {
-	public function findAllComments($offset)
+	public function findAllComments($offset, $results)
     {
         
         $query = $this->createQueryBuilder('n')
 		    ->orderBy('n.fecha', 'DESC')
-            ->setFirstResult(1 * $offset)
-            ->setMaxResults(1)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
 		    ->getQuery();
 		 
 		$comments = $query->getArrayResult();
@@ -34,5 +34,21 @@ class ComentarioRepository extends EntityRepository
     	$count = $query->getQuery()->getSingleScalarResult();
 
     	return $count;
+    }
+
+    public function findNoticiaComments ($noticia, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->where('n.noticia = :noticia')
+            ->setParameter('noticia', $noticia)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $comments = $query->getArrayResult();
+
+        return $comments;
     }
 }

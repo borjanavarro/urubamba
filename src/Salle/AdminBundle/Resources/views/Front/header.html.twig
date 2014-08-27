@@ -40,7 +40,7 @@
 			</li>
 
 			<li {% if active == 'buscar' %}class="active"{% endif %}>
-				<a href="{{ url ('buscar') }}">Buscar</a>
+				<a href="{{ url ('buscar', {'mode' : 'contenido'}) }}">Buscar</a>
 			</li>
 
 			<li {% if active == 'patrocinadores' %}class="active"{% endif %}>

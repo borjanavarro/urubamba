@@ -23,31 +23,42 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
-
 			<div class="col-sm-6">
 				<h3>Busca en la web</h3>
 				<form>
 					<div class="input-group">
-						<input class="form-control input-md" id="appendedInputButtons" type="text">
+						<input class="form-control input-md" id="appendedInputButtons" type="text" name="query">
 						<span class="input-group-btn">
-							<button class="btn btn-md" type="button">Buscar</button>
+							<button class="btn btn-md" type="submit">Buscar</button>
 						</span>
 					</div>
 				</form>
-				<p>&nbsp;</p>
+				<h5><i>{% if mode ==  'fecha' %}Introduce dos fechas separadas por un espacio con el formato YYYY-MM-DD{% endif %}</i></h5>
 				<p>&nbsp;</p>
 			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-sm-6">
+					<a href="{{ url ('buscar', { 'mode':'contenido' })}}" class="btn {% if mode == 'seccion' or mode == 'fecha' %}btn-grey{% endif %}"> CONTENIDO </a>
+					<a href="{{ url ('buscar', { 'mode':'seccion' })}}" class="btn {% if mode == 'contenido' or mode == 'fecha' %}btn-grey{% endif %}"> SECCIÓN </a>
+					<a href="{{ url ('buscar', { 'mode':'fecha' })}}" class="btn {% if mode == 'contenido' or mode == 'seccion' %}btn-grey{% endif %}"> FECHA </a>
+			</div>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+		</div>
+
+		<div class="row">
 			<div class="col-md-12">
 				<h3>Resultados de la búsqueda</h3>
-				<h5><i>5 resultados</i></h5>
+				<h5><i>{% if noticias is not  null %}{{ numResults }} resultado{% if numResults > 1 or numResults == 0 %}s{% endif %}{% endif %}</i></h5>
 				<table class="shopping-cart">
 					<!-- Shopping Cart Item -->
-					{% for i in 1..5 %}
+					{% for noticia in noticias %}
 					<tr>
 						<td>
-							<div class="cart-item-title"><a href="page-product-details.html"><h4><b>At vero eos et accusamus et iusto</a></b></h4></div>
-							<div class="cart-item-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla...</div>
+							<div class="cart-item-title"><a href="{{ url ('noticia', { 'id': noticia.id })}}"><h4><b>{{ noticia.titulo | truncate (100) }}</a></b></h4></div>
+							<div class="cart-item-title">{{ noticia.cuerpo | truncate (200) }}</div>
 						</td>
 					</tr>
 					{% endfor %}
@@ -60,13 +71,13 @@
 
 <div class="pagination-wrapper ">
 	<ul class="pagination pagination-lg">
-		<li class="disabled"><a href="#">Previous</a></li>
-		<li class="active"><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">Next</a></li>
+		<li class="disabled"><a href="javascript:void(0);">«</a></li>
+		<li class="active"><a href="javascript:void(0);">1</a></li>
+		<li><a href="javascript:void(0);">2</a></li>
+		<li><a href="javascript:void(0);">3</a></li>
+		<li><a href="javascript:void(0);">4</a></li>
+		<li><a href="javascript:void(0);">5</a></li>
+		<li><a href="javascript:void(0);">»</a></li>
 	</ul>
 </div>
 
@@ -76,3 +87,173 @@
 </div>
 
 {% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+urlAux = "{{ url ('noticia', { 'id': 'hola' })}}";
+
+$(document).ready( function (){
+
+	if ({{ numPags }} <= 5 )
+	{
+		$(".pagination").find("li").each(function(i)
+		{
+			if ( i > {{ numPags }} || i == 0 )
+			{
+				$(this).addClass('disabled');
+			}
+		});
+	}
+});
+
+$('.pagination > li > a').on("click", function (){
+
+	if (!$(this).parent().hasClass('disabled'))
+	{
+
+		tecla = $(this).text();
+
+		//Nos vamos al principio
+		if ( tecla == "«" )
+		{
+			tecla = 1;
+		} //Nos vamos al final
+		else if ( tecla == "»" ) 
+		{
+			tecla = {{ numPags }};
+		}
+
+		numeros(tecla);
+
+		$.ajax({
+			dataType: "json",
+			url:"{{ url ('buscar', {'mode': mode, 'query': query}) }}", 
+			data: { offset: tecla-1 },
+			type: "POST"})
+			.done (function(refresh){
+				$('table > tbody > tr td').fadeOut('slow').promise().done( function (){
+					$(this).remove();
+
+					$.each(refresh.refresh, function(i, item){
+
+						url = urlAux.replace('hola', item.id);
+
+						cad = '<td><div class="cart-item-title"><a href="' + url + '"><h4><b>' + truncateString(item.titulo, 100) + '</a></b></h4></div><div class="cart-item-title">' + truncateString(item.cuerpo, 200) + '</div></td>';
+
+					 	$('table > tbody > tr').append(cad);
+					});
+				});	
+		})
+	}
+});
+
+
+function numeros(seguent){
+
+	num = parseInt(seguent);
+
+	$(".pagination").find("li").each(function(i)
+	{
+		$(this).removeClass('active');
+	});
+
+	//Estamos al principio de todo
+	if ({{ numPags }} <= 5)
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 || i > {{ numPags }} )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+		});
+	}
+
+	//Estamos al principio de todo
+	else if ( num <= 3 )
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			else if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+			if ( i >= 1 && i <= 5)
+			{
+				$(this).text(i);
+			}
+			else if ( i == 6)
+			{
+				$(this).parent().removeClass('disabled');
+			}
+		});
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags - 1 }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-3);
+		$(kids[2]).text(num-2);
+		$(kids[3]).text(num-1);
+		$(kids[4]).text(num);
+		$(kids[4]).parent().addClass('active');
+		$(kids[5]).text(num+1);
+		$(kids[6]).parent().addClass('disabled');
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-4);
+		$(kids[2]).text(num-3);
+		$(kids[3]).text(num-2);
+		$(kids[4]).text(num-1);
+		$(kids[5]).text(num);
+		$(kids[5]).parent().addClass('active');
+		$(kids[6]).parent().addClass('disabled');
+
+	}
+
+	//Estamos en el medio
+	else if (num < {{ numPags }}-1 && num >= 3)
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-2);
+		$(kids[2]).text(num-1);
+		$(kids[3]).text(num);
+		$(kids[3]).parent().addClass('active');
+		$(kids[4]).text(num+1);
+		$(kids[5]).text(num+2);
+		$(kids[6]).parent().removeClass('disabled');
+
+	}
+}
+
+function truncateString(str, length) {
+    return str.length > length ? str.substring(0, length - 3) + '...' : str
+}
+
+</script>
+
+{% endblock %}
+
+
+

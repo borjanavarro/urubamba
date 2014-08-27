@@ -13,7 +13,7 @@ class ListPatroController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Patro');
 
-        $results = 10;
+        $results = 1;
 
     	$patros = $repository->findAllPatros(0, $results);
 

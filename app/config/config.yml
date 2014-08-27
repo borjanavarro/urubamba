@@ -73,8 +73,3 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
-
-    comentarios:
-        class: Salle\AdminBundle\Services\Comentarios
-        arguments: ["@request_stack", "@form.factory", "@doctrine.orm.entity_manager", "@router"]
-        scope: prototype

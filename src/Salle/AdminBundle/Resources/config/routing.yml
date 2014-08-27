@@ -101,8 +101,10 @@ noticia:
     defaults: { _controller: SalleAdminBundle:SingleNew:index }
 
 buscar:
-    pattern: /buscar
+    pattern: /buscar/{mode}
     defaults: { _controller: SalleAdminBundle:SearchResults:index }
+    requirements:
+        mode: contenido|seccion|fecha
 
 patro:
     pattern: /patrocinadores

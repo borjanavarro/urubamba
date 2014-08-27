@@ -13,7 +13,7 @@ class ListFlashController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Flash');
 
-        $results = 2;
+        $results = 1;
 
     	$flashes = $repository->findAllFlash(0, $results);
 
