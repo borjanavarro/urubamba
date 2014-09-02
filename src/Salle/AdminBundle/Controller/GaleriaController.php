@@ -31,7 +31,7 @@ class GaleriaController extends Controller
 
     	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array(
             'imagenes' => $imagenes,
-            'numPags' => $numPags
+            'numPags' => $numPags,
             'last' => $last
             ));
     }

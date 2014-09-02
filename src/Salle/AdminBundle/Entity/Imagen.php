@@ -5,6 +5,7 @@ namespace Salle\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Imagen
@@ -57,6 +58,11 @@ class Imagen
 
     private $temp;
 
+    /**
+     * @ORM\OneToMany(targetEntity="comentario", mappedBy="imagen", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"fecha" = "DESC"})
+     */
+    protected $comentarios;
 
     /**
      * Get id
@@ -262,5 +268,15 @@ class Imagen
         if (isset($this->temp)) {
             unlink($this->temp);
         }
+    }
+
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    public function setComentarios($comentarios = array ())
+    {
+        $this->comentarios = $comentarios;
     }
 }

@@ -75,6 +75,11 @@ class Comentario
      */
     protected $radio;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Imagen", inversedBy="comentarios")
+     * @ORM\JoinColumn(name="imagen_id", referencedColumnName="id")
+     */
+    protected $imagen;
 
     /**
      * Get id
@@ -242,5 +247,15 @@ class Comentario
     public function setRadio($radio)
     {
         $this->radio = $radio;
+    }
+
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
     }
 }
