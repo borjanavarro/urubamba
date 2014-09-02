@@ -37,6 +37,9 @@ class SingleNewController extends Controller
         $form = $this->createForm(new ComentarioType());
         $form->handleRequest($request);
 
+        $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
         if ($form->isValid()) {
 
             $comentario->setNombre($form->get('nombre')->getData());
@@ -50,6 +53,8 @@ class SingleNewController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($comentario);
             $em->flush();
+
+            return $this->redirect($this->generateUrl('noticia', array ('id' => $id)));
 
         }
 
@@ -95,7 +100,8 @@ class SingleNewController extends Controller
             'ultimas' => $ultimas,
             'comentarios' => $comentarios,
             'numPags' => $numPags, 
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'last' => $last
             ));
     }
 

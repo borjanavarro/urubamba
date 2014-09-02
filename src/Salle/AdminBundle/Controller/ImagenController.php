@@ -13,12 +13,18 @@ class ImagenController extends Controller
 
     	$imagen = $repository->find($id);
 
+         $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
     	if (!$imagen) {
 	        throw $this->createNotFoundException(
 	            'No image found for id '.$id
 	        );
 	    }
 
-    	return $this->render('SalleAdminBundle:Front:imagen.html.twig', array('imagen' => $imagen));
+    	return $this->render('SalleAdminBundle:Front:imagen.html.twig', array(
+            'imagen' => $imagen,
+            'last' => $last
+            ));
     }
 }

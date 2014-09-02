@@ -86,7 +86,7 @@
 								<div class="date">{{ noticia.fecha | date('Y-m-d') }}</div>
 							</div>
 							<div class="post-comments-count">
-								<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>11</a>
+								<a href="page-blog-post-right-sidebar.html" title="Show Comments"><i class="glyphicon glyphicon-comment icon-white"></i>{{ noticia.comentarios | length }}</a>
 							</div>
 						</div>
 						<!-- End Post Info -->
@@ -95,10 +95,10 @@
 						<!-- End Post Image -->
 						<!-- Post Title & Summary -->
 						<div class="post-title">
-							<h3>{{ noticia.titulo | truncate(50) }}</h3>
+							<h3>{{ noticia.titulo | truncate(85) }}</h3>
 						</div>
 						<div class="post-summary">
-							<p>{{ noticia.subtitulo | truncate(80) }}</p>
+							<p>{{ noticia.subtitulo | truncate(100) }}</p>
 						</div>
 						<!-- End Post Title & Summary -->
 						<div class="post-more">

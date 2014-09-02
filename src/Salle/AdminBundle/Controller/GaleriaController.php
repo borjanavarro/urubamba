@@ -19,6 +19,9 @@ class GaleriaController extends Controller
 
     	$numPags = ceil($repository->countImagenes()/$results);
 
+         $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
     	if ($request->isXmlHttpRequest())
         {
             $offset = $request->get('offset');
@@ -26,7 +29,11 @@ class GaleriaController extends Controller
             return new Response(json_encode(array('refresh' => $refresh)));
         }
 
-    	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array('imagenes' => $imagenes, 'numPags' => $numPags));
+    	return $this->render('SalleAdminBundle:Front:galeria.html.twig', array(
+            'imagenes' => $imagenes,
+            'numPags' => $numPags
+            'last' => $last
+            ));
     }
 
 }

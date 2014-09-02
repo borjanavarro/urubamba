@@ -10,7 +10,6 @@ class NoticiaRepository extends EntityRepository
     {
         
         $query = $this->createQueryBuilder('n')
-        	->select(array('n.id','n.titulo','n.subtitulo','n.seccion', 'n.path', 'n.fecha'))
 		    ->orderBy('n.fecha', 'DESC')
             ->setFirstResult($results * $offset)
             ->setMaxResults($results)
@@ -19,6 +18,20 @@ class NoticiaRepository extends EntityRepository
 		$noticias = $query->getArrayResult();
 
 		return $noticias;
+    }
+
+    public function findAllNewsHome($offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $noticias = $query->getResult();
+
+        return $noticias;
     }
 
     public function countNoticias ()

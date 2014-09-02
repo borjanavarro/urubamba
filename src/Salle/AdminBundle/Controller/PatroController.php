@@ -13,7 +13,13 @@ class PatroController extends Controller
 
     	$patros = $repository->findAllPatros(0, 100);
 
-    	return $this->render('SalleAdminBundle:Front:patro.html.twig', array ('patros' => $patros));
+    	 $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
+    	return $this->render('SalleAdminBundle:Front:patro.html.twig', array (
+    		'patros' => $patros,
+    		'last' => $last
+    		));
 
     }
 

@@ -235,26 +235,26 @@ $('.pagination > li > a').on("click", function (){
 			data: { offset: tecla-1 },
 			type: "POST"})
 			.done (function(refresh){
-				$(".post-comments > li").fadeOut('slow/400/fast', function (){
+				$(".post-comments > li").fadeOut('slow').promise().done( function (){
 					$(this).remove();
-				});
-				$.each(refresh.refresh, function(i, item){
-					fecha = item.fecha.date;
-					votes = item.likes - item.dislikes;
-					if (votes > 0)
-					{
-						votesCad = '<span class="label label-success">' + votes + '</span>';
-					}
-					else if (votes < 0)
-					{
-						votesCad = '<span class="label label-danger">' + votes + '</span>';
-					}
-					else
-					{
-						votesCad = '<span class="label label-default">' + votes + '</span>';
-					}
-					$(".post-comments").append('<li><div class="comment-wrapper" id="' + item.id + '"><div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>' + item.nombre + '</div><p>' + item.comentario + '</p><!-- Comment Controls --><div class="comment-actions"><span class="comment-date">' + fecha + '</span><a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a> ' + votesCad + '</div></div></li>');			
-				});
+					$.each(refresh.refresh, function(i, item){
+						fecha = item.fecha.date;
+						votes = item.likes - item.dislikes;
+						if (votes > 0)
+						{
+							votesCad = '<span class="label label-success">' + votes + '</span>';
+						}
+						else if (votes < 0)
+						{
+							votesCad = '<span class="label label-danger">' + votes + '</span>';
+						}
+						else
+						{
+							votesCad = '<span class="label label-default">' + votes + '</span>';
+						}
+						$(".post-comments").append('<li><div class="comment-wrapper" id="' + item.id + '"><div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>' + item.nombre + '</div><p>' + item.comentario + '</p><!-- Comment Controls --><div class="comment-actions"><span class="comment-date">' + fecha + '</span><a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a> ' + votesCad + '</div></div></li>');			
+					});
+			});
 		})
 	}
 });

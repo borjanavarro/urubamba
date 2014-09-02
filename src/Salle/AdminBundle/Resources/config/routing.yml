@@ -72,6 +72,20 @@ edit-patro:
     pattern: /admin/edit-patro/{id}
     defaults: { _controller: SalleAdminBundle:BackOffice/EditPatro:index }
 
+# Equipo #
+
+list-equipo:
+    pattern: /admin/list-equipo
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListEquipo:index }
+
+edit-equipo:
+    pattern: /admin/edit-equipo/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditEquipo:index }
+
+add-equipo:
+    pattern: /admin/add-equipo
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddEquipo:index }
+
 
 
 ## FRONT ##
@@ -113,5 +127,4 @@ patro:
 equipo:
     pattern: /equipo
     defaults: { _controller: SalleAdminBundle:Equipo:index }
-
 

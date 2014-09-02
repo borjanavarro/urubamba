@@ -69,6 +69,12 @@ class Comentario
      */
     protected $noticia;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Radio", inversedBy="comentarios")
+     * @ORM\JoinColumn(name="radio_id", referencedColumnName="id")
+     */
+    protected $radio;
+
 
     /**
      * Get id
@@ -226,5 +232,15 @@ class Comentario
     public function setNoticia($noticia)
     {
         $this->noticia = $noticia;
+    }
+
+    public function getRadio()
+    {
+        return $this->radio;
+    }
+
+    public function setRadio($radio)
+    {
+        $this->radio = $radio;
     }
 }

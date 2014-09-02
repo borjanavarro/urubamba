@@ -14,7 +14,7 @@ class HomeController extends Controller
         $repositoryEvent = $this->getDoctrine()
             ->getRepository('SalleAdminBundle:Evento');
 
-    	$noticia = $repository->findAllNews(0, 3);
+    	$noticias = $repository->findAllNewsHome(0, 3);
 
     	$deportes = $repository->findBySeccion('Deportes', 0, 4);
 
@@ -22,11 +22,15 @@ class HomeController extends Controller
 
         $eventos = $repositoryEvent->findAllEvents(0, 5);
 
+        $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
     	return $this->render('SalleAdminBundle:Front:home.html.twig', array (
-    		'noticias' => $noticia,
+    		'noticias' => $noticias,
     		'deportes' => $deportes,
     		'tecnologia' => $tecnologia,
-            'eventos' => $eventos
+            'eventos' => $eventos,
+            'last' => $last
     		));
     }
 

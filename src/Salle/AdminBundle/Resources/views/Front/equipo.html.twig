@@ -62,118 +62,39 @@
     			<hr>
     		</div>
     	</div><!--/row -->
-		
-		<div class="row">
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Cargo</div>
-				    <h2 class="team-name">Persona 1</h2>
-				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
-			<div class="mt">
-				<div class="col-lg-8">
-					<p>A iniciativa del Hermano Francisco Alvarez Penelas, Director y Comunidad de Hermanos del Instituto Superior Público La Salle de Urubamba, a finales de 1998 y principios de 1999 se funda la Asociación Educativa Radial y Televisiva Teleducación La Salle, principal promotora de Radio La Salle RIMARINAKUSUNCHIS.</p>
-				</div><! --/col-lg-8 -->
-			</div><!-- /row -->
-		</div><!--/row -->
-		
-		<div class="row">	
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Cargo</div>
-				    <h2 class="team-name">Persona 2</h2>
-				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
-		</div><!--/row -->
+		{% for miembro in equipo %}
+			<div class="row">
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset ('bundles/salleadmin/img/equipo/' ~ miembro.id ~ '.' ~ miembro.path )}}" style="max-heigth:400px;max-width:300px;" alt="">
+					  <div class="team-info">
+					    <div class="subhead">{{ miembro.cargo}}</div>
+					    <h2 class="team-name">{{ miembro.nombre }}</h2>
+						    <p class="team-description">
+						    	{% if miembro.facebook != null %}
+						    		<a href="{{ miembro.facebook }}" style="color:white;" target="_blank"><i class="fa fa-facebook" style="font-size: x-large;"></i></a>
+						    	{% endif %}
+						    	{% if miembro.twitter != null %}
+						    		<a href="{{ miembro.twitter }}" style="color:white;" target="_blank"><i class="fa fa-twitter" style="font-size: x-large;"></i></a>
+						    	{% endif %}
 
-		<div class="row">	
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Cargo</div>
-				    <h2 class="team-name">Persona 3</h2>
-				   {#  <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
-				  </div>
+						    	{% if miembro.email != null %}
+						    		<a href="mailto:{{ miembro.email }}" style="color:white;" target="_blank"><i class="fa fa-dribbble" style="font-size: x-large;"></i></a>
+						    	{% endif %}
+						    </p>
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+				<div class="mt">
+					<div class="col-lg-8">
+						<p>{{ miembro.descripcion }}</p>
+						<p>{{ miembro.programas }}</p>
+					</div><!--/col-lg-8 -->
 				</div>
-			</div><!-- /col-lg-4 -->
-		</div><!--/row -->	
-
-		<div class="row">
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="{{ asset('bundles/salleadmin/somos/img/team/gianni.png') }}" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Cargo</div>
-				    <h2 class="team-name">Persona 4</h2>
-				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
-		</div><!--/row -->
-
-		<div class="row">	
-			<div class="col-lg-4 centered">
-				<div class="members">
-				  <img src="{{ asset('bundles/salleadmin/somos/img/team/william.png') }}" alt="">
-				  <div class="team-info">
-				    <div class="subhead">Cargo</div>
-				    <h2 class="team-name">Persona 5</h2>
-				    {# <p class="team-description"><i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-dribbble"></i></p> #}
-				  </div>
-				</div>
-			</div><!-- /col-lg-4 -->
-		</div><!--/row -->	
+			</div><!--/row -->
+		{% endfor %}
 	</div><!--/container -->
 </div><!--/white -->
-
-
-<! ========== BLACK SECTION ================================================================================================= 
-=============================================================================================================================> 
-   
-<div id="black">
-	<div class="container pt">
-		<div class="row mt centered">
-			<div class="col-lg-3">
-				<p><i class="fa fa-laptop"></i></p>
-				<h1>1746</h1>
-				<hr>
-				<h4>Noticias</h4>
-			</div>
-
-			<div class="col-lg-3">
-				<p><i class="fa fa-instagram"></i></p>
-				<h1>578</h1>
-				<hr>
-				<h4>Imagenes</h4>
-			</div>
-
-			<div class="col-lg-3">
-				<p><i class="fa fa-comment-o"></i></p>
-				<h1>1693</h1>
-				<hr>
-				<h4>Comentarios</h4>
-			</div>
-
-			<div class="col-lg-3">
-				<p><i class="fa fa-ticket"></i></p>
-				<h1>209</h1>
-				<hr>
-				<h4>Eventos</h4>
-			</div>
-
-		</div><!-- /row -->
-	</div><!-- /container -->
-</div><!-- /black -->
-
 
 <!-- Footer -->
 <div class="footer">

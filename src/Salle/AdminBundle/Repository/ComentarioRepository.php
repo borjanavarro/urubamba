@@ -51,4 +51,33 @@ class ComentarioRepository extends EntityRepository
 
         return $comments;
     }
+
+     public function findRadioComments ($radio, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->where('n.radio = :radio')
+            ->setParameter('radio', $radio)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $comments = $query->getArrayResult();
+
+        return $comments;
+    }
+
+    public function findLastComment()
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery();
+         
+        $comment = $query->getSingleResult();
+
+        return $comment;
+    }
 }
