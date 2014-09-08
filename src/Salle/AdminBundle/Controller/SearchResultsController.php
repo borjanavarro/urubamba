@@ -51,11 +51,11 @@ class SearchResultsController extends Controller
 
             if($mode == 'contenido')
 	    	{
-		    	$refresh = $repository->findNoticiasByString($query, 0, $results);
+		    	$refresh = $repository->findNoticiasByString($query, $offset, $results);
 	    	}
 	    	else if($mode == 'seccion')
 	    	{
-		    	$refresh = $repository->findBySeccion($query, 0, $results);
+		    	$refresh = $repository->findBySeccion($query, $offset, $results);
 	    	}
 	    	else if ($mode == 'fecha')
 	    	{
@@ -66,12 +66,16 @@ class SearchResultsController extends Controller
 	    	return new Response(json_encode(array('refresh' => $refresh)));
         }
 
+        $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();
+
     	return $this->render('SalleAdminBundle:Front:search.html.twig', array(
     		'noticias' => $noticias,
     		'mode' => $mode,
     		'query' => $query,
     		'numResults' => $numResults,
-    		'numPags' => $numPags
+    		'numPags' => $numPags,
+    		 'last' => $last
     		));
     }
 

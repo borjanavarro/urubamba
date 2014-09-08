@@ -16,14 +16,10 @@
 			</div>
 		</div><!-- /.row -->
 
-		{% set num = 1 %}
-		{% for imagen in imagenes %}
-			{% if loop.index == 1 or loop.index == 4 or loop.index == 7 %}
-				<div class="row" id="imagenes-{{ num }}">
-				{% set num = num + 1 %}
-			{% endif %}
-				<div class="col-lg-4 imgs" style="margin-top:15px;">
-					<img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path)}}" style="max-height:206px;width:auto;" alt="Project Name" class="img-rounded center-block">
+		<div class="row" id="imgs">
+			{% for imagen in imagenes %}	
+				<div class="col-lg-4" style="height:400px;">
+					<img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path)}}" style="max-height:206px;max-width:329px;" alt="Project Name" class="img-rounded center-block">
 					<div class="row">
 						<h3 class="text-center">{{ imagen.titulo | truncate(30) }}</h3>
 						<p class="text-center">{{ imagen.descripcion | truncate(90) }}</p>
@@ -32,10 +28,8 @@
 						</form>
 					</div>
 				</div>
-			{% if loop.index == 3 or loop.index == 6 or loop.index == 9 or loop.last %}
-				</div>
-			{% endif %}
-		{% endfor %}
+			{% endfor %}
+		</div>
 
 
 		<div class="row">
@@ -105,29 +99,20 @@ $('.pagination > li > a').on("click", function (){
 			data: { offset: tecla-1 },
 			type: "POST"})
 			.done (function(refresh){
-				$(".imgs").fadeOut('slow').promise().done( function (){
+				$("#imgs > div").fadeOut('slow').promise().done( function (){
 					$(this).remove();
 
 					$.each(refresh.refresh, function(i, item){
 						path = pathAux.replace ("hola.jpg", item.id + '.' + item.path );
 
-						cad = '<div class="col-lg-4 imgs" style="margin-top:15px;"><img src="' + path + '" style="max-height:206px;" alt="Project Name" class="img-rounded center-block"><div class="row"><h3 class="text-center">' + truncateString(item.titulo, 30) + '</h3><p class="text-center">' + truncateString(item.descripcion, 100) + '</p><form name="form_delete"  method="post" class="text-center"><button class="btn btn-danger btn-sm" type="submit" name="delete" value="' + item.id + '">Eliminar</button></form></div></div>';
-					 	if ( i < 3)
-					 	{
-					 		$("#imagenes-1").append(cad);
-					 	}
-					 	else if ( i < 6 && i >= 3)
-					 	{
-					 		$("#imagenes-2").append(cad);
-					 	}
-					 	else if ( i < 9 && i >= 7)
-					 	{
-					 		$("#imagenes-3").append(cad);
-					 	}
-					 });
-				});
-		})
-	}
+						cad = '<div class="col-lg-4" style="margin-top:15px;"><img src="' + path + '" style="max-height:206px;" alt="Project Name" class="img-rounded center-block"><div class="row"><h3 class="text-center">' + truncateString(item.titulo, 30) + '</h3><p class="text-center">' + truncateString(item.descripcion, 100) + '</p><form name="form_delete"  method="post" class="text-center"><button class="btn btn-danger btn-sm" type="submit" name="delete" value="' + item.id + '">Eliminar</button></form></div></div>';
+
+					 	$("#imgs").append(cad);
+
+					});
+				})
+			});
+	}	
 });
 
 

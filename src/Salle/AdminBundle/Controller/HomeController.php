@@ -23,7 +23,7 @@ class HomeController extends Controller
         $eventos = $repositoryEvent->findAllEvents(0, 5);
 
         $last = $this->getDoctrine()
-            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();
 
     	return $this->render('SalleAdminBundle:Front:home.html.twig', array (
     		'noticias' => $noticias,

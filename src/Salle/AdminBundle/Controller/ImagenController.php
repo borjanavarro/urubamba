@@ -25,7 +25,7 @@ class ImagenController extends Controller
 
         // Comentarios de la radio
 
-        $results = 1;
+        $results = 10;
 
         $repositoryCom = $this->getDoctrine()
             ->getRepository('SalleAdminBundle:Comentario');

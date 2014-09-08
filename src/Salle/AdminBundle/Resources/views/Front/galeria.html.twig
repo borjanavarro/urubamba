@@ -23,16 +23,12 @@
 
 <div class="section">
 	<div class="container">
-			{% set num = 1 %}
+		<div class="row imgs" id="imgs">
 			{% for imagen in imagenes %}
-				{% if loop.index == 1 or loop.index == 4 or loop.index == 7 %}
-					<div class="row imgs" id="imagenes-{{ num }}">
-					{% set num = num + 1 %}
-				{% endif %}
 				<div class="col-md-4 col-sm-6">
-					<div class="portfolio-item">
+					<div class="portfolio-item" style="height:230px;">
 						<div class="portfolio-image">
-							<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="height:206px; width: auto;" alt="Project Name"></a>
+							<a href="page-portfolio-item.html"><img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path )}}" style="max-height:206px;max-width:329px;" alt="Project Name"></a>
 						</div>
 						<div class="portfolio-info-fade">
 							<ul>
@@ -43,10 +39,8 @@
 						</div>
 					</div>
 				</div>
-				{% if loop.index == 3 or loop.index == 6 or loop.index == 9 or loop.last %}
-					</div>
-				{% endif %}
-			{% endfor %}	
+			{% endfor %}
+		</div>	
 	</div>
 </div> 
 
@@ -115,7 +109,7 @@ $('.pagination > li > a').on("click", function (){
 			data: { offset: tecla-1 },
 			type: "POST"})
 			.done (function(refresh){
-				$(".imgs > div").fadeOut('slow').promise().done(function (){
+				$("#imgs > div").fadeOut('slow').promise().done(function (){
 					$(this).remove();
 
 					$.each(refresh.refresh, function(i, item){
@@ -123,28 +117,9 @@ $('.pagination > li > a').on("click", function (){
 						path = pathAux.replace ("hola.jpg", item.id + '.' + item.path );
 						url = urlAux.replace('hola', item.id);
 
-						if ( i == 0 || i == 3 || i == 6)
-						{
-							num = i + 1;
-							pre = '<div class="row" id="imagenes-' + num + '">';
-						} else 
-						{
-							pre = '';
-						}
 						cad = '<div class="col-md-4 col-sm-6"><div class="portfolio-item"><div class="portfolio-image"><a href="page-portfolio-item.html"><img src="' + path + '" style="height:206px; width: auto;" alt="Project Name"></a></div><div class="portfolio-info-fade"><ul><li class="portfolio-project-name">' + truncateString(item.titulo, 30) + '</li><li>' + truncateString(item.descripcion, 100) + '</li><li class="read-more"><a href="' + url + '" class="btn">Detalle</a></li></ul></div></div></div>';
 
-					 	if ( i < 3)
-					 	{
-					 		$("#imagenes-1").append(cad);
-					 	}
-					 	else if ( i < 6 && i >= 3)
-					 	{
-					 		$("#imagenes-2").append(cad);
-					 	}
-					 	else if ( i < 9 && i >= 7)
-					 	{
-					 		$("#imagenes-3").append(cad);
-					 	}	
+					 		$("#imgs").append(cad);
 					});
 				});
 	
