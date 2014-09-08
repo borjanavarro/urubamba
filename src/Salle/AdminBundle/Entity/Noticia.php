@@ -73,7 +73,7 @@ class Noticia
     private $temp;
 
     /**
-     * @ORM\OneToMany(targetEntity="comentario", mappedBy="noticia", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="noticia", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"fecha" = "DESC"})
      */
     protected $comentarios;

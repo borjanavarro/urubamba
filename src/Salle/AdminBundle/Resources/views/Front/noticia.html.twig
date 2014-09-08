@@ -28,16 +28,18 @@
 				<div class="blog-post blog-single-post">
 					<div class="single-post-title">
 						<h3>{{ noticia.titulo }}</h3>
+						&nbsp;
 					</div>
 					<div class="single-post-info">
 						<i class="glyphicon glyphicon-time"></i>{{ noticia.fecha | date('Y-m-d') }} <a href="#comments" title="Show Comments"><i class="glyphicon glyphicon-comment"></i>{{ noticia.comentarios | length }}</a>
 					</div>
 					<div class="single-post-image">
-						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" alt="Post Title">
+						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" style="max-height:550px;" alt="Post Title">
 					</div>
 					<div class="single-post-content">
-						<h4>{{ noticia.subtitulo }}</h4>
-						<p>{{ noticia.cuerpo }}</p>
+						<h3 style="font-weight:normal;">{{ noticia.subtitulo }}</h3>
+						&nbsp;
+						<p>{{ noticia.cuerpo | raw }}</p>
 					</div>
 					
 					<!-- Comments -->

@@ -50,7 +50,10 @@ class ListNewsController extends Controller
             return new Response(json_encode(array('refresh' => $refresh)));
         }
 
-    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticias, 'numPags' => $numPags));
+    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array (
+            'noticias' => $noticias, 
+            'numPags' => $numPags
+            ));
         
     }
 
