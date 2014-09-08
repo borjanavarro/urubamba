@@ -59,7 +59,7 @@ class Imagen
     private $temp;
 
     /**
-     * @ORM\OneToMany(targetEntity="comentario", mappedBy="imagen", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="imagen", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"fecha" = "DESC"})
      */
     protected $comentarios;

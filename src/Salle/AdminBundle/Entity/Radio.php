@@ -30,7 +30,7 @@ class Radio
     private $texto;
 
     /**
-     * @ORM\OneToMany(targetEntity="comentario", mappedBy="radio", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="radio", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"fecha" = "DESC"})
      */
     protected $comentarios;
