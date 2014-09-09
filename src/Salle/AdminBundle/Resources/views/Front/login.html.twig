@@ -1,0 +1,55 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}BackOffice login{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'none'} %}
+</div>
+
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Login</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<div class="basic-login">
+					<form role="form" role="form">
+						<div class="form-group">
+        				 	<label for="login-username"><i class="icon-user"></i> <b>Nombre de usuario</b></label>
+							<input class="form-control" id="login-username" type="text" placeholder="">
+						</div>
+						<div class="form-group">
+        				 	<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
+							<input class="form-control" id="login-password" type="password" placeholder="">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn pull-right">Login</button>
+							<div class="clearfix"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+ <!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}

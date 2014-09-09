@@ -128,3 +128,6 @@ equipo:
     pattern: /equipo
     defaults: { _controller: SalleAdminBundle:Equipo:index }
 
+login:
+    path:     /login
+    defaults: { _controller: SalleAdminBundle:Login:index }
