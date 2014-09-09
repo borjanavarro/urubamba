@@ -91,7 +91,7 @@
 						</div>
 						<!-- End Post Info -->
 						<!-- Post Image -->
-						<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="post-image center-block" alt="Radio La Salle - Ultimas noticias" style="height:206px;max-width:331px;">
+						<img src="{{ asset ('bundles/salleadmin/img/articulos/thumbnails/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="post-image center-block" alt="Radio La Salle - Ultimas noticias" style="height:206px;max-width:331px;">
 						<!-- End Post Image -->
 						<!-- Post Title & Summary -->
 						<div class="post-title">
@@ -134,7 +134,7 @@
     		{% for noticia in deportes %}
 	    		<div class="col-md-3 col-sm-6">
 	    			<div class="service-wrapper" style="height:325px;">
-	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="max-width:195px;max-height:135px;">
+	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/thumbnails/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="max-width:195px;max-height:135px;">
 	        			<h3>{{ noticia.titulo | truncate(40) }}</h3>
 	        			<p>{{ noticia.subtitulo | truncate(80) }}</p>
 	        			<a href="{{ url ('noticia', { 'id' : noticia.id } )}}"> Leer más...</a>
@@ -148,7 +148,7 @@
     		{% for noticia in tecnologia %}
 	    		<div class="col-md-3 col-sm-6">
 	    			<div class="service-wrapper" style="height:325px;">
-	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="max-width:195px;max-height:135px;">
+	        			<img src="{{ asset ('bundles/salleadmin/img/articulos/thumbnails/' ~ noticia.id ~ '.' ~ noticia.path )}}" class="center-block" alt="Radio La Salle - Deportes" style="max-width:195px;max-height:135px;">
 	        			<h3>{{ noticia.titulo | truncate(40) }}</h3>
 	        			<p>{{ noticia.subtitulo | truncate(80) }}</p>
 	        			<a href="{{ url ('noticia', { 'id' : noticia.id } )}}"> Leer más...</a>

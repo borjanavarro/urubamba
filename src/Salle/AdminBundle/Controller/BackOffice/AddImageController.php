@@ -26,6 +26,10 @@ class AddImageController extends Controller
             $em->persist($imagen);
             $em->flush();
 
+            $this->get('image.handling')->open('bundles/salleadmin/img/galeria/' . $imagen->getId() . '.' . $imagen->getPath())
+                ->scaleResize(350, 225, '0xffffff')
+                ->save('bundles/salleadmin/img/galeria/thumbnails/' . $imagen->getId() . '.' . $imagen->getPath());
+
             return $this->redirect($this->generateUrl('list-images'));
         }
 
