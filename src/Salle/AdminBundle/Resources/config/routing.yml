@@ -131,3 +131,9 @@ equipo:
 login:
     path:     /login
     defaults: { _controller: SalleAdminBundle:Login:index }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    path:   /logout
