@@ -131,3 +131,7 @@ equipo:
 login:
     path:     /login
     defaults: { _controller: SalleAdminBundle:Login:index }
+
+programa:
+    path:     /programa
+    defaults: { _controller: SalleAdminBundle:Programa:index }

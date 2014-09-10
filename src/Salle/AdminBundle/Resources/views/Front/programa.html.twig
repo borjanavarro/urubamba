@@ -1,0 +1,49 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}Programación de la radio{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'somos'} %}
+</div>
+
+
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Programación de la radio</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<!-- Project Info Column -->
+			<div class="portfolio-item-description col-sm-10 col-lg-offset-1">
+				<h3></h3>
+				<p></p>
+			</div>
+			<!-- End Project Info Column -->
+			<!-- Image Column -->
+			<div class="col-sm-10 col-lg-offset-1">
+				<div class="portfolio-item ">
+					<img class="img-thumbnail center-block" src="{{ asset ('bundles/salleadmin/img/programa/horario.jpg')}}" alt="Project Name">
+				</div>
+			</div>
+			<!-- End Image Column -->
+		</div>
+	</div>
+</div> 
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}
