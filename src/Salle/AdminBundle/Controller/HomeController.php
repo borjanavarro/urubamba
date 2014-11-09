@@ -11,9 +11,27 @@ class HomeController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
-    	$noticia = $repository->findAllNews();
+        $repositoryEvent = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Evento');
 
-    	return $this->render('SalleAdminBundle:Front:home.html.twig', array ('noticias' => $noticia));
+    	$noticias = $repository->findAllNewsHome(0, 3);
+
+    	$deportes = $repository->findBySeccion('Deportes', 0, 4);
+
+    	$tecnologia = $repository->findBySeccion('Tecnología', 0, 4);
+
+        $eventos = $repositoryEvent->findAllEvents(0, 5);
+
+        $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();
+
+    	return $this->render('SalleAdminBundle:Front:home.html.twig', array (
+    		'noticias' => $noticias,
+    		'deportes' => $deportes,
+    		'tecnologia' => $tecnologia,
+            'eventos' => $eventos,
+            'last' => $last
+    		));
     }
 
 }

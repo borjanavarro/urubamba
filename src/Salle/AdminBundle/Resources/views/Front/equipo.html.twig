@@ -1,0 +1,123 @@
+{% extends 'SalleAdminBundle:Front:base.html.twig' %}
+
+{% block title %}El equipo{% endblock %}
+
+{% block scriptsHeader %}
+
+<link href="{{ asset('bundles/salleadmin/somos/css/hover_pack.css') }}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="{{ asset('bundles/salleadmin/somos/css/main.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/colors/color-74c9be.css') }}" rel="stylesheet">    
+<link href="{{ asset('bundles/salleadmin/somos/css/animations.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/salleadmin/somos/css/font-awesome.min.css') }}" rel="stylesheet">
+
+
+<!-- JavaScripts needed at the beginning
+================================================== -->
+
+
+<!-- Main Jquery & Hover Effects. Should load first -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('bundles/salleadmin/somos/js/hover_pack.js') }}"></script>
+
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mainmenu-wrapper">
+	{% include 'SalleAdminBundle:Front:header.html.twig' with {'active' : 'somos'} %}
+</div>
+
+
+<! ========== CALL TO ACTION 1 ============================================================================================== 
+=============================================================================================================================>    
+<div id="cta03">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>Hay un equipo de profesionales trabajando para traerte la información más actualizada</h2>
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+</div><!--/cta01 -->
+
+
+<! ========== OUR TEAM ====================================================================================================== 
+	=============================================================================================================================>    
+	
+<div id="white">
+	<div class="container">
+    	<div class="row mt">
+    		<div class="col-lg-4 col-lg-offset-4 centered">
+    			<h3>El equipo</h3>
+    			<hr>
+    		</div>
+    	</div><!--/row -->
+		{% for miembro in equipo %}
+			<div class="row" style="margin-bottom:20px;">
+				<div class="col-lg-4 centered">
+					<div class="members">
+					  <img src="{{ asset ('bundles/salleadmin/img/equipo/' ~ miembro.id ~ '.' ~ miembro.path )}}" style="max-heigth:400px;max-width:300px;" alt="">
+					  <div class="team-info">
+					    <div class="subhead">{{ miembro.cargo}}</div>
+					    <h2 class="team-name">{{ miembro.nombre }}</h2>
+						    <p class="team-description">
+						    	{% if miembro.facebook != null %}
+						    		<a href="{{ miembro.facebook }}" style="color:white;" target="_blank"><i class="fa fa-facebook" style="font-size: x-large;"></i></a>
+						    	{% endif %}
+						    	{% if miembro.twitter != null %}
+						    		<a href="{{ miembro.twitter }}" style="color:white;" target="_blank"><i class="fa fa-twitter" style="font-size: x-large;"></i></a>
+						    	{% endif %}
+
+						    	{% if miembro.email != null %}
+						    		<a href="mailto:{{ miembro.email }}" style="color:white;" target="_blank"><i class="fa fa-dribbble" style="font-size: x-large;"></i></a>
+						    	{% endif %}
+						    </p>
+					  </div>
+					</div>
+				</div><!-- /col-lg-4 -->
+					<div class="col-lg-8">
+						<h3>Descripción</h3>
+						<p>{{ miembro.descripcion }}</p>
+						<h3>Programas</h3>
+						<p>{{ miembro.programas }}</p>
+					</div><!--/col-lg-8 -->
+			</div><!--/row -->
+		{% endfor %}
+	</div><!--/container -->
+</div><!--/white -->
+
+<!-- Footer -->
+<div class="footer">
+	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
+</div>
+
+{% endblock %}
+
+{% block scriptsFooter %}
+
+{# <script src="{{ asset('bundles/salleadmin/somos/js/retina.js') }}"></script> #}
+
+<script>
+	$(window).scroll(function() {
+		$('.si').each(function(){
+		var imagePos = $(this).offset().top;
+
+		var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+400) {
+				$(this).addClass("slideUp");
+			}
+		});
+	});
+</script>    
+
+{% endblock %}

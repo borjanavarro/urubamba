@@ -1,0 +1,239 @@
+{% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
+
+{% block title %}Lista de patrocinadores{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'patros'} %}
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Lista de patrocinadores <small>Urubamba</small></h1>
+			</div>
+		</div><!-- /.row -->
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>&nbsp;</h2>
+				<div class="table-responsive">
+					<table class="table table-hover table-striped tablesorter">
+						<thead>
+							<tr>
+								<th class="col-sm-1">id <i class="fa fa-sort"></i></th>
+								<th class="col-sm-8">Titulo <i class="fa fa-sort"></i></th>
+								<th class="col-sm-2">Fecha <i class="fa fa-sort"></i></th>
+								<th class="col-sm-1"></th>
+								<th class="col-sm-1"></th>
+							</tr>
+						</thead>
+						<tbody>						
+						{% for patro in patros %}
+							<tr>
+								<td>{{ patro.id }}</td>
+								<td>{{ patro.titulo | truncate (60) }}</td>
+								<td>{{ patro.fecha | date('Y-m-d') }}</td>
+								<td>
+								<form name="form_edit"  method="post">
+									<button class="btn btn-primary btn-sm" type="submit" name="edit" value="{{ patro.id }}">Edit</button>
+								</form>
+								</td>
+								<td>
+								<form name="form_delete"  method="post">
+									<button class="btn btn-danger btn-sm" type="submit" name="delete" value="{{ patro.id }}">Eliminar</button>
+								</form>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="bs-example center-block">
+					<ul class="pagination">
+						<li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+						<li class="active"><a href="javascript:void(0);">1</a></li>
+						<li><a href="javascript:void(0);">2</a></li>
+						<li><a href="javascript:void(0);">3</a></li>
+						<li><a href="javascript:void(0);">4</a></li>
+						<li><a href="javascript:void(0);">5</a></li>
+						<li><a href="javascript:void(0);">&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- /.row -->
+
+	</div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+$(document).ready( function (){
+
+	if ({{ numPags }} <= 5 )
+	{
+		$(".pagination").find("li").each(function(i)
+		{
+			if ( i > {{ numPags }} || i == 0 )
+			{
+				$(this).addClass('disabled');
+			}
+		});
+	}
+});
+
+$('.pagination > li > a').on("click", function (){
+
+	if (!$(this).parent().hasClass('disabled'))
+	{
+
+		tecla = $(this).text();
+
+		//Nos vamos al principio
+		if ( tecla == "«" )
+		{
+			tecla = 1;
+		} //Nos vamos al final
+		else if ( tecla == "»" ) 
+		{
+			tecla = {{ numPags }};
+		}
+
+		numeros(tecla);
+
+		$.ajax({
+			dataType: "json",
+			url:"{{ url ('list-patros') }}", 
+			data: { offset: tecla-1 },
+			type: "POST"})
+			.done (function(refresh){
+				$(".table > tbody > tr").fadeOut('slow').promise().done( function (){
+					$(this).remove();
+
+					$.each(refresh.refresh, function(i, item){
+						fecha = item.fecha.date.split(' ');
+						$("tbody").append('<tr><td>' + item.id + '</td><td>' + truncateString(item.titulo, 60) + '</td><td>' + fecha[0] + '</td><td><form name="form_edit"  method="post"><button class="btn btn-primary btn-sm" type="submit" name="edit" value=' + item.id + '>Edit</button></form></td><td><form name="form_delete"  method="post"><button class="btn btn-danger btn-sm" type="submit" name="delete" value=' + item.id + '>Eliminar</button></form></td></tr>');
+					});
+				});
+		})
+	}
+});
+
+
+function numeros(seguent){
+
+	num = parseInt(seguent);
+
+	$(".pagination").find("li").each(function(i)
+	{
+		$(this).removeClass('active');
+	});
+
+	//Estamos al principio de todo
+	if ({{ numPags }} <= 5)
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 || i > {{ numPags }} )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+		});
+	}
+
+	//Estamos al principio de todo
+	else if ( num <= 3 )
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			else if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+			if ( i >= 1 && i <= 5)
+			{
+				$(this).text(i);
+			}
+			else if ( i == 6)
+			{
+				$(this).parent().removeClass('disabled');
+			}
+		});
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags - 1 }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-3);
+		$(kids[2]).text(num-2);
+		$(kids[3]).text(num-1);
+		$(kids[4]).text(num);
+		$(kids[4]).parent().addClass('active');
+		$(kids[5]).text(num+1);
+		$(kids[6]).parent().addClass('disabled');
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-4);
+		$(kids[2]).text(num-3);
+		$(kids[3]).text(num-2);
+		$(kids[4]).text(num-1);
+		$(kids[5]).text(num);
+		$(kids[5]).parent().addClass('active');
+		$(kids[6]).parent().addClass('disabled');
+
+	}
+
+	//Estamos en el medio
+	else if (num < {{ numPags }}-1 && num >= 3)
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-2);
+		$(kids[2]).text(num-1);
+		$(kids[3]).text(num);
+		$(kids[3]).parent().addClass('active');
+		$(kids[4]).text(num+1);
+		$(kids[5]).text(num+2);
+		$(kids[6]).parent().removeClass('disabled');
+
+	}
+}
+
+function truncateString(str, length) {
+    return str.length > length ? str.substring(0, length - 3) + '...' : str
+}
+
+</script>
+
+{% endblock %}

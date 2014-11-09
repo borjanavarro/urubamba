@@ -56,95 +56,81 @@
 						<!-- End Radio -->
 					</div>
 					<!-- Comments -->
-					<div class="post-coments">
-						<h4>Comentarios</h4>
+					<div class="post-coments"  id="comments">
+						<h4>Comentarios ({{ numComments }})</h4>
 						<ul class="post-comments">
-							<li>
-								<div class="comment-wrapper">
-									<div class="comment-author"><img src="img/user1.jpg" alt="User Name"> User Name</div>
-									<p>
-										Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat massa ornare vitae. Ut fermentum justo vel venenatis eleifend. Fusce id magna eros. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-									</p>
-									<!-- Comment Controls -->
-									<div class="comment-actions">
-										<span class="comment-date">June 10th, 2013 3:16 pm</span>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
-										<span class="label label-success">+8</span>
-										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<ul>
-									<li>
-										<div class="comment-wrapper">
-											<div class="comment-author"><img src="img/user2.jpg" alt="User Name"> User Name</div>
-											<p>
-												Vivamus euismod elit ac libero facilisis tristique. Duis mollis non ligula vel tincidunt. Nulla consectetur libero id nunc ornare, vel vulputate tellus mollis. Sed quis nulla magna.
-											</p>
-											<!-- Comment Controls -->
-											<div class="comment-actions">
-												<span class="comment-date">June 10th, 2013 3:16 pm</span>
-												<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-												<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
-												<span class="label label-danger">-2</span>
-												<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
-											</div>
+							{% for comentario in comentarios %}
+								<li>
+									<div class="comment-wrapper" id="{{ comentario.id }}">
+										<div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>  {{ comentario.nombre }}</div>
+										<p>
+											{{ comentario.comentario }}
+										</p>
+										<!-- Comment Controls -->
+										<div class="comment-actions">
+											<span class="comment-date">{{ comentario.fecha | date('Y-m-d H:i:s') }}</span>
+											<a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											<a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
+											{% set votes = comentario.likes - comentario.dislikes %}
+											{% if votes > 0 %} 
+												<span class="label label-success">{{ votes }}</span>
+											{% elseif votes < 0 %}
+												<span class="label label-danger">{{ votes }}</span>
+											{% else %}
+												<span class="label label-default">{{ votes }}</span>
+											{% endif %}
 										</div>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="comment-wrapper">
-									<div class="comment-author"><img src="img/user5.jpg" alt="User Name"> User Name</div>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel magna lectus.
-									</p>
-									<!-- Comment Controls -->
-									<div class="comment-actions">
-										<span class="comment-date">June 10th, 2013 3:16 pm</span>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-										<a href="#" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a>
-										<span class="label label-success">+8</span>
-										<a href="#" class="btn btn-micro btn-grey comment-reply-btn"><i class="glyphicon glyphicon-share-alt"></i> Reply</a>
 									</div>
-								</div>
-							</li>
+								</li>
+							{% endfor %}
 						</ul>
+
 						<!-- Pagination -->
 						<div class="pagination-wrapper ">
 							<ul class="pagination pagination-sm">
-								<li class="disabled"><a href="#">Previous</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">Next</a></li>
+								<li class="disabled"><a href="javascript:void(0);">«</a></li>
+								<li class="active"><a href="javascript:void(0);">1</a></li>
+								<li><a href="javascript:void(0);">2</a></li>
+								<li><a href="javascript:void(0);">3</a></li>
+								<li><a href="javascript:void(0);">4</a></li>
+								<li><a href="javascript:void(0);">5</a></li>
+								<li><a href="javascript:void(0);">»</a></li>
 							</ul>
 						</div>
+
 						<!-- Comments Form -->
-						<h4>Leave a Comment</h4>
+						<h4>Deja un comentario</h4>
 						<div class="comment-form-wrapper">
-							<form class="">
+							{{ form_start(form) }}
 		        				<div class="form-group">
-		        				 	<label for="comment-name"><i class="glyphicon glyphicon-user"></i> <b>Your name</b></label>
-									<input class="form-control" id="comment-name" type="text" placeholder="">
+		        					<label for="{{ form.nombre.vars.id }}"
+									    class="{{ form.nombre.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-user"></i> <b>{{ form.nombre.vars.label}} </b>
+									</label>
+						        	{{ form_errors(form.nombre) }}
+						        	{{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
 								</div>
 								<div class="form-group">
-									<label for="comment-email"><i class="glyphicon glyphicon-envelope"></i> <b>Your Email</b></label>
-									<input class="form-control" id="comment-email" type="text" placeholder="">
+									<label for="{{ form.email.vars.id }}"
+									    class="{{ form.email.vars.required ? 'required' : '' }}">
+									    <i class="glyphicon glyphicon-envelope"></i> <b>{{ form.email.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.email) }}
+						        	{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
 								</div>
 								<div class="form-group">
-									<label for="comment-message"><i class="glyphicon glyphicon-comment"></i> <b>Your Message</b></label>
-									<textarea class="form-control" rows="5" id="comment-message"></textarea>
+									<label for="{{ form.comentario.vars.id }}"
+									    class="{{ form.comentario.vars.required ? 'required' : '' }}">
+									   <i class="glyphicon glyphicon-comment"></i> <b>{{ form.comentario.vars.label}}</b>
+									</label>
+						        	{{ form_errors(form.comentario) }}
+						        	{{ form_widget(form.comentario, { 'attr': {'class': 'form-control', 'rows': '6'} }) }}
 								</div>
 								<div class="form-group">
-									<button type="submit" class="btn btn-large pull-right">Send</button>
+								{{ form_widget(form.send, { 'attr': {'class': 'btn btn-large pull-right'} }) }}
 								</div>
 								<div class="clearfix"></div>
-		        			</form>
+		        			{{ form_end(form) }}
 						</div>
 						<!-- End Comment Form -->
 					</div>
@@ -156,11 +142,11 @@
 				<!-- Sidebar -->
 				<div class="col-sm-4 blog-sidebar">
 					&nbsp;&nbsp;
-					<h4>Flash de titulares</h4>
+					<h4>Titulares flash</h4>
 					&nbsp;&nbsp;
-					{% for i in 1..3 %}
+					{% for flash in flashes %}
 						<div class="in-press">
-							<a href="#">Morbi eleifend congue elit nec sagittis. Praesent aliquam lobortis tellus, nec consequat vitae</a>
+							<a href="{% if flash.titular %}{{ flash.enlace }}{% else %}#{% endif %}" target="_blank">{{ flash.titular }}</a>
 						</div>
 					{% endfor %}
 				</div>
@@ -176,5 +162,226 @@
 <div class="footer">
 	{% include 'SalleAdminBundle:Front:footer.html.twig' %}
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" charset="utf-8" async defer>
+
+$(document).ready( function (){
+
+	if ({{ numPags }} <= 5 )
+	{
+		$(".pagination").find("li").each(function(i)
+		{
+			if ( i > {{ numPags }} || i == 0 )
+			{
+				$(this).addClass('disabled');
+			}
+		});
+	}
+});
+
+$('.pagination > li > a').on("click", function (){
+
+	if (!$(this).parent().hasClass('disabled'))
+	{
+
+		tecla = $(this).text();
+
+		//Nos vamos al principio
+		if ( tecla == "«" )
+		{
+			tecla = 1;
+		} //Nos vamos al final
+		else if ( tecla == "»" ) 
+		{
+			tecla = {{ numPags }};
+		}
+
+		numeros(tecla);
+
+		$.ajax({
+			dataType: "json",
+			url:"{{ url ('radio') }}", 
+			data: { offset: tecla-1 },
+			type: "POST"})
+			.done (function(refresh){
+				$(".post-comments > li").fadeOut('slow').promise().done( function (){
+					$(this).remove();
+
+					$.each(refresh.refresh, function(i, item){
+						fecha = item.fecha.date;
+						votes = item.likes - item.dislikes;
+						if (votes > 0)
+						{
+							votesCad = '<span class="label label-success">' + votes + '</span>';
+						}
+						else if (votes < 0)
+						{
+							votesCad = '<span class="label label-danger">' + votes + '</span>';
+						}
+						else
+						{
+							votesCad = '<span class="label label-default">' + votes + '</span>';
+						}
+						$(".post-comments").append('<li><div class="comment-wrapper" id="' + item.id + '"><div class="comment-author">{# <img src="{{ asset ('bundles/salleadmin/img/users/user1.jpg')}}" alt="User Name"> #} <i class="glyphicon glyphicon-user"></i>' + item.nombre + '</div><p>' + item.comentario + '</p><!-- Comment Controls --><div class="comment-actions"><span class="comment-date">' + fecha + '</span><a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Up" class="show-tooltip voteUp"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a href="javascript:void(0);" data-toggle="tooltip" data-original-title="Vote Down" class="show-tooltip"><i class="glyphicon glyphicon-thumbs-down"></i></a> ' + votesCad + '</div></div></li>');			
+					});
+			});
+		})
+	}
+});
+
+
+function numeros(seguent){
+
+	num = parseInt(seguent);
+
+	$(".pagination").find("li").each(function(i)
+	{
+		$(this).removeClass('active');
+	});
+
+	//Estamos al principio de todo
+	if ({{ numPags }} <= 5)
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 || i > {{ numPags }} )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+		});
+	}
+
+	//Estamos al principio de todo
+	else if ( num <= 3 )
+	{
+		$(".pagination").find("li > a").each(function(i)
+		{
+			if ( i == 0 )
+			{
+				$(this).parent().addClass('disabled');
+			}
+			else if ( i == num)
+			{
+				$(this).parent().addClass('active');
+			}
+			if ( i >= 1 && i <= 5)
+			{
+				$(this).text(i);
+			}
+			else if ( i == 6)
+			{
+				$(this).parent().removeClass('disabled');
+			}
+		});
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags - 1 }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-3);
+		$(kids[2]).text(num-2);
+		$(kids[3]).text(num-1);
+		$(kids[4]).text(num);
+		$(kids[4]).parent().addClass('active');
+		$(kids[5]).text(num+1);
+		$(kids[6]).parent().addClass('disabled');
+	}
+
+	//Estamos al final
+	else if (num == {{ numPags }} )
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-4);
+		$(kids[2]).text(num-3);
+		$(kids[3]).text(num-2);
+		$(kids[4]).text(num-1);
+		$(kids[5]).text(num);
+		$(kids[5]).parent().addClass('active');
+		$(kids[6]).parent().addClass('disabled');
+
+	}
+
+	//Estamos en el medio
+	else if (num < {{ numPags }}-1 && num >= 3)
+	{
+		kids = $(".pagination").find("li > a");
+
+		$(kids[0]).parent().removeClass('disabled');
+		$(kids[1]).text(num-2);
+		$(kids[2]).text(num-1);
+		$(kids[3]).text(num);
+		$(kids[3]).parent().addClass('active');
+		$(kids[4]).text(num+1);
+		$(kids[5]).text(num+2);
+		$(kids[6]).parent().removeClass('disabled');
+
+	}
+}
+
+function truncateString(str, length) {
+    return str.length > length ? str.substring(0, length - 3) + '...' : str
+};
+
+$(document.body).on('click', ".comment-actions a", function() {
+
+	id = $(this).parent().parent().attr('id');
+
+	if ($(this).hasClass('voteUp'))
+	{
+		votes = parseInt($(".comment-actions .label").text())+1;
+		mode = 'up';
+	}
+	else
+	{
+		votes = parseInt($(".comment-actions .label").text())-1;
+		mode = 'down';
+	}
+
+	$.ajax({
+		dataType: "json",
+		url:"{{ url ('radio') }}", 
+		data: { mode: mode, idCom : id },
+		type: "POST"})
+		.done (function(result){
+
+			$(".comment-actions .label").text(votes);
+
+			obj = $(".comment-actions .label")
+
+			if (votes > 0)
+			{
+				obj.removeClass('label-danger');
+				obj.removeClass('label-default');
+				obj.addClass('label-success');
+			}
+			else if (votes < 0)
+			{
+				obj.removeClass('label-success');
+				obj.removeClass('label-default');
+				obj.addClass('label-danger');
+			}
+			else
+			{
+				obj.removeClass('label-success');
+				obj.removeClass('label-danger');
+				obj.addClass('label-default');
+			}
+		})
+});
+
+</script>
 
 {% endblock %}

@@ -15,15 +15,18 @@ class NoticiaType extends AbstractType
             ->add('subtitulo', 'text')
             ->add('cuerpo', 'textarea')
             ->add('file', 'file', array(
-                'required'    => 'false'
+                'required'    => 'false',
+                'label' => 'Imagen'
                 ))
             ->add('seccion', 'choice', array(
                 'choices' => array(
-                    'Política' => 'Política',
+                    'Local' => 'Local',
+                    'Regional' => 'Regional', 
+                    'Nacional' => 'Nacional', 
                     'Internacional' => 'Internacional', 
-                    'Economía' => 'Economía', 
-                    'Cultura' => 'Cultura', 
-                    'Sociedad' => 'Sociedad', 
+                    'Educación' => 'Educación',
+                    'Sociedad' => 'Sociedad',
+                    'Tecnología' => 'Tecnología', 
                     'Deportes' => 'Deportes')
                 ))
             ->add('send', 'submit', array(

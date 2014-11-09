@@ -1,0 +1,86 @@
+{% extends 'SalleAdminBundle:BackOffice:base.html.twig' %}
+
+{% block title %}Editar miembro{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+
+	{% include 'SalleAdminBundle:BackOffice:header.html.twig'  with { 'active' : 'equipo'} %}
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Editar miembro <small>Urubamba</small></h1>
+			</div>
+		</div><!-- /.row -->
+
+		<div class="row">
+
+            <div class="col-lg-10">
+
+	          	{{ form_start(form,  { 'attr': {'role': 'form'} }) }}
+
+	          	<div class="form-group">
+		          	{{ form_label(form.nombre) }}
+		        	{{ form_errors(form.nombre) }}
+		        	{{ form_widget(form.nombre, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.cargo) }}
+		        	{{ form_errors(form.cargo) }}
+		        	{{ form_widget(form.cargo, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.facebook) }}
+		        	{{ form_errors(form.facebook) }}
+		        	{{ form_widget(form.facebook, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.twitter) }}
+		        	{{ form_errors(form.twitter) }}
+		        	{{ form_widget(form.twitter, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.email) }}
+		        	{{ form_errors(form.email) }}
+		        	{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.descripcion) }}
+		        	{{ form_errors(form.descripcion) }}
+		        	{{ form_widget(form.descripcion, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.programas) }}
+		        	{{ form_errors(form.programas) }}
+		        	{{ form_widget(form.programas, { 'attr': {'class': 'form-control'} }) }}
+	            </div>
+
+	            <div class="form-group">
+		          	{{ form_label(form.file) }}
+		        	{{ form_errors(form.file) }}
+		        	{{ form_widget(form.file) }}
+	            </div>
+	        </div>
+		        	
+
+	        <div class="col-lg-10">
+	    		{{ form_widget(form.send, { 'attr': {'class': 'btn btn-primary btn-lg pull-right'} }) }}
+				{{ form_end(form) }}
+			</div>
+
+		</div><!-- /.row -->
+
+	</div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
+{% endblock %}

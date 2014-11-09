@@ -4,6 +4,7 @@ namespace Salle\AdminBundle\Controller\BackOffice;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListNewsController extends Controller
 {
@@ -12,7 +13,11 @@ class ListNewsController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Noticia');
 
-    	$noticias = $repository->findAllNews();
+        $results = 1;
+
+    	$noticias = $repository->findAllNews(0, $results);
+
+        $numPags = ceil($repository->countNoticias()/$results);
 
         if ($request->request->has('delete'))
         {
@@ -31,13 +36,25 @@ class ListNewsController extends Controller
 
             return $this->redirect($this->generateUrl('list-news'));
         }
+
         if ($request->request->has('edit'))
         {
             $id = $request->request->get('edit');
             return $this->redirect($this->generateUrl('edit-news', array('id' => $id)));
         }
 
-    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array ('noticias' => $noticias));
+        if ($request->isXmlHttpRequest())
+        {
+            $offset = $request->get('offset');
+            $refresh = $repository->findAllNews($offset, $results);
+            return new Response(json_encode(array('refresh' => $refresh)));
+        }
+
+    	return $this->render('SalleAdminBundle:BackOffice:listNews.html.twig', array (
+            'noticias' => $noticias, 
+            'numPags' => $numPags
+            ));
         
     }
+
 }

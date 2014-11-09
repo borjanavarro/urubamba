@@ -12,15 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class ComentarioRepository extends EntityRepository
 {
-	public function findAllComments()
+	public function findAllComments($offset, $results)
     {
         
         $query = $this->createQueryBuilder('n')
 		    ->orderBy('n.fecha', 'DESC')
-		    ->setMaxResults(10)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
 		    ->getQuery();
 		 
-		$comments = $query->getResult();
+		$comments = $query->getArrayResult();
 
 		return $comments;
     }
@@ -33,5 +34,66 @@ class ComentarioRepository extends EntityRepository
     	$count = $query->getQuery()->getSingleScalarResult();
 
     	return $count;
+    }
+
+    public function findNoticiaComments ($noticia, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->where('n.noticia = :noticia')
+            ->setParameter('noticia', $noticia)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $comments = $query->getArrayResult();
+
+        return $comments;
+    }
+
+    public function findRadioComments ($radio, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->where('n.radio = :radio')
+            ->setParameter('radio', $radio)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $comments = $query->getArrayResult();
+
+        return $comments;
+    }
+
+    public function findImagenComments ($imagen, $offset, $results)
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->where('n.imagen = :imagen')
+            ->setParameter('imagen', $imagen)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
+            ->getQuery();
+         
+        $comments = $query->getArrayResult();
+
+        return $comments;
+    }
+
+    public function findLastComment()
+    {
+        
+        $query = $this->createQueryBuilder('n')
+            ->orderBy('n.fecha', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery();
+         
+        $comment = $query->getSingleResult();
+
+        return $comment;
     }
 }

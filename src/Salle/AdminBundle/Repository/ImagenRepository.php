@@ -13,16 +13,28 @@ use Doctrine\ORM\EntityRepository;
 class ImagenRepository extends EntityRepository
 {
 
-	public function findAllImages()
+	public function findAllImages($offset, $results)
     {
         
         $query = $this->createQueryBuilder('n')
 		    ->orderBy('n.fecha', 'DESC')
-		    ->setMaxResults(9)
+            ->setFirstResult($results * $offset)
+            ->setMaxResults($results)
 		    ->getQuery();
 		 
-		$noticias = $query->getResult();
+		$imagenes = $query->getArrayResult();
 
-		return $noticias;
+		return $imagenes;
+    }
+
+    public function countImagenes ()
+    {
+        $query = $this->createQueryBuilder('n')
+            ->select('count(n.id)')
+            ->getQuery();
+         
+        $count = $query->getSingleScalarResult();
+
+        return $count;
     }
 }

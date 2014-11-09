@@ -36,10 +36,14 @@ class EditNewsController extends Controller
             $noticia->setCuerpo($form->get('cuerpo')->getData());
             $noticia->setSeccion($form->get('seccion')->getData());
             $noticia->setFile($form->get('file')->getData());
-            $noticia->setFecha(new \Datetime("now"));
+            $noticia->setFecha($noticia->getFecha());
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();
+
+            // $this->get('image.handling')->open('bundles/salleadmin/img/articulos/' . $noticia->getId() . '.' . $noticia->getPath())
+            //     ->scaleResize(350, 225, '0xffffff')
+            //     ->save('bundles/salleadmin/img/articulos/thumbnails/' . $noticia->getId() . '.' . $noticia->getPath());
 
             return $this->redirect($this->generateUrl('list-news'));
 

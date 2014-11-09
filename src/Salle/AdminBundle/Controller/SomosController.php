@@ -8,7 +8,37 @@ class SomosController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('SalleAdminBundle:Front:somos.html.twig');
+    	$repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Noticia');
+
+        $noticias = $repository->countNoticias();
+
+        $repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Imagen');
+
+        $imagenes = $repository->countImagenes();
+
+        $repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Comentario');
+
+        $comentarios = $repository->getNumberComments();
+
+        $repository = $this->getDoctrine()
+    		->getRepository('SalleAdminBundle:Evento');
+
+        $eventos = $repository->countEvents();
+
+         $last = $this->getDoctrine()
+            ->getRepository('SalleAdminBundle:Comentario')->findLastComment();;
+
+
+    	return $this->render('SalleAdminBundle:Front:somos.html.twig', array(
+    		'noticias' => $noticias,
+    		'imagenes' => $imagenes,
+    		'comentarios' => $comentarios,
+    		'eventos' => $eventos,
+            'last' => $last
+    		));
     }
 
 }

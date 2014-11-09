@@ -4,6 +4,7 @@ namespace Salle\AdminBundle\Controller\BackOffice;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListImagesController extends Controller
 {
@@ -12,7 +13,11 @@ class ListImagesController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Imagen');
 
-    	$imagenes = $repository->findAllImages();
+        $results = 10;
+
+    	$imagenes = $repository->findAllImages(0, $results);
+
+        $numPags = ceil($repository->countImagenes()/$results);
 
     	if ($request->request->has('delete'))
         {
@@ -32,6 +37,13 @@ class ListImagesController extends Controller
             return $this->redirect($this->generateUrl('list-images'));
         }
 
-    	return $this->render('SalleAdminBundle:BackOffice:listImages.html.twig', array ('imagenes' => $imagenes));
+        if ($request->isXmlHttpRequest())
+        {
+            $offset = $request->get('offset');
+            $refresh = $repository->findAllImages($offset, $results);
+            return new Response(json_encode(array('refresh' => $refresh)));
+        }
+
+    	return $this->render('SalleAdminBundle:BackOffice:listImages.html.twig', array ('imagenes' => $imagenes, 'numPags' => $numPags));
     }
 }

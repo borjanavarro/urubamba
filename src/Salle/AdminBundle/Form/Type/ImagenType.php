@@ -14,7 +14,8 @@ class ImagenType extends AbstractType
             ->add('titulo', 'text')
             ->add('descripcion', 'textarea')
             ->add('file', 'file', array(
-                'required'    => true
+                'required'    => true,
+                'label' => 'Imagen'
                 ))
             ->add('send', 'submit', array(
                 'label' => 'Añadir')

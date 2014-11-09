@@ -24,6 +24,69 @@ add-image:
     pattern: /admin/add-image
     defaults: { _controller: SalleAdminBundle:BackOffice/AddImage:index }
 
+# Comments #
+
+list-comments:
+    pattern: /admin/list-comments
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListComments:index }
+
+# Flash #
+
+list-flash:
+    pattern: /admin/list-flash
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListFlash:index }
+
+add-flash:
+    pattern: /admin/add-flash
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddFlash:index }
+
+edit-flash:
+    pattern: /admin/edit-flash/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditFlash:index }
+
+# Events #
+
+list-events:
+    pattern: /admin/list-events
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListEvents:index }
+
+add-event:
+    pattern: /admin/add-event
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddEvent:index }
+
+edit-event:
+    pattern: /admin/edit-event/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditEvent:index }
+
+# Patros #
+
+list-patros:
+    pattern: /admin/list-patros
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListPatro:index }
+
+add-patro:
+    pattern: /admin/add-patro
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddPatro:index }
+
+edit-patro:
+    pattern: /admin/edit-patro/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditPatro:index }
+
+# Equipo #
+
+list-equipo:
+    pattern: /admin/list-equipo
+    defaults: { _controller: SalleAdminBundle:BackOffice/ListEquipo:index }
+
+edit-equipo:
+    pattern: /admin/edit-equipo/{id}
+    defaults: { _controller: SalleAdminBundle:BackOffice/EditEquipo:index }
+
+add-equipo:
+    pattern: /admin/add-equipo
+    defaults: { _controller: SalleAdminBundle:BackOffice/AddEquipo:index }
+
+
 
 ## FRONT ##
 
@@ -52,9 +115,29 @@ noticia:
     defaults: { _controller: SalleAdminBundle:SingleNew:index }
 
 buscar:
-    pattern: /buscar
+    pattern: /buscar/{mode}
     defaults: { _controller: SalleAdminBundle:SearchResults:index }
+    requirements:
+        mode: contenido|seccion|fecha
 
 patro:
     pattern: /patrocinadores
     defaults: { _controller: SalleAdminBundle:Patro:index }
+
+equipo:
+    pattern: /equipo
+    defaults: { _controller: SalleAdminBundle:Equipo:index }
+
+login:
+    path:     /login
+    defaults: { _controller: SalleAdminBundle:Login:index }
+
+programa:
+    path:     /programa
+    defaults: { _controller: SalleAdminBundle:Programa:index }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    path:   /logout
