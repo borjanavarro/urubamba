@@ -135,3 +135,9 @@ login:
 programa:
     path:     /programa
     defaults: { _controller: SalleAdminBundle:Programa:index }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    path:   /logout
