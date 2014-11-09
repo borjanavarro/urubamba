@@ -11,7 +11,7 @@ class EquipoController extends Controller
     	$repository = $this->getDoctrine()
     		->getRepository('SalleAdminBundle:Equipo');
 
-        $results = 1;
+        $results = 5;
 
     	$equipo = $repository->findAllEquipo(0, $results);
 

@@ -152,7 +152,7 @@
 				<h4>Archivo</h4>
 				{% set fechaAct = date("now") %}
 				<ul>
-					{% set fecha = fechaAct| date('Y-m-d') ~ " " ~ fechaAct| date('Y-m-01') %}
+					{% set fecha = fechaAct| date_modify("+1 day")| date('Y-m-d') ~ " " ~ fechaAct| date('Y-m-01') %}
 
 					<li><a href="{{ url ('buscar', { 'mode' : 'fecha', 'query' : fecha }) }}">{{ fechaAct| date('M Y') }}</a></li>
 

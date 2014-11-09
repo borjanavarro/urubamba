@@ -16,9 +16,11 @@ class EventoRepository extends EntityRepository
     {
         
         $query = $this->createQueryBuilder('n')
-		    ->orderBy('n.fecha', 'DESC')
+		    ->orderBy('n.fecha', 'ASC')
             ->setFirstResult($results * $offset)
             ->setMaxResults($results)
+            ->where('n.fecha > :today')
+            ->setParameter('today', new \Datetime())
 		    ->getQuery();
 		 
 		$evento = $query->getArrayResult();

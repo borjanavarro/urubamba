@@ -125,7 +125,7 @@ class NoticiaRepository extends EntityRepository
         
         $query = $this->createQueryBuilder('n')
             ->select(array('n.id','n.titulo','n.subtitulo', 'n.cuerpo', 'n.seccion', 'n.fecha'))
-            ->where('n.fecha < \'' . $fechas[0] . '\' AND n.fecha > \'' . $fechas[1] . '\'')
+            ->where('n.fecha <= \'' . $fechas[0] . '\' AND n.fecha >= \'' . $fechas[1] . '\'')
             ->orderBy('n.fecha', 'DESC')
             ->setFirstResult($results * $offset)
             ->setMaxResults($results)
@@ -141,7 +141,7 @@ class NoticiaRepository extends EntityRepository
 
         $query = $this->createQueryBuilder('n')
             ->select('count(n.id)')
-           ->where('n.fecha < \'' . $fechas[0] . '\' AND n.fecha > \'' . $fechas[1] . '\'')
+            ->where('n.fecha <= \'' . $fechas[0] . '\' AND n.fecha >= \'' . $fechas[1] . '\'')
             ->getQuery();
          
         $count = $query->getSingleScalarResult();

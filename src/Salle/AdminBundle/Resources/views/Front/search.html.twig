@@ -33,7 +33,7 @@
 						</span>
 					</div>
 				</form>
-				<h5><i>{% if mode ==  'fecha' %}Introduce dos fechas separadas por un espacio con el formato YYYY-MM-DD{% endif %}</i></h5>
+				<h5><i>{% if mode ==  'fecha' %}Introduce dos fechas separadas por un espacio con el formato YYYY-MM-DD, primero la mayor y luego la menor{% endif %}</i></h5>
 				<p>&nbsp;</p>
 			</div>
 		</div>
@@ -58,7 +58,7 @@
 					<tr>
 						<td>
 							<div class="cart-item-title"><a href="{{ url ('noticia', { 'id': noticia.id })}}"><h4><b>{{ noticia.titulo | truncate (100) }}</a></b></h4></div>
-							<div class="cart-item-title">{{ noticia.cuerpo | truncate (200) }}</div>
+							<div class="cart-item-title">{{ noticia.cuerpo | truncate (200) | raw }}</div>
 						</td>
 					</tr>
 					{% endfor %}
