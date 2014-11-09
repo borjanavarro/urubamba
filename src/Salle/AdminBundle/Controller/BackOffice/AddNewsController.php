@@ -31,6 +31,10 @@ class AddNewsController extends Controller
             $em->persist($noticia);
             $em->flush();
 
+            $this->get('image.handling')->open('bundles/salleadmin/img/articulos/' . $noticia->getId() . '.' . $noticia->getPath())
+                ->scaleResize(350, 225, '0xffffff')
+                ->save('bundles/salleadmin/img/articulos/thumbnails/' . $noticia->getId() . '.' . $noticia->getPath());
+
             return $this->redirect($this->generateUrl('list-news'));
         }
 

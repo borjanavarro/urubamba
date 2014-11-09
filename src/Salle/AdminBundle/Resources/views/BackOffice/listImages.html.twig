@@ -19,7 +19,7 @@
 		<div class="row" id="imgs">
 			{% for imagen in imagenes %}	
 				<div class="col-lg-4" style="height:400px;">
-					<img src="{{ asset ('bundles/salleadmin/img/galeria/' ~ imagen.id ~ '.' ~ imagen.path)}}" style="max-height:206px;max-width:329px;" alt="Project Name" class="img-rounded center-block">
+					<img src="{{ asset ('bundles/salleadmin/img/galeria/thumbnails/' ~ imagen.id ~ '.' ~ imagen.path)}}" style="max-height:206px;max-width:329px;" alt="Project Name" class="img-rounded center-block">
 					<div class="row">
 						<h3 class="text-center">{{ imagen.titulo | truncate(30) }}</h3>
 						<p class="text-center">{{ imagen.descripcion | truncate(90) }}</p>
