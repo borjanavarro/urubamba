@@ -146,7 +146,7 @@
 					&nbsp;&nbsp;
 					{% for flash in flashes %}
 						<div class="in-press">
-							<a href="{% if flash.titular %}{{ flash.enlace }}{% else %}#{% endif %}" target="_blank">{{ flash.titular }}</a>
+							<a href="{% if flash.titular %}{{ flash.enlace }}{% else %}javascript:void(0);{% endif %}" {% if flash.titular %}target="_blank"{% endif %}>{{ flash.titular }}</a>
 						</div>
 					{% endfor %}
 				</div>
